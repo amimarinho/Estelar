@@ -9,6 +9,7 @@
 - **EVITE** estilos inline.
 - **SEMPRE** se baseie no [DESIGN.md](file:///c:/Users/amima/OneDrive/Área de Trabalho/Dev/estelar/DESIGN.md) para tomar decisões de estilo.
 - **USE** Expo Router para rotas e tabs.
+- **NUNCA** adicione comentários no código gerado.
 
 ## Bibliotecas Utilizadas e Documentação
 
