@@ -1,22 +1,74 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect, useCallback } from 'react';
+import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { Image } from 'expo-image';
 import { StarField } from '@/components/star-field';
-import Svg, { Line, LinearGradient as SvgLinearGradient, Defs, Stop } from 'react-native-svg';
+import Svg, { Path, Circle, Defs, LinearGradient as SvgLinearGradient, Stop, G, Line } from 'react-native-svg';
+import Animated, {
+  useSharedValue,
+  useAnimatedProps,
+  withTiming,
+  Easing,
+  runOnJS,
+  cancelAnimation,
+} from 'react-native-reanimated';
+
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default function SplashScreen() {
   const router = useRouter();
+  const orbitAngle = useSharedValue(Math.atan2(-11 / 28, -72 / 85));
+
+  const navigateToOnboarding = useCallback(() => {
+    router.replace('/onboarding');
+  }, [router]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.replace('/onboarding');
-    }, 2000);
+    const startAngle = Math.atan2(-11 / 28, -72 / 85);
+    cancelAnimation(orbitAngle);
+    orbitAngle.value = startAngle;
 
-    return () => clearTimeout(timer);
-  }, [router]);
+    const timeout = setTimeout(() => {
+      orbitAngle.value = withTiming(startAngle + 2 * Math.PI, {
+        duration: 2500,
+        easing: Easing.inOut(Easing.cubic),
+      }, (finished) => {
+        if (finished) {
+          runOnJS(navigateToOnboarding)();
+        }
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+      cancelAnimation(orbitAngle);
+    };
+  }, [orbitAngle, navigateToOnboarding]);
+
+  const backPlanetProps = useAnimatedProps(() => {
+    const theta = orbitAngle.value;
+    const cx = 85 * Math.cos(theta);
+    const cy = 28 * Math.sin(theta);
+    const sinValue = Math.sin(theta);
+    return {
+      cx,
+      cy,
+      opacity: sinValue < 0 ? 1 : 0,
+    };
+  });
+
+  const frontPlanetProps = useAnimatedProps(() => {
+    const theta = orbitAngle.value;
+    const cx = 85 * Math.cos(theta);
+    const cy = 28 * Math.sin(theta);
+    const sinValue = Math.sin(theta);
+    return {
+      cx,
+      cy,
+      opacity: sinValue >= 0 ? 1 : 0,
+    };
+  });
 
   return (
     <View className="flex-1 bg-surface relative">
@@ -32,11 +84,123 @@ export default function SplashScreen() {
         <View className="h-2" />
 
         <View className="items-center px-6 w-full">
-          <Image
-            source={require('@/assets/images/logo.png')}
-            style={styles.logo}
-            contentFit="contain"
-          />
+          <View style={{ width: 230, height: 230 }} className="items-center justify-center">
+            <Svg width="100%" height="100%" viewBox="0 0 200 200">
+              <Defs>
+                <SvgLinearGradient id="helmetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <Stop offset="0%" stopColor="#ff8a70" />
+                  <Stop offset="55%" stopColor="#b9a7ff" />
+                  <Stop offset="100%" stopColor="#5c67f2" />
+                </SvgLinearGradient>
+              </Defs>
+
+              <G transform="translate(100, 105) rotate(-15)">
+                <Path
+                  d="M 85,0 A 85,28 0 0,0 -85,0"
+                  fill="none"
+                  stroke="url(#helmetGrad)"
+                  strokeWidth={3}
+                  strokeLinecap="round"
+                  opacity={0.7}
+                />
+                <AnimatedCircle
+                  r={5.5}
+                  fill="#b9a7ff"
+                  animatedProps={backPlanetProps}
+                />
+              </G>
+
+              <Path
+                d="M 52,107 A 48,48 0 0,1 148,107"
+                fill="none"
+                stroke="url(#helmetGrad)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+
+              <Path
+                d="M 52,92 A 6,6 0 0,0 46,98 L 46,116 A 6,6 0 0,0 52,122"
+                fill="none"
+                stroke="url(#helmetGrad)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+              <Path
+                d="M 148,92 A 6,6 0 0,1 154,98 L 154,116 A 6,6 0 0,1 148,122"
+                fill="none"
+                stroke="url(#helmetGrad)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+
+              <Circle
+                cx={100}
+                cy={107}
+                r={40}
+                fill="#1d254d44"
+                stroke="url(#helmetGrad)"
+                strokeWidth={3}
+              />
+
+              <Path
+                d="M 100,78 Q 100,100 116,100 Q 100,100 100,122 Q 100,100 84,100 Q 100,100 100,78 Z"
+                fill="#ffd66b"
+              />
+              <Path
+                d="M 82,84 Q 82,87 85,87 Q 82,87 82,90 Q 82,87 79,87 Q 82,87 82,84 Z"
+                fill="#ff8a70"
+              />
+              <Path
+                d="M 126,92 Q 126,95 129,95 Q 126,95 126,98 Q 126,95 123,95 Q 126,95 126,92 Z"
+                fill="#ffd66b"
+              />
+              <Path
+                d="M 118,118 Q 118,121 121,121 Q 118,121 118,124 Q 118,121 115,121 Q 118,121 118,118 Z"
+                fill="#b9a7ff"
+              />
+              <Circle cx={116} cy={78} r={1.5} fill="#ff8a70" />
+              <Circle cx={76} cy={114} r={1.5} fill="#5c67f2" />
+              <Circle cx={72} cy={95} r={1.0} fill="#ffd66b" />
+              <Circle cx={95} cy={74} r={0.8} fill="#ff8a70" />
+
+              <Path
+                d="M 64,136 C 74,146 126,146 136,136"
+                fill="none"
+                stroke="url(#helmetGrad)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+              <Path
+                d="M 68,144 C 76,154 124,154 132,144"
+                fill="none"
+                stroke="url(#helmetGrad)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+              <Path
+                d="M 72,152 C 80,162 120,162 128,152"
+                fill="none"
+                stroke="url(#helmetGrad)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+
+              <G transform="translate(100, 105) rotate(-15)">
+                <Path
+                  d="M -85,0 A 85,28 0 0,0 85,0"
+                  fill="none"
+                  stroke="url(#helmetGrad)"
+                  strokeWidth={3}
+                  strokeLinecap="round"
+                />
+                <AnimatedCircle
+                  r={5.5}
+                  fill="#b9a7ff"
+                  animatedProps={frontPlanetProps}
+                />
+              </G>
+            </Svg>
+          </View>
           
           <Text className="text-text-high font-title text-5xl mt-6 tracking-[6px] text-center">
             Estelar
@@ -81,9 +245,3 @@ export default function SplashScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  logo: {
-    width: 230,
-    height: 230,
-  },
-});

@@ -13,11 +13,12 @@ import { Lexend_400Regular, Lexend_600SemiBold } from '@expo-google-fonts/lexend
 import { SpaceMono_400Regular } from '@expo-google-fonts/space-mono';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { MissionProvider } from '@/context/mission-context';
 
 SplashScreen.preventAutoHideAsync();
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  initialRouteName: 'index',
 };
 
 export default function RootLayout() {
@@ -40,14 +41,23 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="onboarding" options={{ headerShown: false, animation: 'fade' }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <MissionProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="onboarding" options={{ headerShown: false, animation: 'fade' }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="checkin" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="report" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="breathing" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="capsule" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="register" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="meditation" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </MissionProvider>
   );
 }
+
