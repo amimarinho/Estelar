@@ -1,106 +1,176 @@
-# Estelar
+<p align="center">
+  <img src="assets/images/logo.png" width="220"/>
+</p>
 
-Aplicativo mobile de saúde mental e bem-estar para astronautas em missões de longa duração.
+<h1 align="center">Estelar</h1>
 
-Projeto desenvolvido para a **Global Solution 2026 · FIAP · Web Design · 2TWDOA**.
+<h3 align="center">
+  <i>Porque até entre as estrelas, sua mente precisa de um lar.</i>
+</h3>
 
----
-
-## Sobre o projeto
-
-O **Estelar** é um app mobile pensado para apoiar astronautas durante missões espaciais longas, em cenários de isolamento, rotina intensa, distância da Terra e sobrecarga emocional.
-
-A proposta combina check-ins emocionais, monitoramento de sinais de estresse, suporte psicológico assíncrono e uma visualização poética da jornada emocional da missão em formato de constelação.
-
-O objetivo é criar uma experiência calma, confiável e acolhedora, conectando saúde mental, tecnologia e contexto espacial.
+<p align="center">
+  Saúde mental e bem-estar para astronautas em missões espaciais de longa duração.
+</p>
 
 ---
 
-## Problema
+O **Estelar** foi criado para oferecer suporte emocional contínuo durante missões espaciais, ajudando astronautas a monitorar seu bem-estar, fortalecer sua resiliência e manter sua conexão com a Terra.
 
-Astronautas em missões de longa duração enfrentam desafios como:
-
-- isolamento social;
-- saudade da Terra;
-- pressão emocional;
-- dificuldade de descanso;
-- fadiga mental;
-- atraso na comunicação com equipes de suporte;
-- necessidade de manter estabilidade psicológica em ambientes extremos.
-
-Esses desafios também se conectam a situações vividas na Terra, como isolamento prolongado, trabalho remoto intenso, bases remotas e ambientes de alta pressão.
+Projeto desenvolvido para a **Global Solution 2026** da **FIAP**.
 
 ---
 
-## Solução
+## 🚀 O desafio
 
-O Estelar oferece uma experiência de cuidado emocional baseada em quatro pilares:
+Missões para Marte podem durar meses ou anos.
 
-1. **Acompanhamento emocional**
-   - check-ins de humor, estresse, energia e descanso.
+Durante esse período, astronautas enfrentam:
 
-2. **Radar de suporte**
-   - identificação de sinais de sobrecarga e conexão assíncrona com suporte psicológico.
+- Isolamento social prolongado
+- Distanciamento da família
+- Sobrecarga emocional
+- Alterações no sono
+- Estresse contínuo
+- Sensação de desconexão da Terra
 
-3. **Cuidado imediato**
-   - sugestões de pausa, respiração e práticas rápidas de estabilização emocional.
-
-4. **Jornada emocional**
-   - visualização dos registros da missão como uma constelação de momentos bons, difíceis e superados.
+O Estelar foi criado para atuar como um sistema de suporte emocional contínuo durante toda a missão.
 
 ---
 
-## MVP
+## ✨ Funcionalidades
 
-Nesta versão, o projeto prioriza um fluxo enxuto e navegável:
+### ❤️ Registro Emocional
+
+Registre diariamente:
+
+- Humor
+- Energia
+- Qualidade do sono
+- Nível de estresse
+- Estado emocional
+
+
+
+### 🧘 Central de Cuidado
+
+Acesso rápido a:
+
+- Exercícios de respiração
+- Meditações guiadas
+- Sons calmantes
+- Protocolos de recuperação emocional
+
+
+
+### 🌎 Conexão com a Terra
+
+Receba:
+
+- Mensagens da família
+- Fotos
+- Áudios
+- Lembretes afetivos
+- Conteúdos personalizados da sua cidade natal
+
+
+
+### 🌌 Constelação Emocional
+
+Transforma a jornada emocional da missão em uma constelação visual.
+
+Cada ponto representa:
+
+- Momentos positivos
+- Desafios emocionais
+- Marcos importantes
+- Superações
+
+---
+## 🛰️ Telas do Projeto
+
+### Splash Screen
+Apresentação da identidade do Estelar.
+
+### Onboarding
+Introdução à missão e às funcionalidades.
+
+### Missão
+Visão geral da jornada espacial.
+
+### Check-in
+Registro de humor, estresse, energia, sono e observação breve.
+
+### Radar
+Acompanhamento diário do estado emocional.
+
+### Cuidar
+Cuidado imediato para momentos de sobrecarga.
+
+### Terra
+Canal de conexão afetiva com o planeta de origem.
+
+### Jornada
+Visualização da Constelação Emocional.
+
+### Diário de Bordo
+Histórico completo da missão.
+
+---
+
+## 🎯 Objetivo
+
+Promover bem-estar psicológico durante missões espaciais de longa duração, reduzindo os impactos emocionais do isolamento e fortalecendo a conexão humana mesmo a milhões de quilômetros da Terra.
+
+---
+
+## 🛰️ Missão Atual
+
+Nesta versão inicial, o Estelar apresenta os sistemas essenciais para acompanhamento emocional da tripulação.
+
+### Fluxo da Missão
 
 ```txt
-Splash → Onboarding → Missão → Check-in → Missão → Radar → Jornada
-````
+🌌 Inicialização do Sistema
+       ↓
+👋 Boas-vindas à Tripulação
+       ↓
+🚀 Painel da Missão
+       ↓
+❤️ Registro Emocional
+       ↓
+📡 Radar de Bem-estar
+       ↓
+✨ Constelação Emocional
+```
 
-### Telas principais
+### Objetivo do MVP
 
-* **Splash**
+Validar a experiência principal do Estelar, permitindo que astronautas:
 
-  * apresentação inicial do Estelar.
+* monitorem seu estado emocional;
+* identifiquem sinais de sobrecarga;
+* acompanhem sua evolução ao longo da missão;
+* transformem registros emocionais em uma jornada visual significativa.
 
-* **Onboarding**
-
-  * introdução à proposta do app.
-
-* **Missão**
-
-  * painel principal com status emocional, ciclo da missão e acesso ao check-in.
-
-* **Check-in**
-
-  * registro de humor, estresse, energia, sono e observação breve.
-
-* **Radar**
-
-  * monitoramento de sobrecarga emocional e suporte assíncrono com a Terra.
-
-* **Jornada**
-
-  * constelação emocional com destaques da missão.
+Cada interação contribui para a construção de uma constelação única, representando os desafios, conquistas e momentos marcantes vividos durante a missão.
 
 ---
 
-## Tecnologias utilizadas
+## ⚒️ Tecnologias utilizadas
 
-* React Native
-* Expo
-* Expo Router
-* TypeScript
-* NativeWind
-* AsyncStorage
-* Expo Google Fonts
-* Expo Vector Icons
-* React Native Skia
+![React Native](https://img.shields.io/badge/React%20Native-20232A?style=flat-rounded&logo=react&logoColor=61DAFB)  
+![Expo](https://img.shields.io/badge/Expo-000020?style=flat-rounded&logo=expo&logoColor=white)  
+![Expo Router](https://img.shields.io/badge/Expo%20Router-000020?style=flat-roundedlogo=expo&logoColor=white)  
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-rounded&logo=typescript&logoColor=white)  
+![NativeWind](https://img.shields.io/badge/NativeWind-38BDF8?style=flat-rounded&logo=tailwindcss&logoColor=white)  
+![AsyncStorage](https://img.shields.io/badge/AsyncStorage-FFCA28?style=flat-rounded&logo=react&logoColor=black)  
+![Expo Google Fonts](https://img.shields.io/badge/Expo%20Google%20Fonts-4285F4?style=flat-rounded&logo=googlefonts&logoColor=white)  
+![Expo Vector Icons](https://img.shields.io/badge/Expo%20Vector%20Icons-000020?style=flat-rounded&logo=expo&logoColor=white)  
+![React Native Skia](https://img.shields.io/badge/React%20Native%20Skia-61DAFB?style=flat-rounded&logo=react&logoColor=20232A)  
 
 ---
 
-## Como rodar o projeto
+## ⚙️ Como rodar o projeto
 
 ### 1. Instalar dependências
 
@@ -134,7 +204,7 @@ npm run web
 
 ---
 
-## Scripts disponíveis
+## 📄 Scripts disponíveis
 
 ```bash
 npm start
@@ -168,7 +238,7 @@ Executa a verificação de lint do projeto.
 
 ---
 
-## Estrutura principal
+## 📃 Estrutura principal
 
 ```txt
 app/
@@ -213,63 +283,162 @@ assets/
 
 ---
 
-## Design e identidade visual
+## 🎨 Design e Identidade Visual
 
-O Estelar usa uma linguagem visual espacial, calma e acolhedora.
+> **"Porque até entre as estrelas, sua mente precisa de um lar."**
 
-Diretrizes principais:
+O Estelar nasce da compreensão de que a exploração espacial não é apenas um desafio tecnológico, mas também humano.
 
-* usar tons de off-white, azul profundo, lilás, roxo e cores de apoio;
-* priorizar contraste confortável;
-* usar cantos arredondados;
-* manter textos curtos e objetivos;
-* preservar sensação de calma, profundidade e segurança;
-* usar motion design de forma sutil.
+Durante missões de longa duração, astronautas enfrentam isolamento, distância da família, mudanças na rotina e momentos de grande pressão emocional. Pensando nisso, o Estelar foi projetado para ser um ponto de apoio constante, oferecendo acolhimento, cuidado e conexão mesmo a milhões de quilômetros da Terra.
 
-### Tipografia
+Sua identidade visual combina a grandiosidade do universo com a sensação de conforto e pertencimento, transformando cada interação em uma experiência tranquila, intuitiva e emocionalmente significativa.
 
-* **Space Grotesk** para títulos;
-* **Lexend** para textos e interface;
-* **Space Mono** para dados, horários e métricas da missão.
+### ✨ Princípios de Design
+
+- Criar uma sensação de acolhimento e pertencimento;
+- Promover bem-estar emocional através da interface;
+- Reduzir a carga cognitiva em situações de estresse;
+- Priorizar acessibilidade, clareza e legibilidade;
+- Representar emoções através de elementos inspirados em constelações e jornadas espaciais;
+- Utilizar animações suaves e significativas para reforçar a experiência do usuário.
+
+### 🌌 Paleta Visual
+
+A identidade visual do Estelar une a profundidade do espaço à sensação de segurança e cuidado.
+
+- **Azul profundo** — estabilidade, confiança e imensidão espacial;
+- **Lilás e roxo** — introspecção, acolhimento e inovação;
+- **Off-white** — conforto visual e legibilidade;
+- **Cores de apoio** — representam estados emocionais, marcos importantes e eventos da missão.
+
+### 🔤 Tipografia
+
+#### Space Grotesk
+Utilizada em títulos e elementos de destaque.
+
+- Moderna e tecnológica;
+- Reforça a identidade espacial do projeto;
+- Transmite inovação e confiança.
+
+#### Lexend
+Utilizada em textos e componentes da interface.
+
+- Desenvolvida para leitura confortável;
+- Facilita a compreensão de informações em longos períodos de uso;
+- Contribui para uma experiência mais acessível e acolhedora.
+
+#### Space Mono
+Utilizada para métricas, registros e dados da missão.
+
+- Inspirada em sistemas de bordo e interfaces técnicas;
+- Ideal para exibir informações operacionais;
+- Cria contraste visual e hierarquia de informação.
+
+### 🚀 Filosofia da Experiência
+
+O Estelar foi concebido para ser mais do que um aplicativo de saúde mental.
+
+Ele funciona como um espaço seguro para que astronautas acompanhem suas emoções, registrem sua jornada, fortaleçam sua resiliência e mantenham viva sua conexão com a Terra.
+
+Porque, mesmo em meio à imensidão do cosmos, todo ser humano precisa de um lugar para chamar de lar.
 
 ---
 
-## Funcionalidades futuras
+## 🛰️ Próximas Missões
 
-Ideias planejadas para versões futuras:
+O Estelar foi concebido como uma plataforma em constante evolução. À medida que novas necessidades surgirem nas missões espaciais de longa duração, novas ferramentas poderão ser incorporadas para ampliar o cuidado emocional, fortalecer a resiliência psicológica e manter a conexão humana além da Terra.
 
-* tela completa de cuidado imediato;
-* respiração guiada;
-* sons calmantes;
-* meditação;
-* cápsulas emocionais da Terra;
-* diário de bordo;
-* registro emocional detalhado;
-* histórico de suporte psicológico;
-* modo alto contraste;
-* redução de animações;
-* ajustes de acessibilidade.
+### 🧘 Bem-estar e Recuperação Emocional
+
+Recursos voltados para o cuidado imediato e a regulação emocional durante momentos de estresse ou sobrecarga.
+
+- Exercícios de respiração guiada;
+- Sessões de meditação adaptadas ao ambiente espacial;
+- Sons calmantes e paisagens sonoras imersivas;
+- Protocolos de cuidado imediato para situações críticas;
+- Ferramentas de relaxamento e recuperação emocional.
+
+### 🌎 Conexão Afetiva com a Terra
+
+Funcionalidades projetadas para reduzir a sensação de isolamento e fortalecer vínculos emocionais.
+
+- Cápsulas emocionais enviadas por familiares e amigos;
+- Mensagens programadas para momentos importantes da missão;
+- Lembretes afetivos personalizados;
+- Experiências imersivas inspiradas em lugares significativos da Terra.
+
+### 📖 Jornada e Autoconhecimento
+
+Ferramentas para acompanhar a evolução emocional ao longo da missão.
+
+- Diário de bordo emocional completo;
+- Registro detalhado de humor, energia e bem-estar;
+- Linha do tempo da jornada emocional;
+- Insights e tendências comportamentais;
+- Relatórios de evolução e resiliência emocional.
+
+### 👨‍⚕️ Suporte Psicológico
+
+Recursos voltados ao acompanhamento da saúde mental da tripulação.
+
+- Histórico de intervenções e protocolos realizados;
+- Registro de acompanhamentos psicológicos;
+- Indicadores de risco emocional;
+- Recomendações personalizadas baseadas nos registros da missão.
+
+### ♿ Acessibilidade e Inclusão
+
+O Estelar busca oferecer uma experiência acessível para diferentes perfis de usuários.
+
+- Modo de alto contraste;
+- Redução de animações e estímulos visuais;
+- Ajustes avançados de acessibilidade;
+- Melhorias contínuas de legibilidade e usabilidade.
+
+
+### 🚀 Visão de Futuro
+
+Nosso objetivo é que o Estelar evolua para se tornar um verdadeiro companheiro de jornada para astronautas, oferecendo suporte emocional contínuo durante toda a missão e ajudando a garantir que, mesmo entre as estrelas, ninguém se sinta sozinho.
 
 ---
 
-## Entrega acadêmica
+## 👨‍🚀 Tripulação da Missão Estelar
 
-Projeto desenvolvido para a Global Solution 2026 da FIAP.
+A equipe responsável pelo desenvolvimento da plataforma Estelar para a Global Solution 2026.
 
-### Integrantes
-
-* Guilherme Victor Cunha de Souza – RM 565727
-* Isamara Alves de Brito – RM 565161
-* Kauane Cristiny Bomfim Silva Cavalcante – RM 563886
-* Mirna L Marinho Carneiro – RM 564052
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/3b1732e5-afc3-41b3-a6f2-f1a156dc1579" width="140px"><br>
+      <strong>Guilherme Victor</strong><br>
+      RM 565727
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/82c2ccd1-c779-422c-9b49-cbac47aa4e23" width="140px"><br>
+      <strong>Isamara Alves</strong><br>
+      RM 565161
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/394b68a0-292a-4054-a4f8-27056939a9ae" width="140px"><br>
+      <strong>Kauane Cristiny</strong><br>
+      RM 563886
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/17875f5e-2829-44d5-95ae-27c57995d372" width="140px"><br>
+      <strong>Mirna Carneiro</strong><br>
+      RM 564052
+    </td>
+  </tr>
+</table>
 
 ---
 
-## Links da entrega
+## 🌌 Central da Missão
 
-* Repositório GitHub: https://github.com/amimarinho/Estelar
-* Protótipo Figma: https://www.figma.com/proto/iE0wnaC0eO3JqJgl6DSydU/Global-Solutions---Space-Connect--Estelar-?node-id=0-1&t=9sUhh4MdbBplChc6-1
-* Vídeo-pitch: 
-* PDF da entrega: 
+[![GitHub](https://img.shields.io/badge/🚀_Repositório_GitHub-181717?style=flat-rounded)](https://github.com/amimarinho/Estelar)
 
----
+[![Figma](https://img.shields.io/badge/🎨_Protótipo_Estelar-8F7CFF?style=flat-rounded)](https://www.figma.com/proto/iE0wnaC0eO3JqJgl6DSydU/Global-Solutions---Space-Connect--Estelar-?node-id=0-1&t=9sUhh4MdbBplChc6-1)
+
+[![YouTube](https://img.shields.io/badge/🎬_Vídeo_Pitch-FF0000?style=flat-rounded)](#)
+
+[![PDF](https://img.shields.io/badge/📄_Documentação_Final-B9A7FF?style=flat-rounded)](#)
