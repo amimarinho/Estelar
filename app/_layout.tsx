@@ -53,7 +53,6 @@ export default function RootLayout() {
           <Stack.Screen name="capsule" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
           <Stack.Screen name="register" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
           <Stack.Screen name="meditation" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
