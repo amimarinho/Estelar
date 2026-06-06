@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,10 +19,17 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 export default function SplashScreen() {
   const router = useRouter();
   const orbitAngle = useSharedValue(Math.atan2(-11 / 28, -72 / 85));
+  const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigateToOnboarding = useCallback(() => {
     router.replace('/onboarding');
   }, [router]);
+
+  const handleNavigationAfterDelay = useCallback(() => {
+    navTimeoutRef.current = setTimeout(() => {
+      navigateToOnboarding();
+    }, 800);
+  }, [navigateToOnboarding]);
 
   useEffect(() => {
     const startAngle = Math.atan2(-11 / 28, -72 / 85);
@@ -35,16 +42,19 @@ export default function SplashScreen() {
         easing: Easing.inOut(Easing.cubic),
       }, (finished) => {
         if (finished) {
-          runOnJS(navigateToOnboarding)();
+          runOnJS(handleNavigationAfterDelay)();
         }
       });
     }, 100);
 
     return () => {
       clearTimeout(timeout);
+      if (navTimeoutRef.current) {
+        clearTimeout(navTimeoutRef.current);
+      }
       cancelAnimation(orbitAngle);
     };
-  }, [orbitAngle, navigateToOnboarding]);
+  }, [orbitAngle, handleNavigationAfterDelay]);
 
   const backPlanetProps = useAnimatedProps(() => {
     const theta = orbitAngle.value;
