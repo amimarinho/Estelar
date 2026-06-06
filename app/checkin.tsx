@@ -1,32 +1,48 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet, TextInput, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import { StarField } from '@/components/star-field';
-import { Ionicons } from '@expo/vector-icons';
-import * as Haptics from 'expo-haptics';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  Alert,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import { StarField } from "@/components/star-field";
+import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 
-import { useMission } from '@/context/mission-context';
+import { useMission } from "@/context/mission-context";
 
 export default function CheckinScreen() {
   const router = useRouter();
   const { addCheckin } = useMission();
 
-  const [selectedMood, setSelectedMood] = useState<'calmo' | 'bem' | 'instavel' | 'ansioso' | 'sobrecarregado' | null>(null);
+  const [selectedMood, setSelectedMood] = useState<
+    "calmo" | "bem" | "instavel" | "ansioso" | "sobrecarregado" | null
+  >(null);
   const [stressLevel, setStressLevel] = useState(1);
   const [energyLevel, setEnergyLevel] = useState(2);
   const [sleepQuality, setSleepQuality] = useState(2);
-  const [notes, setNotes] = useState('');
+  const [notes, setNotes] = useState("");
 
-  const moods: { id: 'calmo' | 'bem' | 'instavel' | 'ansioso'; label: string; icon: string }[] = [
-    { id: 'calmo', label: 'Calmo', icon: 'leaf-outline' },
-    { id: 'bem', label: 'Bem', icon: 'happy-outline' },
-    { id: 'instavel', label: 'Instável', icon: 'pulse-outline' },
-    { id: 'ansioso', label: 'Ansioso', icon: 'sync-outline' },
+  const moods: {
+    id: "calmo" | "bem" | "instavel" | "ansioso";
+    label: string;
+    icon: string;
+  }[] = [
+    { id: "calmo", label: "Calmo", icon: "leaf-outline" },
+    { id: "bem", label: "Bem", icon: "happy-outline" },
+    { id: "instavel", label: "Instável", icon: "pulse-outline" },
+    { id: "ansioso", label: "Ansioso", icon: "sync-outline" },
   ];
 
-  const handleSelectMood = (id: 'calmo' | 'bem' | 'instavel' | 'ansioso' | 'sobrecarregado') => {
+  const handleSelectMood = (
+    id: "calmo" | "bem" | "instavel" | "ansioso" | "sobrecarregado",
+  ) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setSelectedMood(id);
   };
@@ -34,7 +50,10 @@ export default function CheckinScreen() {
   const handleSave = async () => {
     if (!selectedMood) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      Alert.alert("Humor Requerido", "Por favor, selecione seu humor atual antes de salvar.");
+      Alert.alert(
+        "Humor Requerido",
+        "Por favor, selecione seu humor atual antes de salvar.",
+      );
       return;
     }
 
@@ -54,24 +73,24 @@ export default function CheckinScreen() {
         {
           text: "OK",
           onPress: () => {
-            router.replace('/(tabs)');
-          }
-        }
-      ]
+            router.replace("/(tabs)");
+          },
+        },
+      ],
     );
   };
 
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
-      
+
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top', 'bottom']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
         <ScrollView
           className="flex-1 px-6 pt-4"
           showsVerticalScrollIndicator={false}
@@ -91,7 +110,7 @@ export default function CheckinScreen() {
                 </Text>
               </View>
             </View>
-            <Pressable 
+            <Pressable
               onPress={() => router.back()}
               className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center active:opacity-80"
             >
@@ -112,7 +131,7 @@ export default function CheckinScreen() {
             <Text className="font-title text-base font-bold text-text-high mb-4">
               Seu Humor
             </Text>
-            
+
             <View className="flex-row flex-wrap justify-between gap-y-4 mb-4">
               {moods.map((mood) => {
                 const isSelected = selectedMood === mood.id;
@@ -120,19 +139,21 @@ export default function CheckinScreen() {
                   <Pressable
                     key={mood.id}
                     onPress={() => handleSelectMood(mood.id)}
-                    style={{ width: '47%', height: 72 }}
+                    style={{ width: "47%", height: 72 }}
                     className={`rounded-[20px] items-center justify-center border ${
-                      isSelected 
-                        ? 'bg-primary/20 border-primary shadow-sm shadow-primary' 
-                        : 'bg-surface border-stroke-soft'
+                      isSelected
+                        ? "bg-primary/20 border-primary"
+                        : "bg-surface border-stroke-soft"
                     }`}
                   >
-                    <Ionicons 
-                      name={mood.icon as any} 
-                      size={20} 
-                      color={isSelected ? '#b9a7ff' : '#b8bde0'} 
+                    <Ionicons
+                      name={mood.icon as any}
+                      size={20}
+                      color={isSelected ? "#b9a7ff" : "#b8bde0"}
                     />
-                    <Text className={`font-sans text-xs mt-1.5 ${isSelected ? 'text-primary font-bold' : 'text-text-muted'}`}>
+                    <Text
+                      className={`font-sans text-xs mt-1.5 ${isSelected ? "text-primary font-bold" : "text-text-muted"}`}
+                    >
                       {mood.label}
                     </Text>
                   </Pressable>
@@ -141,20 +162,24 @@ export default function CheckinScreen() {
             </View>
 
             <Pressable
-              onPress={() => handleSelectMood('sobrecarregado')}
+              onPress={() => handleSelectMood("sobrecarregado")}
               className={`w-full h-16 rounded-[20px] items-center justify-center flex-row border ${
-                selectedMood === 'sobrecarregado'
-                  ? 'bg-primary/20 border-primary shadow-sm shadow-primary'
-                  : 'bg-surface border-stroke-soft'
+                selectedMood === "sobrecarregado"
+                  ? "bg-primary/20 border-primary"
+                  : "bg-surface border-stroke-soft"
               }`}
             >
-              <Ionicons 
-                name="layers-outline" 
-                size={20} 
-                color={selectedMood === 'sobrecarregado' ? '#b9a7ff' : '#b8bde0'} 
+              <Ionicons
+                name="layers-outline"
+                size={20}
+                color={
+                  selectedMood === "sobrecarregado" ? "#b9a7ff" : "#b8bde0"
+                }
                 className="mr-2.5"
               />
-              <Text className={`font-sans text-xs ${selectedMood === 'sobrecarregado' ? 'text-primary font-bold' : 'text-text-muted'}`}>
+              <Text
+                className={`font-sans text-xs ${selectedMood === "sobrecarregado" ? "text-primary font-bold" : "text-text-muted"}`}
+              >
                 Sobrecarregado
               </Text>
             </Pressable>
@@ -170,43 +195,79 @@ export default function CheckinScreen() {
 
             <View className="w-full h-8 relative justify-center mt-5 mb-1.5">
               <View className="h-1 bg-stroke-soft rounded-full w-full absolute" />
-              <View 
+              <View
                 style={{
-                  position: 'absolute',
-                  left: stressLevel === 0 ? '0%' : stressLevel === 1 ? '50%' : '100%',
-                  marginLeft: stressLevel === 0 ? 0 : stressLevel === 1 ? -10 : -20,
+                  position: "absolute",
+                  left:
+                    stressLevel === 0
+                      ? "0%"
+                      : stressLevel === 1
+                        ? "50%"
+                        : "100%",
+                  marginLeft:
+                    stressLevel === 0 ? 0 : stressLevel === 1 ? -10 : -20,
                 }}
                 className="w-5 h-5 rounded-full bg-primary"
               />
               <View className="absolute inset-0 flex-row justify-between">
-                <Pressable 
-                  onPress={() => { Haptics.selectionAsync(); setStressLevel(0); }} 
-                  className="w-10 h-8 items-center justify-center" 
+                <Pressable
+                  onPress={() => {
+                    Haptics.selectionAsync();
+                    setStressLevel(0);
+                  }}
+                  className="w-10 h-8 items-center justify-center"
                 />
-                <Pressable 
-                  onPress={() => { Haptics.selectionAsync(); setStressLevel(1); }} 
-                  className="w-10 h-8 items-center justify-center" 
+                <Pressable
+                  onPress={() => {
+                    Haptics.selectionAsync();
+                    setStressLevel(1);
+                  }}
+                  className="w-10 h-8 items-center justify-center"
                 />
-                <Pressable 
-                  onPress={() => { Haptics.selectionAsync(); setStressLevel(2); }} 
-                  className="w-10 h-8 items-center justify-center" 
+                <Pressable
+                  onPress={() => {
+                    Haptics.selectionAsync();
+                    setStressLevel(2);
+                  }}
+                  className="w-10 h-8 items-center justify-center"
                 />
               </View>
             </View>
 
             <View className="flex-row justify-between px-1">
-              <Pressable onPress={() => { Haptics.selectionAsync(); setStressLevel(0); }}>
-                <Text className={`font-sans text-[11px] ${stressLevel === 0 ? 'text-primary font-bold' : 'text-text-muted/65'}`}>
+              <Pressable
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setStressLevel(0);
+                }}
+              >
+                <Text
+                  className={`font-sans text-[11px] ${stressLevel === 0 ? "text-primary font-bold" : "text-text-muted/65"}`}
+                >
                   Baixo
                 </Text>
               </Pressable>
-              <Pressable onPress={() => { Haptics.selectionAsync(); setStressLevel(1); }}>
-                <Text className={`font-sans text-[11px] ${stressLevel === 1 ? 'text-primary font-bold' : 'text-text-muted/65'}`}>
+              <Pressable
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setStressLevel(1);
+                }}
+              >
+                <Text
+                  className={`font-sans text-[11px] ${stressLevel === 1 ? "text-primary font-bold" : "text-text-muted/65"}`}
+                >
                   Moderado
                 </Text>
               </Pressable>
-              <Pressable onPress={() => { Haptics.selectionAsync(); setStressLevel(2); }}>
-                <Text className={`font-sans text-[11px] ${stressLevel === 2 ? 'text-primary font-bold' : 'text-text-muted/65'}`}>
+              <Pressable
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setStressLevel(2);
+                }}
+              >
+                <Text
+                  className={`font-sans text-[11px] ${stressLevel === 2 ? "text-primary font-bold" : "text-text-muted/65"}`}
+                >
                   Alto
                 </Text>
               </Pressable>
@@ -223,43 +284,79 @@ export default function CheckinScreen() {
 
             <View className="w-full h-8 relative justify-center mt-5 mb-1.5">
               <View className="h-1 bg-stroke-soft rounded-full w-full absolute" />
-              <View 
+              <View
                 style={{
-                  position: 'absolute',
-                  left: energyLevel === 0 ? '0%' : energyLevel === 1 ? '50%' : '100%',
-                  marginLeft: energyLevel === 0 ? 0 : energyLevel === 1 ? -10 : -20,
+                  position: "absolute",
+                  left:
+                    energyLevel === 0
+                      ? "0%"
+                      : energyLevel === 1
+                        ? "50%"
+                        : "100%",
+                  marginLeft:
+                    energyLevel === 0 ? 0 : energyLevel === 1 ? -10 : -20,
                 }}
                 className="w-5 h-5 rounded-full bg-primary"
               />
               <View className="absolute inset-0 flex-row justify-between">
-                <Pressable 
-                  onPress={() => { Haptics.selectionAsync(); setEnergyLevel(0); }} 
-                  className="w-10 h-8 items-center justify-center" 
+                <Pressable
+                  onPress={() => {
+                    Haptics.selectionAsync();
+                    setEnergyLevel(0);
+                  }}
+                  className="w-10 h-8 items-center justify-center"
                 />
-                <Pressable 
-                  onPress={() => { Haptics.selectionAsync(); setEnergyLevel(1); }} 
-                  className="w-10 h-8 items-center justify-center" 
+                <Pressable
+                  onPress={() => {
+                    Haptics.selectionAsync();
+                    setEnergyLevel(1);
+                  }}
+                  className="w-10 h-8 items-center justify-center"
                 />
-                <Pressable 
-                  onPress={() => { Haptics.selectionAsync(); setEnergyLevel(2); }} 
-                  className="w-10 h-8 items-center justify-center" 
+                <Pressable
+                  onPress={() => {
+                    Haptics.selectionAsync();
+                    setEnergyLevel(2);
+                  }}
+                  className="w-10 h-8 items-center justify-center"
                 />
               </View>
             </View>
 
             <View className="flex-row justify-between px-1">
-              <Pressable onPress={() => { Haptics.selectionAsync(); setEnergyLevel(0); }}>
-                <Text className={`font-sans text-[11px] ${energyLevel === 0 ? 'text-primary font-bold' : 'text-text-muted/65'}`}>
+              <Pressable
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setEnergyLevel(0);
+                }}
+              >
+                <Text
+                  className={`font-sans text-[11px] ${energyLevel === 0 ? "text-primary font-bold" : "text-text-muted/65"}`}
+                >
                   Baixa
                 </Text>
               </Pressable>
-              <Pressable onPress={() => { Haptics.selectionAsync(); setEnergyLevel(1); }}>
-                <Text className={`font-sans text-[11px] ${energyLevel === 1 ? 'text-primary font-bold' : 'text-text-muted/65'}`}>
+              <Pressable
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setEnergyLevel(1);
+                }}
+              >
+                <Text
+                  className={`font-sans text-[11px] ${energyLevel === 1 ? "text-primary font-bold" : "text-text-muted/65"}`}
+                >
                   Moderada
                 </Text>
               </Pressable>
-              <Pressable onPress={() => { Haptics.selectionAsync(); setEnergyLevel(2); }}>
-                <Text className={`font-sans text-[11px] ${energyLevel === 2 ? 'text-primary font-bold' : 'text-text-muted/65'}`}>
+              <Pressable
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setEnergyLevel(2);
+                }}
+              >
+                <Text
+                  className={`font-sans text-[11px] ${energyLevel === 2 ? "text-primary font-bold" : "text-text-muted/65"}`}
+                >
                   Alta
                 </Text>
               </Pressable>
@@ -275,21 +372,26 @@ export default function CheckinScreen() {
             </Text>
 
             <View className="flex-row justify-between items-center mt-5 gap-3">
-              {['Não', 'Parcial', 'Sim'].map((option, idx) => {
+              {["Não", "Parcial", "Sim"].map((option, idx) => {
                 const isSelected = sleepQuality === idx;
                 return (
                   <Pressable
                     key={option}
-                    onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); setSleepQuality(idx); }}
+                    onPress={() => {
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      setSleepQuality(idx);
+                    }}
                     className={`flex-1 h-12 rounded-full border items-center justify-center active:opacity-90 ${
-                      isSelected 
-                        ? 'bg-primary border-primary' 
-                        : 'bg-surface border-stroke-soft'
+                      isSelected
+                        ? "bg-primary border-primary"
+                        : "bg-surface border-stroke-soft"
                     }`}
                   >
-                    <Text className={`font-sans font-bold text-sm ${
-                      isSelected ? 'text-primary-on' : 'text-text-muted'
-                    }`}>
+                    <Text
+                      className={`font-sans font-bold text-sm ${
+                        isSelected ? "text-primary-on" : "text-text-muted"
+                      }`}
+                    >
                       {option}
                     </Text>
                   </Pressable>
@@ -342,10 +444,10 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   textArea: {
-    backgroundColor: 'rgba(10, 16, 48, 0.4)',
+    backgroundColor: "rgba(10, 16, 48, 0.4)",
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)',
+    borderColor: "rgba(255, 255, 255, 0.08)",
     height: 100,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
   },
 });
