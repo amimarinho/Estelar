@@ -44,7 +44,7 @@ const NAMED_COLORS: Record<string, RGB> = {
   pink: [1, 0.75, 0.8],
 };
 
-const DEFAULT_COLORS = ["#4D80FF", "#FF4D80", "#80FF4D"];
+const DEFAULT_COLORS = ["#B9A7FF", "#FF8A70", "#FFD66B", "#8FE3B0"];
 const DEFAULT_SPEED = 1.0;
 const DEFAULT_INTENSITY = 2.0;
 const DEFAULT_GLOW_RADIUS = 0.45;
