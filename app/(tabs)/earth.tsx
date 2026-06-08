@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { StarField } from '@/components/star-field';
-import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
-import * as Haptics from 'expo-haptics';
-import { useRouter } from 'expo-router';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  StyleSheet,
+  Alert,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { StarField } from "@/components/star-field";
+import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import * as Haptics from "expo-haptics";
+import { useRouter } from "expo-router";
 
 export default function EarthScreen() {
   const router = useRouter();
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [transmissionFeedback, setTransmissionFeedback] = useState("");
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -30,7 +38,15 @@ export default function EarthScreen() {
   }, [isPlayingAudio]);
 
   const formatTime = (secs: number) => {
-    return `00:${secs < 10 ? '0' : ''}${secs}`;
+    return `00:${secs < 10 ? "0" : ""}${secs}`;
+  };
+
+  const showTransmissionFeedback = (message: string) => {
+    setTransmissionFeedback(message);
+
+    setTimeout(() => {
+      setTransmissionFeedback("");
+    }, 3000);
   };
 
   const handlePlayAudio = () => {
@@ -43,7 +59,7 @@ export default function EarthScreen() {
 
   const handleOpenCapsules = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push('/capsule');
+    router.push("/capsule");
   };
 
   const handleSendResponse = () => {
@@ -53,35 +69,39 @@ export default function EarthScreen() {
       "Sua conexão espacial está estável. Deseja transmitir um texto ou gravação de voz para casa?",
       [
         { text: "Cancelar", style: "cancel" },
-        { 
-          text: "Gravar Áudio", 
+        {
+          text: "Gravar Áudio",
           onPress: () => {
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            Alert.alert("Gravador", "Gravação enviada com sucesso!");
-          }
+            showTransmissionFeedback(
+              "Gravação enviada para a fila de transmissão.",
+            );
+          },
         },
-        { 
-          text: "Escrever Texto", 
+        {
+          text: "Escrever Texto",
           onPress: () => {
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            Alert.alert("Mensagem", "Mensagem enviada para a fila de transmissão!");
-          }
-        }
-      ]
+            showTransmissionFeedback(
+              "Mensagem enviada para a fila de transmissão.",
+            );
+          },
+        },
+      ],
     );
   };
 
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
-      
+
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
           className="flex-1 px-6 pt-6"
           showsVerticalScrollIndicator={false}
@@ -97,7 +117,11 @@ export default function EarthScreen() {
               </Text>
             </View>
             <Pressable className="w-10 h-10 rounded-full bg-surface-card border border-primary/20 items-center justify-center active:opacity-85">
-              <Ionicons name="person-circle-outline" size={26} color="#f7f4ff" />
+              <Ionicons
+                name="person-circle-outline"
+                size={26}
+                color="#f7f4ff"
+              />
             </Pressable>
           </View>
 
@@ -108,14 +132,24 @@ export default function EarthScreen() {
 
             <View className="space-y-2.5 mb-4">
               <View className="flex-row items-center">
-                <Ionicons name="location-outline" size={16} color="#ff8a70" className="mr-2.5" />
+                <Ionicons
+                  name="location-outline"
+                  size={16}
+                  color="#ff8a70"
+                  className="mr-2.5"
+                />
                 <Text className="font-sans text-sm font-semibold text-accent-affective">
                   SÃO PAULO, TERRA
                 </Text>
               </View>
 
               <View className="flex-row items-center">
-                <Ionicons name="time-outline" size={16} color="#b8bde0" className="mr-2.5" />
+                <Ionicons
+                  name="time-outline"
+                  size={16}
+                  color="#b8bde0"
+                  className="mr-2.5"
+                />
                 <Text className="font-mono text-sm text-text-high">
                   14:32 · Quarta-feira
                 </Text>
@@ -123,11 +157,12 @@ export default function EarthScreen() {
             </View>
 
             <Text className="font-sans text-sm text-text-muted leading-relaxed">
-              Enquanto você orbita a Terra, sua referência de casa continua sincronizada.
+              Enquanto você orbita a Terra, sua referência de casa continua
+              sincronizada.
             </Text>
 
             <Image
-              source={require('@/assets/images/saopaulo_skyline.png')}
+              source={require("@/assets/images/saopaulo_skyline.png")}
               style={styles.skylineImage}
               contentFit="cover"
               className="rounded-[20px] mt-6 border border-white/5"
@@ -142,7 +177,11 @@ export default function EarthScreen() {
             <View className="space-y-4">
               <View className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center mb-4">
                 <View className="w-11 h-11 rounded-full bg-primary/15 items-center justify-center mr-4 border border-primary/10">
-                  <Ionicons name="musical-notes-outline" size={20} color="#b9a7ff" />
+                  <Ionicons
+                    name="musical-notes-outline"
+                    size={20}
+                    color="#b9a7ff"
+                  />
                 </View>
                 <View className="flex-1 mr-2">
                   <Text className="font-title text-base font-bold text-text-high">
@@ -151,15 +190,22 @@ export default function EarthScreen() {
                   <Text className="font-sans text-[13px] text-text-muted mt-0.5 italic">
                     “Estamos pensando em você hoje.”
                   </Text>
-                  <Text className={`font-mono text-[10px] uppercase tracking-[1px] mt-1.5 ${isPlayingAudio ? 'text-primary font-bold' : 'text-text-muted/65'}`}>
-                    {isPlayingAudio ? `TOCANDO • ${formatTime(audioProgress)} / 00:42` : 'ÁUDIO • 00:42'}
+                  <Text
+                    className={`font-mono text-[10px] uppercase tracking-[1px] mt-1.5 ${isPlayingAudio ? "text-primary font-bold" : "text-text-muted/65"}`}
+                  >
+                    {isPlayingAudio
+                      ? `TOCANDO • ${formatTime(audioProgress)} / 00:42`
+                      : "ÁUDIO • 00:42"}
                   </Text>
                 </View>
-                <Pressable onPress={handlePlayAudio} className="active:opacity-80">
-                  <Ionicons 
-                    name={isPlayingAudio ? 'pause-circle' : 'play-circle'} 
-                    size={36} 
-                    color="#b9a7ff" 
+                <Pressable
+                  onPress={handlePlayAudio}
+                  className="active:opacity-80"
+                >
+                  <Ionicons
+                    name={isPlayingAudio ? "pause-circle" : "play-circle"}
+                    size={36}
+                    color="#b9a7ff"
                   />
                 </Pressable>
               </View>
@@ -181,15 +227,19 @@ export default function EarthScreen() {
                 </View>
               </View>
 
-              <Pressable 
+              <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  router.push('/capsule');
+                  router.push("/capsule");
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center mb-4 active:opacity-90"
               >
                 <View className="w-11 h-11 rounded-full bg-surface-card items-center justify-center mr-4 border border-stroke-soft">
-                  <Ionicons name="lock-closed-outline" size={20} color="#b8bde0" />
+                  <Ionicons
+                    name="lock-closed-outline"
+                    size={20}
+                    color="#b8bde0"
+                  />
                 </View>
                 <View className="flex-1">
                   <Text className="font-title text-base font-bold text-text-high">
@@ -228,7 +278,12 @@ export default function EarthScreen() {
             <View className="h-[1px] bg-primary/10 w-full my-4" />
 
             <View className="flex-row items-center">
-              <Ionicons name="call-outline" size={16} color="#ffd66b" className="mr-2.5" />
+              <Ionicons
+                name="call-outline"
+                size={16}
+                color="#ffd66b"
+                className="mr-2.5"
+              />
               <Text className="font-sans text-xs font-semibold text-feedback-warning">
                 Chamada especial sugerida
               </Text>
@@ -256,6 +311,18 @@ export default function EarthScreen() {
           </View>
         </ScrollView>
       </SafeAreaView>
+      {transmissionFeedback ? (
+        <View
+          pointerEvents="none"
+          className="absolute inset-0 z-50 items-center justify-center px-8"
+        >
+          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
+            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
+              {transmissionFeedback}
+            </Text>
+          </View>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -265,7 +332,7 @@ const styles = StyleSheet.create({
     paddingBottom: 140,
   },
   skylineImage: {
-    width: '100%',
+    width: "100%",
     height: 180,
   },
 });
