@@ -13,9 +13,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { StarField } from "@/components/star-field";
 import { Ionicons } from "@expo/vector-icons";
+import type { ComponentProps } from 'react';
 import * as Haptics from "expo-haptics";
-
 import { useMission } from "@/context/mission-context";
+
+type IoniconName = ComponentProps<typeof Ionicons>['name'];
 
 export default function CheckinScreen() {
   const router = useRouter();
@@ -32,7 +34,7 @@ export default function CheckinScreen() {
   const moods: {
     id: "calmo" | "bem" | "instavel" | "ansioso";
     label: string;
-    icon: string;
+    icon: IoniconName;
   }[] = [
     { id: "calmo", label: "Calmo", icon: "leaf-outline" },
     { id: "bem", label: "Bem", icon: "happy-outline" },
@@ -147,7 +149,7 @@ export default function CheckinScreen() {
                     }`}
                   >
                     <Ionicons
-                      name={mood.icon as any}
+                      name={mood.icon}
                       size={20}
                       color={isSelected ? "#b9a7ff" : "#b8bde0"}
                     />
