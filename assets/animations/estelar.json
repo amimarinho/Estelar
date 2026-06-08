@@ -1,0 +1,1032 @@
+{
+  "v": "5.9.5",
+  "fr": 30,
+  "ip": 0,
+  "op": 135,
+  "w": 596,
+  "h": 842,
+  "nm": "Space_LogoVDD",
+  "ddd": 0,
+  "assets": [
+    {
+      "id": "image_0",
+      "w": 147,
+      "h": 147,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJMAAACTBAMAAAB4yzYmAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAD1BMVEVHcEzVncfVncfVnsfUncfwzBshAAAABHRSTlMAuG4txn/TbgAAALVJREFUaN7t1sENwjAQRNHENIAiFwBSCuCQAnCy/deEOQC2rzMKl/8KGHk3G6+nCQAAAAAA4CyXe46yPBxJOd7KzZVUs+RzrfGxi0lz/Fy1qNxEFSkpRUvq/NZFHa76KmUS+iSlwnmIerpaJTVrHaJ2W9eVyRqjhE8YRP2j7cZhMI7o5osy/s7Jd8kYrz7nhdxXqG0v3/JyrtRmSsVDNUvH8JRJjtX8farVoMWRBAAAAAAAcL4XgLx5J23nFf4AAAAASUVORK5CYII=",
+      "e": 1
+    },
+    {
+      "id": "image_1",
+      "w": 14,
+      "h": 14,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOBAMAAADtZjDiAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAG1BMVEVHcEzZj73aj7/Zj7zaj73aj7zYj73Zj7zZj7xRdbi/AAAACHRSTlMAwBhQYJhw8PbIF7YAAAAlSURBVAjXY2AgCFhFILRFhwCYluhogtIFYNqjIwBMMyUTNosBAPltBKEaQkjeAAAAAElFTkSuQmCC",
+      "e": 1
+    },
+    {
+      "id": "image_2",
+      "w": 14,
+      "h": 14,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOBAMAAADtZjDiAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAElBMVEVHcEy7gba7gbW7gLe6gre7gbaNaZD+AAAABXRSTlMAvoA6YLbom7kAAAAhSURBVAjXY2AgCJgEDcC0amgwmBYNDUKhYeIsgg6EDQMAyvgDqzYzfokAAAAASUVORK5CYII=",
+      "e": 1
+    },
+    {
+      "id": "image_3",
+      "w": 16,
+      "h": 16,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAIVBMVEVHcEzVncfUncfVnMfPn7/UnMbWn8bVncfVnsfUncbUnceaO3ZaAAAACnRSTlMAwOdKELAoYJhwddQqPwAAADdJREFUCNdjYCAKsDQGQxhOq1YVgBmzVq1SADOkVq1aAGZEwRhVq1YJgBkcqxYlQLQlGxBnDwMA2BUNbjKBWr0AAAAASUVORK5CYII=",
+      "e": 1
+    },
+    {
+      "id": "image_4",
+      "w": 16,
+      "h": 17,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARBAMAAAAmgTH3AAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAHlBMVEVHcEy2cKm3cKu3cKu3cKu3cKu3cKu3cKu2cKy4b6tz9fX2AAAACXRSTlMAKXpQsKDy4JCUVrNJAAAANklEQVQI12NgIA4IKUJo1pkzFcAMy5kzJ4IZnTNnTgIzImEMoNRkMINt5swCMIPRM0WAgTQAAM19DFUlmt/gAAAAAElFTkSuQmCC",
+      "e": 1
+    },
+    {
+      "id": "image_5",
+      "w": 8,
+      "h": 8,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAGFBMVEVyX6VyYKVyYKVHcExzYKRyXqZwYKRyYKV4QJjYAAAACHRSTlP/gGAAOtgYwBQ9l0sAAAApSURBVAjXYzB2VDNmMGRgTWZwYGAoZhBgYGCGEAogwpSBQZnBWFHEGABNgwNWo0q02gAAAABJRU5ErkJggg==",
+      "e": 1
+    },
+    {
+      "id": "image_6",
+      "w": 18,
+      "h": 18,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASBAMAAACk4JNkAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAG1BMVEVHcEyfda+fdbCfda+fda+feK+fdbGgdbCrdrBAMwyAAAAAB3RSTlMAOO5wlSDAtK4qswAAADxJREFUCNdjYCAeMBoHQBnq5YoQVlB5eRFE0Lyio9wAzHKv6GhPgLHKISxxIMsBzGKC60CYwsBoSIIzGAD4Xg3jYXskUQAAAABJRU5ErkJggg==",
+      "e": 1
+    },
+    {
+      "id": "image_7",
+      "w": 18,
+      "h": 18,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASBAMAAACk4JNkAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAG1BMVEVHcEzVncfVnsbSn8LUncfUnsfUncfVncfUnceUhblCAAAACHRSTlMAXTMT66R1wEZoPgEAAAA+SURBVAjXY2AgHjAlwRgeHU4QlklHR4sBmJXR0dEhAGZFAFkBcFYBmCUBF7MAshTALEaPjkaogYaJBiS4AwCV8RAlrh5s4AAAAABJRU5ErkJggg==",
+      "e": 1
+    },
+    {
+      "id": "image_8",
+      "w": 17,
+      "h": 18,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASBAMAAABP1yhnAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAIVBMVEVHcExrYKpoYadoYqhoYqhoZKdoYqdoYqhpYqhoY6hoYqj4Luo7AAAACnRSTlMAFpxZ2kDA8HCwrpke5QAAAGVJREFUCNdjYGBgYDRggAKOCTAWSwGMFbUYxtJaBGUwVq0SgLCEVq2aCGYErQKCZKCoySowKGJgEPYCMZY0gjRorVq1LACskHXVqgCoMVnLYCZbrYCxpBbCWEwOMBazAozFALYWAG2/GayJS1vHAAAAAElFTkSuQmCC",
+      "e": 1
+    },
+    {
+      "id": "image_9",
+      "w": 27,
+      "h": 29,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAdBAMAAACpowp7AAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAJFBMVEVHcEz6v1v6v1r7vln6vln7vVn6v1r7vlj7vln8v1j6vln7vlnbI3e/AAAAC3RSTlMAF2XxoIcwt9BD4ZUVLuIAAACMSURBVBjTY2DABthQueKoXGVUrncCCtc6AMWk3QXIXKbdG5G5HLs3IXOld29H5kbv3i2A4KVY797dBOdp7AYBU4g8Y/BuCNiuAOJm7YYBU7D0FGsIrwlqGqc3kLMrEG4WJ1DeEcle7d27kJ0hvHsrMpdl9zZUHy1A5jLudkAJjeoJKFwN1KDjZCADAADrpDCZFDaQmAAAAABJRU5ErkJggg==",
+      "e": 1
+    },
+    {
+      "id": "image_10",
+      "w": 19,
+      "h": 20,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUBAMAAACdextHAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAIVBMVEVHcEzykr3yk73xkrzxk77xlL3vj7/vj7/vlL7xk73xk72CDzzjAAAACnRSTlMAWd+wmHMQIDTwc53a8AAAAGlJREFUCNdjYACCDgY4cEEwleAs9lUCMCbrKgcYk2nVBBhTatVCmPysVYvCwayWWauAwBDICloFASoMDKVWYNZikBI2ISBLMQGsmE1r1WKYYV2rlsOYzAjbGBFuYFiJcKQxgimIYKaBSQB9vB56WQu8rwAAAABJRU5ErkJggg==",
+      "e": 1
+    },
+    {
+      "id": "image_11",
+      "w": 97,
+      "h": 116,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGEAAAB0CAMAAACiw6y5AAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAUVBMVEVHcEz+0VL+0FT933L+01T/2WP/0lb/01f+0FT9yUb+1Vj+3Wv9zk/8wDb+5YH8vjL+01P+z03+1lv+1Vb+2WL9ykX+3Wr9xD3+4XX7uzD+5oSfdN9+AAAAEHRSTlMA8SCI0GgwEEaCvemj7Ma9DiF3PAAAA+9JREFUaN7VWom2oyAMrS0q2E2QLfz/h06C+qqt87qROWcu6PNUzX03CYvobvcm0o4Ze3YGmRpmhjpJZoZDqpkZLunw3zOkdOFOVm4GmVLiTtaUWuZkTcwN4oIMNTODZ07XlDRvMjUpBl4GmTzwpushGYisyXSJGmzkTKZjDNDHEx9BGxOAi4yhltEDhBj5+o1DNADgo2QNNAQT+Vp1xEAHzkBQGJCCMRAYBtIQPFuLOEYdCDp2TGP0GIbA56Y6WlKAFFxump0UQs/jpsb7iSA4H/cMDCdvZoZgPUOja4/e/TBof2RoDN6GG7yvGSRgnH9U9OVFkARHFFioFheRJbipUC0uAiW4NWxZEdgWtAurgiJKdh3CmzsJDttEwYZ9sPc+Qmhri/lJWqsfGVxvj4WerZuj7d0WjC0TilZYs0ngtLGiLUOAPtIbhULxPQUSYBD0FgH9+D1FVqBHAn2/0Z9vHdVUxtzMOz2rWXAYW32RUbUZFfwKY6z6VEBnzKCfYzBGfCKjPRhjev0Kerzy8G40WlW9JuBHRqXe4difyH6v57JR522+gDhOL05A9rUYyD7e2U8UG3Xe8ul8NJhhEPVTIVKJgdBPt/0NenV6Osp3ivqvUW+k6oab+dvNeiFlVrQ+uaCj+6tOyZXDpFSqE/297c8xWhLdQdUSH8jG33o+YGKihlNXrf6DJ+ipUtk6N0N0Ssmlt1pZK7FJ0o8Wb/Xu1KN5jEPzSy5tcJh1zdvyaGleqKfPwm3dZQ5zw/BQzbS/XZUJRP1qo1NV7grmcmfWzD8O0+FgMF11dWre65fGHu01kH31ft839mgvgHpI9clIt+9GGTbXNey00Q4FdJ8Oc3UeiCcOu6y5jDu8pv5mnCYKMjpZXVDY8Qgj0Hw318gUI4ldyJhYcCr1/XRmoeKGmVDrU4EpGc27toEKSqz5/ULhnCgyNW4qnMhvQRciwO6QJvL+oQyuKvZuTtGDoUery4o+KvisKPDBcG3fe+dKruzKUcQS6KOiy1gnp9cEZX1EKXsOZi0hXAuva6jgVgwhlF44ziIi2c67vrgEEqHJehx35SXgeETLVnEqJgiOdb6gZ4LoAsdyqKR11pirDWeWJV2MdRyhA8+LGoz1xBACz+cI++wmBDqJae3+HOzkJMXEMLuJozFMgx29F8BcYnMSuYkCYRh6jBlXwHxNDhQbQw0upgjA9+lMQy8UI/CFYbcDiMnAlZHhCjZpxjBgi4A+BeB8Ay7BJQDOT0L2AJ410BTqgTXQFGrHGmgcSgGYGRQy8H6ZI4E3lXIywW7HnExXZoYzO8OVOZUomfgZuL+rlP+AYc/M0HI3B0zXd2/4AyiEq9MfeXylAAAAAElFTkSuQmCC",
+      "e": 1
+    },
+    {
+      "id": "image_12",
+      "w": 170,
+      "h": 53,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAAA1CAMAAADmmIAmAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAZlBMVEVHcEyggLiXfbeCdbWdf7h/dbSxfbWId7WlfbaUfLd1crOsg7rOgbXWf7PUgLPMgbXbf7KHd7WBdbWlgrp7c7SXfLd0cbOcfriPeraMebWSe7bBg7euhLq3hLnLgbWggLjVgLPdfrGtA+9zAAAAEXRSTlMAiNeouYIwQxRly/Bdp4LV7sDjnR0AAAH6SURBVGje7ZiJcoIwEEAl1yacWksVCQL//5MNmoxYoEWBdpn6EnZQIDzDkoCbzYv/ThiL1bhG9TYK5SpU5bY2RPEabEV9JVlBKsS1A38qRHWLKESdrknlRCtTYty3VtUmQn1r3bsmmDNWVOeb6bnaYh4MwvONyiwhctfKVUMk19GvDYnA7Jqb0gqIR60wN4aNpA054o4V+Vfi9bgWCeCdY/PClEu4lhztUCCjoiG/VAvaZ1lVdAg8pLIQFLpoqkUjlpVMa13oNoXGKqsC3QWprCC6D4Zy6PL2Peh9oBbsWukFfWcN1I8Zu++HLWMrFRk4nxyTsWbH8v64chlbqYY6JoCRF6QcZEZb4zl4mvG3smSHe0obTSmJB9N1wSNNo6Vt+R720KMdNLKpOza1MXWrk3TBY7eG044oUQ83yNJ+DpdwSAl73Fcoj6Tfo5769Ub2ZIqtjlPqvjaL8VWjhMH0JbEHumZOrRX7kT97sYCefuJ4iYRRzgE60gJAcc5Ya9dvIFxOGp6PY8iyRuUGaa2bDdmYNoiaYYzOludI55m8Bd9lO1sXYdqV72TtbjEozD5Z093b/NCFHoSA+qvwdHlL32fB57/xzwhM1fU5/OKrhVDc/3gCn/I/eaeQpn/9ByTVX/8bJpvJ0/cHnM0GzhWge5eEL2xevHiBjU+Hcpqbek9kDgAAAABJRU5ErkJggg==",
+      "e": 1
+    },
+    {
+      "id": "image_13",
+      "w": 236,
+      "h": 100,
+      "u": "",
+      "p": "data:image/png;base64,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",
+      "e": 1
+    },
+    {
+      "id": "image_14",
+      "w": 283,
+      "h": 257,
+      "u": "",
+      "p": "data:image/png;base64,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",
+      "e": 1
+    },
+    {
+      "id": "image_15",
+      "w": 450,
+      "h": 193,
+      "u": "",
+      "p": "data:image/png;base64,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",
+      "e": 1
+    }
+  ],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 3,
+      "nm": "Nulo 1",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 0, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": 0.5, "y": 1 },
+              "o": { "x": 0.5, "y": 0 },
+              "t": 32,
+              "s": [297.966, 421, 0],
+              "to": [0, 0, 0],
+              "ti": [0, 0, 0]
+            },
+            {
+              "i": { "x": 0.5, "y": 1 },
+              "o": { "x": 0.5, "y": 0 },
+              "t": 69,
+              "s": [297.966, 409, 0],
+              "to": [0, 0, 0],
+              "ti": [0, 0, 0]
+            },
+            {
+              "i": { "x": 0.5, "y": 1 },
+              "o": { "x": 0.5, "y": 0 },
+              "t": 102,
+              "s": [297.966, 421, 0],
+              "to": [0, 0, 0],
+              "ti": [0, 0, 0]
+            },
+            { "t": 134, "s": [297.966, 409, 0] }
+          ],
+          "ix": 2,
+          "l": 2
+        },
+        "a": { "a": 0, "k": [49.969, 50, 0], "ix": 1, "l": 2 },
+        "s": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": [0.34, 0.34, 0.667], "y": [1.56, 1.56, 1] },
+              "o": { "x": [0.167, 0.167, 0.333], "y": [0, 0, 0] },
+              "t": 0,
+              "s": [0, 0, 100]
+            },
+            {
+              "i": { "x": [0.667, 0.667, 0.667], "y": [1, 1, 1] },
+              "o": { "x": [0.333, 0.333, 0.333], "y": [0, 0, 0] },
+              "t": 20,
+              "s": [520, 520, 100]
+            },
+            { "t": 32, "s": [500, 500, 100] }
+          ],
+          "ix": 6,
+          "l": 2
+        }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 2,
+      "ty": 2,
+      "nm": "bolinha",
+      "parent": 1,
+      "refId": "image_0",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 0,
+              "s": [0]
+            },
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 28,
+              "s": [100]
+            },
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 88,
+              "s": [100]
+            },
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 92,
+              "s": [0]
+            },
+            { "t": 107, "s": [100] }
+          ],
+          "ix": 11
+        },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": 0.667, "y": 1 },
+              "o": { "x": 0.333, "y": 0 },
+              "t": 32,
+              "s": [21.689, 33.534, 0],
+              "to": [-19.733, 3.533, 0],
+              "ti": [-48.2, -8.233, 0]
+            },
+            {
+              "i": { "x": 0.667, "y": 1 },
+              "o": { "x": 0.333, "y": 0 },
+              "t": 57,
+              "s": [49.689, 71.534, 0],
+              "to": [11.874, 2.028, 0],
+              "ti": [0.466, 11.332, 0]
+            },
+            {
+              "i": { "x": 0.667, "y": 1 },
+              "o": { "x": 0.333, "y": 0 },
+              "t": 72,
+              "s": [88.889, 60.134, 0],
+              "to": [-1.333, -32.392, 0],
+              "ti": [6.967, -2, 0]
+            },
+            { "t": 107, "s": [21.889, 33.734, 0] }
+          ],
+          "ix": 2,
+          "l": 2
+        },
+        "a": { "a": 0, "k": [73.5, 73.5, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 3,
+      "ty": 2,
+      "nm": "Camada 3",
+      "parent": 1,
+      "refId": "image_1",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [48.573, 35.19, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [6.636, 6.861, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 4,
+      "ty": 2,
+      "nm": "Camada 4",
+      "parent": 1,
+      "refId": "image_2",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [34.791, 57.289, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [6.836, 6.967, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 5,
+      "ty": 2,
+      "nm": "Camada 5",
+      "parent": 1,
+      "refId": "image_3",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [36.627, 48.898, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [7.604, 7.775, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 6,
+      "ty": 2,
+      "nm": "Camada 6",
+      "parent": 1,
+      "refId": "image_4",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [43.584, 65.63, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [7.929, 8.237, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 7,
+      "ty": 2,
+      "nm": "Camada 7",
+      "parent": 1,
+      "refId": "image_5",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [39.156, 61.343, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [3.789, 3.972, 0], "ix": 1, "l": 2 },
+        "s": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": [0.34, 0.34, 0.667], "y": [1.56, 1.56, 1] },
+              "o": { "x": [0.167, 0.167, 0.167], "y": [0, 0, 0] },
+              "t": 18,
+              "s": [0, 0, 100]
+            },
+            {
+              "i": { "x": [0.667, 0.667, 0.667], "y": [1, 1, 1] },
+              "o": { "x": [0.333, 0.333, 0.333], "y": [0, 0, 0] },
+              "t": 28,
+              "s": [24, 24, 100]
+            },
+            { "t": 36, "s": [19, 19, 100] }
+          ],
+          "ix": 6,
+          "l": 2
+        }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 8,
+      "ty": 2,
+      "nm": "Camada 8",
+      "parent": 1,
+      "refId": "image_6",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [67.172, 55.588, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [8.583, 8.871, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 9,
+      "ty": 2,
+      "nm": "Camada 9",
+      "parent": 1,
+      "refId": "image_7",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [59.013, 37.701, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [8.573, 8.896, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 10,
+      "ty": 2,
+      "nm": "Camada 10",
+      "parent": 1,
+      "refId": "image_8",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 28,
+              "s": [0]
+            },
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 45,
+              "s": [100]
+            },
+            { "t": 134, "s": [100] }
+          ],
+          "ix": 11
+        },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [61.04, 63.124, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [8.065, 8.767, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ef": [
+        {
+          "ty": 5,
+          "nm": "Brilho",
+          "np": 16,
+          "mn": "ADBE Glo2",
+          "ix": 1,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 7,
+              "nm": "Brilho baseado em",
+              "mn": "ADBE Glo2-0001",
+              "ix": 1,
+              "v": { "a": 0, "k": 2, "ix": 1 }
+            },
+            {
+              "ty": 0,
+              "nm": "Limite de brilho",
+              "mn": "ADBE Glo2-0002",
+              "ix": 2,
+              "v": { "a": 0, "k": 153, "ix": 2 }
+            },
+            {
+              "ty": 0,
+              "nm": "Raio do brilho",
+              "mn": "ADBE Glo2-0003",
+              "ix": 3,
+              "v": { "a": 0, "k": 10, "ix": 3 }
+            },
+            {
+              "ty": 0,
+              "nm": "Intensidade do brilho",
+              "mn": "ADBE Glo2-0004",
+              "ix": 4,
+              "v": { "a": 0, "k": 1, "ix": 4 }
+            },
+            {
+              "ty": 7,
+              "nm": "Composto original",
+              "mn": "ADBE Glo2-0005",
+              "ix": 5,
+              "v": { "a": 0, "k": 2, "ix": 5 }
+            },
+            {
+              "ty": 7,
+              "nm": "Opera\u00e7\u00e3o de brilho",
+              "mn": "ADBE Glo2-0006",
+              "ix": 6,
+              "v": { "a": 0, "k": 3, "ix": 6 }
+            },
+            {
+              "ty": 7,
+              "nm": "Cores de brilho",
+              "mn": "ADBE Glo2-0007",
+              "ix": 7,
+              "v": { "a": 0, "k": 1, "ix": 7 }
+            },
+            {
+              "ty": 7,
+              "nm": "Repeti\u00e7\u00e3o de cores",
+              "mn": "ADBE Glo2-0008",
+              "ix": 8,
+              "v": { "a": 0, "k": 3, "ix": 8 }
+            },
+            {
+              "ty": 0,
+              "nm": "Loops de cores",
+              "mn": "ADBE Glo2-0009",
+              "ix": 9,
+              "v": { "a": 0, "k": 1, "ix": 9 }
+            },
+            {
+              "ty": 0,
+              "nm": "Fase da cor",
+              "mn": "ADBE Glo2-0010",
+              "ix": 10,
+              "v": { "a": 0, "k": 0, "ix": 10 }
+            },
+            {
+              "ty": 0,
+              "nm": "Ponto m\u00e9dio A e B",
+              "mn": "ADBE Glo2-0011",
+              "ix": 11,
+              "v": { "a": 0, "k": 0.5, "ix": 11 }
+            },
+            {
+              "ty": 2,
+              "nm": "Cor A",
+              "mn": "ADBE Glo2-0012",
+              "ix": 12,
+              "v": { "a": 0, "k": [1, 1, 1, 1], "ix": 12 }
+            },
+            {
+              "ty": 2,
+              "nm": "Cor B",
+              "mn": "ADBE Glo2-0013",
+              "ix": 13,
+              "v": { "a": 0, "k": [0, 0, 0, 1], "ix": 13 }
+            },
+            {
+              "ty": 7,
+              "nm": "Dimens\u00f5es do brilho",
+              "mn": "ADBE Glo2-0014",
+              "ix": 14,
+              "v": { "a": 0, "k": 1, "ix": 14 }
+            }
+          ]
+        }
+      ],
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 11,
+      "ty": 2,
+      "nm": "Camada 11",
+      "parent": 1,
+      "refId": "image_9",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [64.139, 45.961, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [13.215, 14.099, 0], "ix": 1, "l": 2 },
+        "s": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": [0.34, 0.34, 0.667], "y": [1.56, 1.56, 1] },
+              "o": { "x": [0.167, 0.167, 0.167], "y": [0, 0, 0] },
+              "t": 22,
+              "s": [0, 0, 100]
+            },
+            {
+              "i": { "x": [0.667, 0.667, 0.667], "y": [1, 1, 1] },
+              "o": { "x": [0.333, 0.333, 0.333], "y": [0, 0, 0] },
+              "t": 32,
+              "s": [22, 22, 100]
+            },
+            { "t": 40, "s": [19, 19, 100] }
+          ],
+          "ix": 6,
+          "l": 2
+        }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 12,
+      "ty": 2,
+      "nm": "Camada 12",
+      "parent": 1,
+      "refId": "image_10",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 28,
+              "s": [0]
+            },
+            {
+              "i": { "x": [0.667], "y": [1] },
+              "o": { "x": [0.333], "y": [0] },
+              "t": 45,
+              "s": [100]
+            },
+            { "t": 134, "s": [100] }
+          ],
+          "ix": 11
+        },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [41.81, 41.753, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [9.076, 9.704, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ef": [
+        {
+          "ty": 5,
+          "nm": "Brilho",
+          "np": 16,
+          "mn": "ADBE Glo2",
+          "ix": 1,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 7,
+              "nm": "Brilho baseado em",
+              "mn": "ADBE Glo2-0001",
+              "ix": 1,
+              "v": { "a": 0, "k": 2, "ix": 1 }
+            },
+            {
+              "ty": 0,
+              "nm": "Limite de brilho",
+              "mn": "ADBE Glo2-0002",
+              "ix": 2,
+              "v": { "a": 0, "k": 153, "ix": 2 }
+            },
+            {
+              "ty": 0,
+              "nm": "Raio do brilho",
+              "mn": "ADBE Glo2-0003",
+              "ix": 3,
+              "v": { "a": 0, "k": 10, "ix": 3 }
+            },
+            {
+              "ty": 0,
+              "nm": "Intensidade do brilho",
+              "mn": "ADBE Glo2-0004",
+              "ix": 4,
+              "v": { "a": 0, "k": 1, "ix": 4 }
+            },
+            {
+              "ty": 7,
+              "nm": "Composto original",
+              "mn": "ADBE Glo2-0005",
+              "ix": 5,
+              "v": { "a": 0, "k": 2, "ix": 5 }
+            },
+            {
+              "ty": 7,
+              "nm": "Opera\u00e7\u00e3o de brilho",
+              "mn": "ADBE Glo2-0006",
+              "ix": 6,
+              "v": { "a": 0, "k": 3, "ix": 6 }
+            },
+            {
+              "ty": 7,
+              "nm": "Cores de brilho",
+              "mn": "ADBE Glo2-0007",
+              "ix": 7,
+              "v": { "a": 0, "k": 1, "ix": 7 }
+            },
+            {
+              "ty": 7,
+              "nm": "Repeti\u00e7\u00e3o de cores",
+              "mn": "ADBE Glo2-0008",
+              "ix": 8,
+              "v": { "a": 0, "k": 3, "ix": 8 }
+            },
+            {
+              "ty": 0,
+              "nm": "Loops de cores",
+              "mn": "ADBE Glo2-0009",
+              "ix": 9,
+              "v": { "a": 0, "k": 1, "ix": 9 }
+            },
+            {
+              "ty": 0,
+              "nm": "Fase da cor",
+              "mn": "ADBE Glo2-0010",
+              "ix": 10,
+              "v": { "a": 0, "k": 0, "ix": 10 }
+            },
+            {
+              "ty": 0,
+              "nm": "Ponto m\u00e9dio A e B",
+              "mn": "ADBE Glo2-0011",
+              "ix": 11,
+              "v": { "a": 0, "k": 0.5, "ix": 11 }
+            },
+            {
+              "ty": 2,
+              "nm": "Cor A",
+              "mn": "ADBE Glo2-0012",
+              "ix": 12,
+              "v": { "a": 0, "k": [1, 1, 1, 1], "ix": 12 }
+            },
+            {
+              "ty": 2,
+              "nm": "Cor B",
+              "mn": "ADBE Glo2-0013",
+              "ix": 13,
+              "v": { "a": 0, "k": [0, 0, 0, 1], "ix": 13 }
+            },
+            {
+              "ty": 7,
+              "nm": "Dimens\u00f5es do brilho",
+              "mn": "ADBE Glo2-0014",
+              "ix": 14,
+              "v": { "a": 0, "k": 1, "ix": 14 }
+            }
+          ]
+        }
+      ],
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 13,
+      "ty": 2,
+      "nm": "star-centro",
+      "parent": 1,
+      "refId": "image_11",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [50.978, 52.003, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [48.5, 57.765, 0], "ix": 1, "l": 2 },
+        "s": {
+          "a": 1,
+          "k": [
+            {
+              "i": { "x": [0.34, 0.34, 0.667], "y": [1.46, 1.46, 1] },
+              "o": { "x": [0.167, 0.167, 0.333], "y": [0, 0, 0] },
+              "t": 10,
+              "s": [0, 0, 100]
+            },
+            {
+              "i": { "x": [0.667, 0.667, 0.667], "y": [1, 1, 1] },
+              "o": { "x": [0.333, 0.333, 0.333], "y": [0, 0, 0] },
+              "t": 22,
+              "s": [26, 26, 100]
+            },
+            { "t": 32, "s": [19, 19, 100] }
+          ],
+          "ix": 6,
+          "l": 2
+        }
+      },
+      "ao": 0,
+      "ef": [
+        {
+          "ty": 5,
+          "nm": "Brilho",
+          "np": 16,
+          "mn": "ADBE Glo2",
+          "ix": 1,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 7,
+              "nm": "Brilho baseado em",
+              "mn": "ADBE Glo2-0001",
+              "ix": 1,
+              "v": { "a": 0, "k": 2, "ix": 1 }
+            },
+            {
+              "ty": 0,
+              "nm": "Limite de brilho",
+              "mn": "ADBE Glo2-0002",
+              "ix": 2,
+              "v": { "a": 0, "k": 217, "ix": 2 }
+            },
+            {
+              "ty": 0,
+              "nm": "Raio do brilho",
+              "mn": "ADBE Glo2-0003",
+              "ix": 3,
+              "v": { "a": 0, "k": 50, "ix": 3 }
+            },
+            {
+              "ty": 0,
+              "nm": "Intensidade do brilho",
+              "mn": "ADBE Glo2-0004",
+              "ix": 4,
+              "v": { "a": 0, "k": 1.5, "ix": 4 }
+            },
+            {
+              "ty": 7,
+              "nm": "Composto original",
+              "mn": "ADBE Glo2-0005",
+              "ix": 5,
+              "v": { "a": 0, "k": 2, "ix": 5 }
+            },
+            {
+              "ty": 7,
+              "nm": "Opera\u00e7\u00e3o de brilho",
+              "mn": "ADBE Glo2-0006",
+              "ix": 6,
+              "v": { "a": 0, "k": 3, "ix": 6 }
+            },
+            {
+              "ty": 7,
+              "nm": "Cores de brilho",
+              "mn": "ADBE Glo2-0007",
+              "ix": 7,
+              "v": { "a": 0, "k": 1, "ix": 7 }
+            },
+            {
+              "ty": 7,
+              "nm": "Repeti\u00e7\u00e3o de cores",
+              "mn": "ADBE Glo2-0008",
+              "ix": 8,
+              "v": { "a": 0, "k": 3, "ix": 8 }
+            },
+            {
+              "ty": 0,
+              "nm": "Loops de cores",
+              "mn": "ADBE Glo2-0009",
+              "ix": 9,
+              "v": { "a": 0, "k": 1, "ix": 9 }
+            },
+            {
+              "ty": 0,
+              "nm": "Fase da cor",
+              "mn": "ADBE Glo2-0010",
+              "ix": 10,
+              "v": { "a": 0, "k": 0, "ix": 10 }
+            },
+            {
+              "ty": 0,
+              "nm": "Ponto m\u00e9dio A e B",
+              "mn": "ADBE Glo2-0011",
+              "ix": 11,
+              "v": { "a": 0, "k": 0.5, "ix": 11 }
+            },
+            {
+              "ty": 2,
+              "nm": "Cor A",
+              "mn": "ADBE Glo2-0012",
+              "ix": 12,
+              "v": { "a": 0, "k": [1, 1, 1, 1], "ix": 12 }
+            },
+            {
+              "ty": 2,
+              "nm": "Cor B",
+              "mn": "ADBE Glo2-0013",
+              "ix": 13,
+              "v": { "a": 0, "k": [0, 0, 0, 1], "ix": 13 }
+            },
+            {
+              "ty": 7,
+              "nm": "Dimens\u00f5es do brilho",
+              "mn": "ADBE Glo2-0014",
+              "ix": 14,
+              "v": { "a": 0, "k": 1, "ix": 14 }
+            }
+          ]
+        }
+      ],
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 14,
+      "ty": 2,
+      "nm": "Camada 13",
+      "parent": 1,
+      "refId": "image_12",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [48.583, 74.213, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [84.892, 26.121, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 15,
+      "ty": 2,
+      "nm": "Camada 15",
+      "parent": 1,
+      "refId": "image_13",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [50.733, 78.5, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [117.567, 49.859, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 16,
+      "ty": 2,
+      "nm": "Camada 17",
+      "parent": 1,
+      "refId": "image_14",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [51.049, 42.329, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [141.34, 128.367, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 17,
+      "ty": 2,
+      "nm": "orbita",
+      "parent": 1,
+      "refId": "image_15",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [49.058, 53.272, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [224.748, 96.334, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [18.96, 23.388, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "ip": -3,
+      "op": 135,
+      "st": 0,
+      "bm": 0
+    }
+  ],
+  "markers": []
+}
