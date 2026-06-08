@@ -62,9 +62,6 @@ export default function SuggestionsScreen() {
           contentContainerStyle={styles.scrollContent}
         >
           <View className="space-y-1 mb-8">
-            <Text className="font-mono text-[10px] text-text-muted uppercase tracking-[3px] opacity-60">
-              CONSTELAÇÃO EMOCIONAL
-            </Text>
             <Text className="font-title text-[32px] font-bold text-text-high leading-tight mt-1">
               Jornada Emocional
             </Text>

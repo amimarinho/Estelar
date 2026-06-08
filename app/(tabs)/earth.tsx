@@ -89,9 +89,6 @@ export default function EarthScreen() {
         >
           <View className="flex-row justify-between items-start mb-8">
             <View className="space-y-1 flex-1 mr-4">
-              <Text className="font-mono text-[10px] text-text-muted uppercase tracking-[3px] opacity-60">
-                CONEXÃO COM A TERRA
-              </Text>
               <Text className="font-title text-[32px] font-bold text-text-high leading-tight mt-1">
                 Conexão com a Terra
               </Text>
