@@ -29,13 +29,27 @@ export default function SplashScreen() {
         <View className="h-2" />
 
         <View className="items-center px-6 w-full">
-          <LottieView
-            source={require("@/assets/animations/estelar.json")}
-            autoPlay
-            loop={false}
-            style={{ width: 280, height: 280 }}
-            onAnimationFinish={() => router.replace("/onboarding")}
-          />
+          <View
+            style={{
+              width: 280,
+              height: 280,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <LottieView
+              source={require("@/assets/animations/estelar.json")}
+              autoPlay
+              loop={false}
+              resizeMode="contain"
+              style={{
+                width: 280,
+                height: 280,
+                transform: [{ scaleX: 1.6 }, { scaleY: 1.3 }],
+              }}
+              onAnimationFinish={() => router.replace("/onboarding")}
+            />
+          </View>
 
           <Text className="text-text-high font-title text-5xl mt-2 tracking-[6px] text-center">
             Estelar
