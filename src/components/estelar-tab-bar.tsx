@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useMemo, useRef } from "react";
@@ -128,14 +127,6 @@ export function EstelarTabBar({ state, descriptors, navigation }: BottomTabBarPr
     <View pointerEvents="box-none" style={styles.zoneWrap}>
       <View pointerEvents="none" style={styles.translucentZone}>
         <View style={styles.zoneFallback} />
-        <BlurView
-          intensity={1}
-          tint="dark"
-          experimentalBlurMethod={
-            Platform.OS === "android" ? "dimezisBlurView" : undefined
-          }
-          style={StyleSheet.absoluteFill}
-        />
         <LinearGradient
           colors={[
             "rgba(11, 16, 38, 0.85)",
@@ -148,14 +139,6 @@ export function EstelarTabBar({ state, descriptors, navigation }: BottomTabBarPr
       <View style={[styles.tabBar, { width: tabBarWidth }]}>
         <View pointerEvents="none" style={styles.tabBarGlass}>
           <View style={styles.tabBarFallback} />
-          <BlurView
-            intensity={2}
-            tint="dark"
-            experimentalBlurMethod={
-              Platform.OS === "android" ? "dimezisBlurView" : undefined
-            }
-            style={StyleSheet.absoluteFill}
-          />
           <View style={styles.tabBarTint} />
         </View>
 
