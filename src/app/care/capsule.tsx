@@ -316,7 +316,7 @@ export default function CapsuleScreen() {
                       />
                     </View>
 
-                    <Text className="font-mono text-[12px] text-text-muted w-10 text-right">
+                    <Text className="font-mono text-[10px] text-text-muted w-10 text-right">
                       01:20
                     </Text>
                   </View>
@@ -368,7 +368,7 @@ export default function CapsuleScreen() {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                     router.replace("/(tabs)/earth");
                   }}
-                  className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
+                  className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35 mb-4"
                 >
                   <Text className="text-text-high font-sans font-bold text-base">
                     Voltar para Conexão
