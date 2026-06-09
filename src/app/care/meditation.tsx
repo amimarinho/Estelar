@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import * as Haptics from 'expo-haptics';
+import React, { useState, useEffect, useRef, useCallback, memo } from "react";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -16,94 +16,88 @@ import Animated, {
   Easing,
   interpolate,
   Extrapolation,
-} from 'react-native-reanimated';
-import { BlurView } from 'expo-blur';
-import { StarField } from '@/components/star-field';
-import { ChromaButton } from '@/components/chroma-button';
+} from "react-native-reanimated";
+import { BlurView } from "expo-blur";
+import { StarField } from "@/src/components/space/star-field";
+import { ChromaButton } from "@/src/components/chroma-button";
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
-const AnimatedWord = memo(({
-  word,
-  index,
-  text,
-}: {
-  word: string;
-  index: number;
-  text: string;
-}) => {
-  const animationValue = useSharedValue(0);
+const AnimatedWord = memo(
+  ({ word, index, text }: { word: string; index: number; text: string }) => {
+    const animationValue = useSharedValue(0);
 
-  useEffect(() => {
-    animationValue.value = withDelay(
-      index * 80,
-      withTiming(1, {
-        duration: 500,
-        easing: Easing.out(Easing.cubic),
-      })
+    useEffect(() => {
+      animationValue.value = withDelay(
+        index * 80,
+        withTiming(1, {
+          duration: 500,
+          easing: Easing.out(Easing.cubic),
+        }),
+      );
+    }, [index, text, animationValue]);
+
+    const animatedStyle = useAnimatedStyle(() => {
+      const opacity = interpolate(
+        animationValue.value,
+        [0, 0.8, 1],
+        [0, 0.5, 1],
+        Extrapolation.CLAMP,
+      );
+
+      const scale = interpolate(
+        animationValue.value,
+        [0, 1],
+        [0.96, 1],
+        Extrapolation.CLAMP,
+      );
+
+      const translateY = interpolate(
+        animationValue.value,
+        [0, 1],
+        [6, 0],
+        Extrapolation.CLAMP,
+      );
+
+      return {
+        opacity,
+        transform: [{ scale }, { translateY }],
+      };
+    });
+
+    const blurAnimatedProps = useAnimatedProps(() => {
+      const intensity = interpolate(
+        animationValue.value,
+        [0, 0.3, 1],
+        [20, 10, 0],
+        Extrapolation.CLAMP,
+      );
+
+      return {
+        intensity,
+      };
+    });
+
+    return (
+      <View className="overflow-hidden rounded-[4px] m-0.5 relative">
+        <Animated.View style={animatedStyle} className="px-0.5">
+          <Text className="font-sans text-sm text-text-high text-center font-semibold">
+            {word}
+          </Text>
+        </Animated.View>
+        <AnimatedBlurView
+          style={StyleSheet.absoluteFillObject}
+          animatedProps={blurAnimatedProps}
+          tint="dark"
+        />
+      </View>
     );
-  }, [index, text, animationValue]);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      animationValue.value,
-      [0, 0.8, 1],
-      [0, 0.5, 1],
-      Extrapolation.CLAMP
-    );
-
-    const scale = interpolate(
-      animationValue.value,
-      [0, 1],
-      [0.96, 1],
-      Extrapolation.CLAMP
-    );
-
-    const translateY = interpolate(
-      animationValue.value,
-      [0, 1],
-      [6, 0],
-      Extrapolation.CLAMP
-    );
-
-    return {
-      opacity,
-      transform: [{ scale }, { translateY }],
-    };
-  });
-
-  const blurAnimatedProps = useAnimatedProps(() => {
-    const intensity = interpolate(
-      animationValue.value,
-      [0, 0.3, 1],
-      [20, 10, 0],
-      Extrapolation.CLAMP
-    );
-
-    return {
-      intensity,
-    };
-  });
-
-  return (
-    <View className="overflow-hidden rounded-[4px] m-0.5 relative">
-      <Animated.View style={animatedStyle} className="px-0.5">
-        <Text className="font-sans text-sm text-text-high text-center font-semibold">
-          {word}
-        </Text>
-      </Animated.View>
-      <AnimatedBlurView
-        style={StyleSheet.absoluteFillObject}
-        animatedProps={blurAnimatedProps}
-        tint="dark"
-      />
-    </View>
-  );
-});
-AnimatedWord.displayName = 'AnimatedWord';
+  },
+);
+AnimatedWord.displayName = "AnimatedWord";
 
 const FadeText = memo(({ text }: { text: string }) => {
-  const words = text.split(' ');
+  const words = text.split(" ");
 
   return (
     <View className="items-center justify-center px-4">
@@ -120,7 +114,7 @@ const FadeText = memo(({ text }: { text: string }) => {
     </View>
   );
 });
-FadeText.displayName = 'FadeText';
+FadeText.displayName = "FadeText";
 
 export default function MeditationScreen() {
   const router = useRouter();
@@ -144,15 +138,15 @@ export default function MeditationScreen() {
     scaleZen.value = withRepeat(
       withSequence(
         withTiming(1.1, { duration: 3000, easing: Easing.inOut(Easing.ease) }),
-        withTiming(0.9, { duration: 3000, easing: Easing.inOut(Easing.ease) })
+        withTiming(0.9, { duration: 3000, easing: Easing.inOut(Easing.ease) }),
       ),
       -1,
-      true
+      true,
     );
     rotateZen.value = withRepeat(
       withTiming(360, { duration: 15000, easing: Easing.linear }),
       -1,
-      false
+      false,
     );
   }, [scaleZen, rotateZen]);
 
@@ -164,7 +158,7 @@ export default function MeditationScreen() {
     }
     setTimeLeft(selectedDuration * 60);
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    router.replace('/(tabs)/heart');
+    router.replace("/(tabs)/care");
   }, [selectedDuration, router]);
 
   useEffect(() => {
@@ -205,7 +199,7 @@ export default function MeditationScreen() {
   const formatTimer = (seconds: number) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
-    return `${m}:${s < 10 ? '0' : ''}${s}`;
+    return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
 
   const animatedZenStyle = useAnimatedStyle(() => {
@@ -228,7 +222,7 @@ export default function MeditationScreen() {
       "1. Encontre sua postura: mantenha a coluna alinhada e relaxe os ombros.",
       "2. Sinta o fluxo do ar entrando e saindo de forma natural.",
       "3. Acolha seus pensamentos e retorne gentilmente o foco à respiração.",
-      "4. Finalize com presença, despertando o corpo de forma lenta."
+      "4. Finalize com presença, despertando o corpo de forma lenta.",
     ];
     return INSTRUCTIONS[phaseIndex];
   };
@@ -238,14 +232,14 @@ export default function MeditationScreen() {
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
         style={styles.absoluteFull}
       />
 
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top', 'bottom']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
         <View className="absolute top-6 left-6 z-20">
           <Pressable
             onPress={() => router.back()}
@@ -294,13 +288,15 @@ export default function MeditationScreen() {
                   }}
                   className={`flex-1 h-11 rounded-full border items-center justify-center active:opacity-90 ${
                     isSelected
-                      ? 'bg-primary/25 border-primary'
-                      : 'bg-surface border-stroke-soft'
-                  } ${isActive ? 'opacity-50' : ''}`}
+                      ? "bg-primary/25 border-primary"
+                      : "bg-surface border-stroke-soft"
+                  } ${isActive ? "opacity-50" : ""}`}
+                >
+                  <Text
+                    className={`font-sans font-bold text-sm ${
+                      isSelected ? "text-primary" : "text-text-muted"
+                    }`}
                   >
-                  <Text className={`font-sans font-bold text-sm ${
-                    isSelected ? 'text-primary' : 'text-text-muted'
-                  }`}>
                     {mins} min
                   </Text>
                 </Pressable>
@@ -310,11 +306,12 @@ export default function MeditationScreen() {
 
           <ChromaButton
             onPress={handleStartStop}
-            text={isActive ? 'Pausar silêncio' : 'Iniciar meditação'}
+            text={isActive ? "Pausar silêncio" : "Iniciar meditação"}
           />
 
           <Text className="font-sans text-[10px] text-text-muted/40 text-center leading-relaxed px-6 mt-8 max-w-[300px]">
-            A meditação regular ajuda a fortalecer a resiliência psicológica diante do isolamento e do silêncio espacial.
+            A meditação regular ajuda a fortalecer a resiliência psicológica
+            diante do isolamento e do silêncio espacial.
           </Text>
         </View>
       </SafeAreaView>
@@ -324,7 +321,7 @@ export default function MeditationScreen() {
 
 const styles = StyleSheet.create({
   absoluteFull: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,

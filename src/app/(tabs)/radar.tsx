@@ -1,4 +1,4 @@
-import { StarField } from "@/components/star-field";
+import { StarField } from "@/src/components/space/star-field";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
@@ -328,7 +328,7 @@ export default function RadarScreen() {
             <Pressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push("/(tabs)/suggestions");
+                router.push("/(tabs)/journey");
               }}
               className="w-full h-12 rounded-full bg-feedback-warning items-center justify-center flex-row active:opacity-90 mt-5"
             >
@@ -359,7 +359,7 @@ export default function RadarScreen() {
             <Pressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push("/report");
+                router.push("/mission/report");
               }}
               className="w-full h-14 rounded-full bg-primary items-center justify-center active:opacity-90 mb-3"
             >
@@ -371,7 +371,7 @@ export default function RadarScreen() {
             <Pressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                router.push("/(tabs)/suggestions");
+                router.push("/(tabs)/journey");
               }}
               className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
             >

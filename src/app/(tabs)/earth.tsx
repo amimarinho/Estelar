@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
-import { StarField } from "@/components/star-field";
+import { StarField } from "@/src/components/space/star-field";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import * as Haptics from "expo-haptics";
@@ -59,7 +59,7 @@ export default function EarthScreen() {
 
   const handleOpenCapsules = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push("/capsule");
+    router.push("/care/capsule");
   };
 
   const handleSendResponse = () => {
@@ -162,7 +162,7 @@ export default function EarthScreen() {
             </Text>
 
             <Image
-              source={require("@/assets/images/saopaulo_skyline.png")}
+              source={require("@/src/assets/images/saopaulo_skyline.png")}
               style={styles.skylineImage}
               contentFit="cover"
               className="rounded-[20px] mt-6 border border-white/5"
@@ -230,7 +230,7 @@ export default function EarthScreen() {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  router.push("/capsule");
+                  router.push("/care/capsule");
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center mb-4 active:opacity-90"
               >

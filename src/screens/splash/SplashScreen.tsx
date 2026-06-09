@@ -2,8 +2,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { StarField } from "@/components/star-field";
-import { SplashLogo } from "../components/splash/SplashLogo";
+import { StarField } from "@/src/components/space/star-field";
+import { SplashLogo } from "@/src/components/splash/SplashLogo";
 
 import { SPLASH_COLORS } from "@/src/constants/splash.constants";
 import { useSplashAnimation } from "@/src/hooks/useSplashAnimation";

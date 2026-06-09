@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
-import * as Haptics from 'expo-haptics';
+import React, { useState, useEffect, useRef } from "react";
+import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import { Image } from "expo-image";
+import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -15,9 +15,9 @@ import Animated, {
   Easing,
   interpolate,
   SharedValue,
-} from 'react-native-reanimated';
-import { StarField } from '@/components/star-field';
-import { ChromaButton } from '@/components/chroma-button';
+} from "react-native-reanimated";
+import { StarField } from "@/src/components/space/star-field";
+import { ChromaButton } from "@/src/components/chroma-button";
 
 interface VisualizerBarProps {
   index: number;
@@ -32,7 +32,7 @@ function VisualizerBar({ index, pulseVal, isPlaying }: VisualizerBarProps) {
     const height = interpolate(
       pulseVal.value,
       [0, 1],
-      [minHeight, isPlaying ? maxHeight : minHeight]
+      [minHeight, isPlaying ? maxHeight : minHeight],
     );
     return { height };
   });
@@ -42,7 +42,7 @@ function VisualizerBar({ index, pulseVal, isPlaying }: VisualizerBarProps) {
       style={[
         {
           width: 3,
-          backgroundColor: '#b9a7ff',
+          backgroundColor: "#b9a7ff",
           borderRadius: 1.5,
         },
         animatedStyle,
@@ -70,10 +70,10 @@ export default function CapsuleScreen() {
     floatVal.value = withRepeat(
       withSequence(
         withTiming(1, { duration: 2500, easing: Easing.inOut(Easing.ease) }),
-        withTiming(0, { duration: 2500, easing: Easing.inOut(Easing.ease) })
+        withTiming(0, { duration: 2500, easing: Easing.inOut(Easing.ease) }),
       ),
       -1,
-      true
+      true,
     );
   }, [floatVal]);
 
@@ -82,7 +82,7 @@ export default function CapsuleScreen() {
       pulseVal.value = withRepeat(
         withTiming(1, { duration: 600, easing: Easing.inOut(Easing.ease) }),
         -1,
-        true
+        true,
       );
 
       audioTimerRef.current = setInterval(() => {
@@ -125,9 +125,7 @@ export default function CapsuleScreen() {
   const animatedRevealStyle = useAnimatedStyle(() => {
     return {
       opacity: revealVal.value,
-      transform: [
-        { scale: interpolate(revealVal.value, [0, 1], [0.94, 1.0]) },
-      ],
+      transform: [{ scale: interpolate(revealVal.value, [0, 1], [0.94, 1.0]) }],
     };
   });
 
@@ -150,14 +148,14 @@ export default function CapsuleScreen() {
     setIsFavorited(!isFavorited);
     favScale.value = withSequence(
       withTiming(1.3, { duration: 150 }),
-      withTiming(1.0, { duration: 150 })
+      withTiming(1.0, { duration: 150 }),
     );
   };
 
   const formatAudioTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
-    return `${m}:${s < 10 ? '0' : ''}${s}`;
+    return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
 
   const barIndices = Array.from({ length: 16 }, (_, i) => i);
@@ -165,14 +163,14 @@ export default function CapsuleScreen() {
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
         style={styles.absoluteFull}
       />
 
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top', 'bottom']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
         <ScrollView
           className="flex-1 px-6 pt-4"
           showsVerticalScrollIndicator={false}
@@ -202,12 +200,19 @@ export default function CapsuleScreen() {
                 className="w-56 h-56 items-center justify-center mb-10"
               >
                 <LinearGradient
-                  colors={['rgba(185, 167, 255, 0.25)', 'rgba(92, 103, 242, 0.05)']}
+                  colors={[
+                    "rgba(185, 167, 255, 0.25)",
+                    "rgba(92, 103, 242, 0.05)",
+                  ]}
                   style={styles.capsuleGlow}
                   className="rounded-full items-center justify-center border-2 border-primary/30"
                 >
                   <View className="w-40 h-40 rounded-full bg-surface-card border border-primary/20 items-center justify-center shadow-lg">
-                    <Ionicons name="lock-closed-outline" size={56} color="#b9a7ff" />
+                    <Ionicons
+                      name="lock-closed-outline"
+                      size={56}
+                      color="#b9a7ff"
+                    />
                   </View>
                 </LinearGradient>
               </Animated.View>
@@ -220,7 +225,8 @@ export default function CapsuleScreen() {
                 </View>
 
                 <Text className="font-sans text-sm text-text-high text-center leading-relaxed px-4">
-                  Esta mensagem foi preparada para acompanhar você durante uma fase importante da missão.
+                  Esta mensagem foi preparada para acompanhar você durante uma
+                  fase importante da missão.
                 </Text>
               </View>
 
@@ -245,9 +251,9 @@ export default function CapsuleScreen() {
                   >
                     <Animated.View style={animatedFavStyle}>
                       <Ionicons
-                        name={isFavorited ? 'star' : 'star-outline'}
+                        name={isFavorited ? "star" : "star-outline"}
                         size={20}
-                        color={isFavorited ? '#ffd66b' : '#b8bde0'}
+                        color={isFavorited ? "#ffd66b" : "#b8bde0"}
                       />
                     </Animated.View>
                   </Pressable>
@@ -266,13 +272,14 @@ export default function CapsuleScreen() {
 
                 <View className="bg-text-high rounded-2xl p-4 shadow-xl border border-white/10 mb-6 items-center">
                   <Image
-                    source={require('@/assets/images/capsule_memory.png')}
+                    source={require("@/src/assets/images/capsule_memory.png")}
                     style={styles.polaroidImage}
                     contentFit="cover"
                     className="rounded-lg"
                   />
                   <Text className="font-sans font-semibold text-surface text-center mt-4 text-base italic px-2 leading-relaxed">
-                    “Quando você ouvir isso, lembre que estamos olhando para o mesmo céu.”
+                    “Quando você ouvir isso, lembre que estamos olhando para o
+                    mesmo céu.”
                   </Text>
                 </View>
 
@@ -330,7 +337,7 @@ export default function CapsuleScreen() {
                       className="w-14 h-14 rounded-full bg-primary items-center justify-center active:opacity-90 shadow-md"
                     >
                       <Ionicons
-                        name={isPlaying ? 'pause' : 'play'}
+                        name={isPlaying ? "pause" : "play"}
                         size={28}
                         color="#17142a"
                         style={isPlaying ? null : styles.playIconOffset}
@@ -351,14 +358,15 @@ export default function CapsuleScreen() {
               </View>
 
               <Text className="font-sans text-[11px] text-text-muted/60 text-center leading-relaxed px-6 mb-8">
-                Cápsulas emocionais ajudam a manter vínculos afetivos durante longos períodos de isolamento.
+                Cápsulas emocionais ajudam a manter vínculos afetivos durante
+                longos períodos de isolamento.
               </Text>
 
               <View className="space-y-4">
                 <Pressable
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                    router.replace('/(tabs)/earth');
+                    router.replace("/(tabs)/earth");
                   }}
                   className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
                 >
@@ -370,7 +378,7 @@ export default function CapsuleScreen() {
                 <Pressable
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                    router.replace('/(tabs)');
+                    router.replace("/(tabs)");
                   }}
                   className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
                 >
@@ -389,7 +397,7 @@ export default function CapsuleScreen() {
 
 const styles = StyleSheet.create({
   absoluteFull: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
@@ -399,12 +407,12 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   capsuleGlow: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     borderRadius: 112,
   },
   polaroidImage: {
-    width: '100%',
+    width: "100%",
     height: 220,
   },
   playIconOffset: {

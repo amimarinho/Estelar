@@ -1,32 +1,39 @@
-import React from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { StarField } from '@/components/star-field';
-import { Ionicons } from '@expo/vector-icons';
-import Svg, { Path } from 'react-native-svg';
-import * as Haptics from 'expo-haptics';
-import { useRouter } from 'expo-router';
+import React from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  StyleSheet,
+  Alert,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { StarField } from "@/src/components/space/star-field";
+import { Ionicons } from "@expo/vector-icons";
+import Svg, { Path } from "react-native-svg";
+import * as Haptics from "expo-haptics";
+import { useRouter } from "expo-router";
 
 export default function HeartScreen() {
   const router = useRouter();
 
   const handleStartProtocol = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    router.push('/breathing');
+    router.push("/care/breathing");
   };
 
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
-      
+
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
           className="flex-1 px-6 pt-6"
           showsVerticalScrollIndicator={false}
@@ -45,9 +52,24 @@ export default function HeartScreen() {
             <View className="flex-row items-center mb-4">
               <View className="w-10 h-10 rounded-xl bg-primary/10 items-center justify-center mr-4 shrink-0">
                 <Svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <Path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="#b9a7ff" strokeWidth="2" strokeLinejoin="round" />
-                  <Path d="M12 8V13" stroke="#b9a7ff" strokeWidth="2" strokeLinecap="round" />
-                  <Path d="M12 16.5V17" stroke="#b9a7ff" strokeWidth="2.5" strokeLinecap="round" />
+                  <Path
+                    d="M12 2L2 12L12 22L22 12L12 2Z"
+                    stroke="#b9a7ff"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                  <Path
+                    d="M12 8V13"
+                    stroke="#b9a7ff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <Path
+                    d="M12 16.5V17"
+                    stroke="#b9a7ff"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
                 </Svg>
               </View>
               <Text className="font-mono text-[9px] text-primary uppercase tracking-[2px]">
@@ -58,16 +80,22 @@ export default function HeartScreen() {
             <Text className="font-title text-xl font-bold text-text-high leading-tight mb-2">
               Pausa de emergência emocional
             </Text>
-            
+
             <Text className="font-sans text-sm text-text-muted leading-relaxed mb-6">
-              Um protocolo curto para reduzir ansiedade, reorganizar a respiração e recuperar presença.
+              Um protocolo curto para reduzir ansiedade, reorganizar a
+              respiração e recuperar presença.
             </Text>
 
             <Pressable
               onPress={handleStartProtocol}
               className="w-full h-14 rounded-full bg-primary items-center justify-center flex-row active:opacity-90"
             >
-              <Ionicons name="play" size={16} color="#17142a" className="mr-2" />
+              <Ionicons
+                name="play"
+                size={16}
+                color="#17142a"
+                className="mr-2"
+              />
               <Text className="text-primary-on font-sans font-bold text-base">
                 Iniciar pausa agora
               </Text>
@@ -83,15 +111,30 @@ export default function HeartScreen() {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  router.push('/breathing');
+                  router.push("/care/breathing");
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-accent-affective/15 active:border-accent-affective/25 mb-4"
               >
                 <View className="w-11 h-11 rounded-full bg-surface items-center justify-center mr-4 border border-accent-affective/20">
                   <Svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <Path d="M2 8H19C20.5 8 21.5 9 21.5 10.5C21.5 12 20.5 13 19 13" stroke="#ff8a70" strokeWidth="2" strokeLinecap="round" />
-                    <Path d="M2 12H16C17.5 12 18.5 13 18.5 14.5C18.5 16 17.5 17 16 17" stroke="#ff8a70" strokeWidth="2" strokeLinecap="round" />
-                    <Path d="M2 16H13C14 16 14.5 16.5 14.5 17.25C14.5 18 14 18.5 13 18.5" stroke="#ff8a70" strokeWidth="2" strokeLinecap="round" />
+                    <Path
+                      d="M2 8H19C20.5 8 21.5 9 21.5 10.5C21.5 12 20.5 13 19 13"
+                      stroke="#ff8a70"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <Path
+                      d="M2 12H16C17.5 12 18.5 13 18.5 14.5C18.5 16 17.5 17 16 17"
+                      stroke="#ff8a70"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <Path
+                      d="M2 16H13C14 16 14.5 16.5 14.5 17.25C14.5 18 14 18.5 13 18.5"
+                      stroke="#ff8a70"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
                   </Svg>
                 </View>
                 <View className="flex-1">
@@ -107,15 +150,33 @@ export default function HeartScreen() {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  router.push('/meditation');
+                  router.push("/care/meditation");
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-primary/15 active:border-primary/25 mb-4"
               >
                 <View className="w-11 h-11 rounded-full bg-surface items-center justify-center mr-4 border border-primary/20">
                   <Svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <Path d="M12 22C12 22 17 18 17 13C17 10 15 9 12 9C9 9 7 10 7 13C7 18 12 22 12 22Z" stroke="#b9a7ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <Path d="M12 22C12 22 21 17 21 12C21 9 19 8 16 9C13 10 12 12 12 12" stroke="#b9a7ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <Path d="M12 22C12 22 3 17 3 12C3 9 5 8 8 9C11 10 12 12 12 12" stroke="#b9a7ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <Path
+                      d="M12 22C12 22 17 18 17 13C17 10 15 9 12 9C9 9 7 10 7 13C7 18 12 22 12 22Z"
+                      stroke="#b9a7ff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <Path
+                      d="M12 22C12 22 21 17 21 12C21 9 19 8 16 9C13 10 12 12 12 12"
+                      stroke="#b9a7ff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <Path
+                      d="M12 22C12 22 3 17 3 12C3 9 5 8 8 9C11 10 12 12 12 12"
+                      stroke="#b9a7ff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </Svg>
                 </View>
                 <View className="flex-1">
@@ -131,16 +192,36 @@ export default function HeartScreen() {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-                  Alert.alert("Sons Calmantes", "Reproduzindo ondas alfa para indução de relaxamento.");
+                  Haptics.notificationAsync(
+                    Haptics.NotificationFeedbackType.Success,
+                  );
+                  Alert.alert(
+                    "Sons Calmantes",
+                    "Reproduzindo ondas alfa para indução de relaxamento.",
+                  );
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-feedback-success/15 active:border-feedback-success/25 mb-4"
               >
                 <View className="w-11 h-11 rounded-full bg-surface items-center justify-center mr-4 border border-feedback-success/20">
                   <Svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <Path d="M3 14C3 9 7 5 12 5C17 5 21 9 21 14" stroke="#8fe3b0" strokeWidth="2" strokeLinecap="round" />
-                    <Path d="M3 14H5C6 14 7 14.5 7 15.5V18.5C7 19.5 6 20 5 20H3C2 20 1 19 1 18V16C1 15 2 14 3 14Z" stroke="#8fe3b0" strokeWidth="2" strokeLinejoin="round" />
-                    <Path d="M21 14H19C18 14 17 14.5 17 15.5V18.5C17 19.5 18 20 19 20H21C22 20 23 19 23 18V16C23 15 22 14 21 14Z" stroke="#8fe3b0" strokeWidth="2" strokeLinejoin="round" />
+                    <Path
+                      d="M3 14C3 9 7 5 12 5C17 5 21 9 21 14"
+                      stroke="#8fe3b0"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <Path
+                      d="M3 14H5C6 14 7 14.5 7 15.5V18.5C7 19.5 6 20 5 20H3C2 20 1 19 1 18V16C1 15 2 14 3 14Z"
+                      stroke="#8fe3b0"
+                      strokeWidth="2"
+                      strokeLinejoin="round"
+                    />
+                    <Path
+                      d="M21 14H19C18 14 17 14.5 17 15.5V18.5C17 19.5 18 20 19 20H21C22 20 23 19 23 18V16C23 15 22 14 21 14Z"
+                      stroke="#8fe3b0"
+                      strokeWidth="2"
+                      strokeLinejoin="round"
+                    />
                   </Svg>
                 </View>
                 <View className="flex-1">
@@ -156,14 +237,25 @@ export default function HeartScreen() {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-                  Alert.alert("Pulso Coletivo", "Carregando métricas agregadas de bem-estar da tripulação.");
+                  Haptics.notificationAsync(
+                    Haptics.NotificationFeedbackType.Success,
+                  );
+                  Alert.alert(
+                    "Pulso Coletivo",
+                    "Carregando métricas agregadas de bem-estar da tripulação.",
+                  );
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-feedback-warning/15 active:border-feedback-warning/25 mb-4"
               >
                 <View className="w-11 h-11 rounded-full bg-surface items-center justify-center mr-4 border border-feedback-warning/20">
                   <Svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <Path d="M2 12H7L10 5L14 19L17 12H22" stroke="#ffd66b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <Path
+                      d="M2 12H7L10 5L14 19L17 12H22"
+                      stroke="#ffd66b"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </Svg>
                 </View>
                 <View className="flex-1">

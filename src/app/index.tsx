@@ -1,44 +1,25 @@
-<<<<<<< HEAD:app/index.tsx
-import { StarField } from "@/components/star-field";
+import { StarField } from "@/src/components/space/star-field";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
-import React from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Svg, {
-  Defs,
-  Line,
-  Stop,
-  LinearGradient as SvgLinearGradient,
-} from "react-native-svg";
-
-export default function SplashScreen() {
-  const router = useRouter();
-=======
-import React, { useEffect, useCallback, useRef } from "react";
-import { View, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
-import { useRouter } from "expo-router";
-import { StarField } from "@/src/components/space/star-field";
-import Svg, {
-  Path,
-  Circle,
-  Defs,
-  LinearGradient as SvgLinearGradient,
-  Stop,
-  G,
-  Line,
-} from "react-native-svg";
 import Animated, {
-  useSharedValue,
-  useAnimatedProps,
-  withTiming,
+  cancelAnimation,
   Easing,
   runOnJS,
-  cancelAnimation,
+  useAnimatedProps,
+  useSharedValue,
+  withTiming,
 } from "react-native-reanimated";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Svg, {
+  Circle,
+  Defs,
+  Line,
+  Stop,
+  LinearGradient as SvgLinearGradient,
+} from "react-native-svg";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -109,7 +90,6 @@ export default function SplashScreen() {
       opacity: sinValue >= 0 ? 1 : 0,
     };
   });
->>>>>>> origin/master:src/app/index.tsx
 
   return (
     <View className="flex-1 bg-surface relative">
@@ -126,7 +106,6 @@ export default function SplashScreen() {
 
         <View className="items-center px-6 w-full">
           <View
-<<<<<<< HEAD:app/index.tsx
             style={{
               width: 280,
               height: 280,
@@ -144,140 +123,11 @@ export default function SplashScreen() {
                 height: 280,
                 transform: [{ scaleX: 1.6 }, { scaleY: 1.3 }],
               }}
-              onAnimationFinish={() => router.replace("/onboarding")}
+              onAnimationFinish={navigateToOnboarding}
             />
           </View>
 
           <Text className="text-text-high font-title text-5xl mt-2 tracking-[6px] text-center">
-=======
-            style={{ width: 230, height: 230 }}
-            className="items-center justify-center"
-          >
-            <Svg width="100%" height="100%" viewBox="0 0 200 200">
-              <Defs>
-                <SvgLinearGradient
-                  id="helmetGrad"
-                  x1="0%"
-                  y1="0%"
-                  x2="0%"
-                  y2="100%"
-                >
-                  <Stop offset="0%" stopColor="#ff8a70" />
-                  <Stop offset="55%" stopColor="#b9a7ff" />
-                  <Stop offset="100%" stopColor="#5c67f2" />
-                </SvgLinearGradient>
-              </Defs>
-
-              <G transform="translate(100, 105) rotate(-15)">
-                <Path
-                  d="M 85,0 A 85,28 0 0,0 -85,0"
-                  fill="none"
-                  stroke="url(#helmetGrad)"
-                  strokeWidth={3}
-                  strokeLinecap="round"
-                  opacity={0.7}
-                />
-                <AnimatedCircle
-                  r={5.5}
-                  fill="#b9a7ff"
-                  animatedProps={backPlanetProps}
-                />
-              </G>
-
-              <Path
-                d="M 52,107 A 48,48 0 0,1 148,107"
-                fill="none"
-                stroke="url(#helmetGrad)"
-                strokeWidth={3}
-                strokeLinecap="round"
-              />
-
-              <Path
-                d="M 52,92 A 6,6 0 0,0 46,98 L 46,116 A 6,6 0 0,0 52,122"
-                fill="none"
-                stroke="url(#helmetGrad)"
-                strokeWidth={3}
-                strokeLinecap="round"
-              />
-              <Path
-                d="M 148,92 A 6,6 0 0,1 154,98 L 154,116 A 6,6 0 0,1 148,122"
-                fill="none"
-                stroke="url(#helmetGrad)"
-                strokeWidth={3}
-                strokeLinecap="round"
-              />
-
-              <Circle
-                cx={100}
-                cy={107}
-                r={40}
-                fill="#1d254d44"
-                stroke="url(#helmetGrad)"
-                strokeWidth={3}
-              />
-
-              <Path
-                d="M 100,78 Q 100,100 116,100 Q 100,100 100,122 Q 100,100 84,100 Q 100,100 100,78 Z"
-                fill="#ffd66b"
-              />
-              <Path
-                d="M 82,84 Q 82,87 85,87 Q 82,87 82,90 Q 82,87 79,87 Q 82,87 82,84 Z"
-                fill="#ff8a70"
-              />
-              <Path
-                d="M 126,92 Q 126,95 129,95 Q 126,95 126,98 Q 126,95 123,95 Q 126,95 126,92 Z"
-                fill="#ffd66b"
-              />
-              <Path
-                d="M 118,118 Q 118,121 121,121 Q 118,121 118,124 Q 118,121 115,121 Q 118,121 118,118 Z"
-                fill="#b9a7ff"
-              />
-              <Circle cx={116} cy={78} r={1.5} fill="#ff8a70" />
-              <Circle cx={76} cy={114} r={1.5} fill="#5c67f2" />
-              <Circle cx={72} cy={95} r={1.0} fill="#ffd66b" />
-              <Circle cx={95} cy={74} r={0.8} fill="#ff8a70" />
-
-              <Path
-                d="M 64,136 C 74,146 126,146 136,136"
-                fill="none"
-                stroke="url(#helmetGrad)"
-                strokeWidth={3}
-                strokeLinecap="round"
-              />
-              <Path
-                d="M 68,144 C 76,154 124,154 132,144"
-                fill="none"
-                stroke="url(#helmetGrad)"
-                strokeWidth={3}
-                strokeLinecap="round"
-              />
-              <Path
-                d="M 72,152 C 80,162 120,162 128,152"
-                fill="none"
-                stroke="url(#helmetGrad)"
-                strokeWidth={3}
-                strokeLinecap="round"
-              />
-
-              <G transform="translate(100, 105) rotate(-15)">
-                <Path
-                  d="M -85,0 A 85,28 0 0,0 85,0"
-                  fill="none"
-                  stroke="url(#helmetGrad)"
-                  strokeWidth={3}
-                  strokeLinecap="round"
-                />
-                <AnimatedCircle
-                  r={5.5}
-                  fill="#b9a7ff"
-                  animatedProps={frontPlanetProps}
-                />
-              </G>
-            </Svg>
-          </View>
-
-          <Text className="text-text-high font-title text-5xl mt-6 tracking-[6px] text-center">
->>>>>>> origin/master:src/app/index.tsx
             Estelar
           </Text>
 
