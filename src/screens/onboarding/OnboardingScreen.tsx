@@ -75,7 +75,7 @@ export default function OnboardingScreen() {
         <View className="items-center px-4 w-full gap-y-4">
           <View className="items-center">
             <Text className="text-text-high font-title text-[28px] leading-[40px] text-center font-bold">
-              Boas vindas à {"\n"}
+              Boas vindas ao {"\n"}
               <Text className="text-primary text-[36px]">Estelar</Text>
             </Text>
 

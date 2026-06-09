@@ -1,5 +1,5 @@
 import { AppButton } from "@/src/components/app-button";
-import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
+//import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
 import { Ionicons } from "@expo/vector-icons";
@@ -154,7 +154,7 @@ export default function RadarScreen() {
       />
 
       <StarField />
-      <ScreenGlassZones />
+      {/* <ScreenGlassZones /> */}
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView

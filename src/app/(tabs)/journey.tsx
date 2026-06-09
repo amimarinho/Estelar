@@ -1,6 +1,6 @@
 import { AppButton } from "@/src/components/app-button";
 import { AppToast } from "@/src/components/app-toast";
-import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
+//import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
 import { useMission } from "@/src/context/mission-context";
@@ -177,7 +177,7 @@ export default function SuggestionsScreen() {
       />
 
       <StarField />
-      <ScreenGlassZones />
+      {/* <ScreenGlassZones /> */}
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView

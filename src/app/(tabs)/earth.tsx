@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AppButton } from "@/src/components/app-button";
 import { AppToast } from "@/src/components/app-toast";
 import { ScreenHeader } from "@/src/components/screen-header";
-import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
+//import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { useAppToast } from "@/src/hooks/use-app-toast";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -93,7 +93,7 @@ export default function EarthScreen() {
       />
 
       <StarField />
-      <ScreenGlassZones />
+      {/* <ScreenGlassZones /> */}
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
