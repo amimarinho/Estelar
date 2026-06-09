@@ -20,6 +20,11 @@ export default function SuggestionsScreen() {
   const router = useRouter();
   const { checkins } = useMission();
 
+  const lastCheckin =
+  checkins.length > 0 ? checkins[checkins.length - 1] : null;
+
+  const missionDay = lastCheckin ? lastCheckin.sol : 47;
+
   const handleNewRegistry = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     router.push("/mission/register");
@@ -83,9 +88,7 @@ export default function SuggestionsScreen() {
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <Text className="font-title text-base font-bold text-text-high">
-              Hoje: dia{" "}
-              {checkins.length > 0 ? checkins[checkins.length - 1].sol + 5 : 47}{" "}
-              da missão
+              Hoje: dia {missionDay} da missão
             </Text>
             <Text className="font-sans text-xs text-text-muted mt-1 leading-relaxed">
               Seus registros formam uma constelação de momentos bons, difíceis e

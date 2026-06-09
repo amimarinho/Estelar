@@ -62,11 +62,7 @@ export default function MissionHomeScreen() {
             </Text>
             <View className="flex-row items-center mt-1">
               <Text className="font-sans text-base text-accent-affective font-medium">
-                Dia{" "}
-                {checkins.length > 0
-                  ? checkins[checkins.length - 1].sol + 5
-                  : 47}{" "}
-                da missão
+                Dia {lastCheckin ? lastCheckin.sol : 47} da missão
               </Text>
               <Text className="font-sans text-base text-text-muted mx-2">
                 •
@@ -134,7 +130,7 @@ export default function MissionHomeScreen() {
                 Missão em andamento
               </Text>
               <Text className="font-sans text-[11px] text-text-muted mt-auto">
-                Dia 47 da Jornada
+                Dia {lastCheckin ? lastCheckin.sol : 47} da jornada
               </Text>
             </View>
           </View>
