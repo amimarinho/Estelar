@@ -1,5 +1,5 @@
-import { ChromaCard } from "@/components/chroma-card";
-import { StarField } from "@/components/star-field";
+import { ChromaCard } from "@/src/components/chroma-card";
+import { StarField } from "@/src/components/space/star-field";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -94,7 +94,7 @@ export default function MissionHomeScreen() {
                 }
                 isNavigating.current = true;
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push("/checkin");
+                router.push("/mission/checkin");
                 setTimeout(() => {
                   isNavigating.current = false;
                 }, 1000);

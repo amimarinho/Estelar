@@ -1,5 +1,5 @@
-import { StarField } from "@/components/star-field";
-import { useMission } from "@/context/mission-context";
+import { StarField } from "@/src/components/space/star-field";
+import { useMission } from "@/src/context/mission-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";

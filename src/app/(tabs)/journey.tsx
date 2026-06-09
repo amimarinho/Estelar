@@ -1,4 +1,4 @@
-import { StarField } from "@/components/star-field";
+import { StarField } from "@/src/components/space/star-field";
 import { useMission } from "@/src/context/mission-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -22,7 +22,7 @@ export default function SuggestionsScreen() {
 
   const handleNewRegistry = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    router.push("/register");
+    router.push("/mission/register");
   };
 
   const handleOpenDiary = () => {
