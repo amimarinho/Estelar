@@ -1,11 +1,12 @@
+import { SPLASH_COLORS } from "@/src/constants/splash.constants";
 import React from "react";
 import Svg, {
   Circle,
   Defs,
   G,
+  LinearGradient as SvgLinearGradient,
   Path,
   Stop,
-  LinearGradient as SvgLinearGradient,
   type CircleProps,
 } from "react-native-svg";
 
@@ -26,9 +27,9 @@ export function SplashLogo({
     <Svg width="100%" height="100%" viewBox="0 0 200 200">
       <Defs>
         <SvgLinearGradient id="helmetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <Stop offset="0%" stopColor="SPLASH_COLORS.orange" />
-          <Stop offset="55%" stopColor="SPLASH_COLORS.purple" />
-          <Stop offset="100%" stopColor="SPLASH_COLORS.blue" />
+          <Stop offset="0%" stopColor={SPLASH_COLORS.orange} />
+          <Stop offset="55%" stopColor={SPLASH_COLORS.purple} />
+          <Stop offset="100%" stopColor={SPLASH_COLORS.blue} />
         </SvgLinearGradient>
       </Defs>
 
@@ -44,7 +45,7 @@ export function SplashLogo({
 
         <AnimatedCircle
           r={5.5}
-          fill="SPLASH_COLORS.purple"
+          fill={SPLASH_COLORS.purple}
           animatedProps={backPlanetProps}
         />
       </G>
@@ -84,28 +85,28 @@ export function SplashLogo({
 
       <Path
         d="M 100,78 Q 100,100 116,100 Q 100,100 100,122 Q 100,100 84,100 Q 100,100 100,78 Z"
-        fill="SPLASH_COLORS.yellow"
+        fill={SPLASH_COLORS.yellow}
       />
 
       <Path
         d="M 82,84 Q 82,87 85,87 Q 82,87 82,90 Q 82,87 79,87 Q 82,87 82,84 Z"
-        fill="SPLASH_COLORS.orange"
+        fill={SPLASH_COLORS.orange}
       />
 
       <Path
         d="M 126,92 Q 126,95 129,95 Q 126,95 126,98 Q 126,95 123,95 Q 126,95 126,92 Z"
-        fill="SPLASH_COLORS.yellow"
+        fill={SPLASH_COLORS.yellow}
       />
 
       <Path
         d="M 118,118 Q 118,121 121,121 Q 118,121 118,124 Q 118,121 115,121 Q 118,121 118,118 Z"
-        fill="SPLASH_COLORS.purple"
+        fill={SPLASH_COLORS.purple}
       />
 
-      <Circle cx={116} cy={78} r={1.5} fill="SPLASH_COLORS.orange" />
-      <Circle cx={76} cy={114} r={1.5} fill="SPLASH_COLORS.blue" />
-      <Circle cx={72} cy={95} r={1.0} fill="SPLASH_COLORS.yellow" />
-      <Circle cx={95} cy={74} r={0.8} fill="SPLASH_COLORS.orange" />
+      <Circle cx={116} cy={78} r={1.5} fill={SPLASH_COLORS.orange} />
+      <Circle cx={76} cy={114} r={1.5} fill={SPLASH_COLORS.blue} />
+      <Circle cx={72} cy={95} r={1} fill={SPLASH_COLORS.yellow} />
+      <Circle cx={95} cy={74} r={0.8} fill={SPLASH_COLORS.orange} />
 
       <Path
         d="M 64,136 C 74,146 126,146 136,136"
@@ -142,7 +143,7 @@ export function SplashLogo({
 
         <AnimatedCircle
           r={5.5}
-          fill="SPLASH_COLORS.purple"
+          fill={SPLASH_COLORS.purple}
           animatedProps={frontPlanetProps}
         />
       </G>
