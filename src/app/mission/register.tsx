@@ -1,5 +1,5 @@
-import { ChromaButton } from "@/components/chroma-button";
-import { StarField } from "@/components/star-field";
+import { ChromaButton } from "@/src/components/chroma-button";
+import { StarField } from "@/src/components/space/star-field";
 import { useMission } from "@/src/context/mission-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -83,7 +83,7 @@ export default function RegisterScreen() {
         {
           text: "OK",
           onPress: () => {
-            router.replace("/(tabs)/suggestions");
+            router.replace("/(tabs)/journey");
           },
         },
       ],

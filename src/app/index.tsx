@@ -1,10 +1,18 @@
-import React, { useEffect, useCallback, useRef } from 'react';
-import { View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import { StarField } from '@/components/star-field';
-import Svg, { Path, Circle, Defs, LinearGradient as SvgLinearGradient, Stop, G, Line } from 'react-native-svg';
+import React, { useEffect, useCallback, useRef } from "react";
+import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import { StarField } from "@/src/components/space/star-field";
+import Svg, {
+  Path,
+  Circle,
+  Defs,
+  LinearGradient as SvgLinearGradient,
+  Stop,
+  G,
+  Line,
+} from "react-native-svg";
 import Animated, {
   useSharedValue,
   useAnimatedProps,
@@ -12,7 +20,7 @@ import Animated, {
   Easing,
   runOnJS,
   cancelAnimation,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -22,7 +30,7 @@ export default function SplashScreen() {
   const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigateToOnboarding = useCallback(() => {
-    router.replace('/onboarding');
+    router.replace("/");
   }, [router]);
 
   const handleNavigationAfterDelay = useCallback(() => {
@@ -37,14 +45,18 @@ export default function SplashScreen() {
     orbitAngle.value = startAngle;
 
     const timeout = setTimeout(() => {
-      orbitAngle.value = withTiming(startAngle + 2 * Math.PI, {
-        duration: 2500,
-        easing: Easing.inOut(Easing.cubic),
-      }, (finished) => {
-        if (finished) {
-          runOnJS(handleNavigationAfterDelay)();
-        }
-      });
+      orbitAngle.value = withTiming(
+        startAngle + 2 * Math.PI,
+        {
+          duration: 2500,
+          easing: Easing.inOut(Easing.cubic),
+        },
+        (finished) => {
+          if (finished) {
+            runOnJS(handleNavigationAfterDelay)();
+          }
+        },
+      );
     }, 100);
 
     return () => {
@@ -83,9 +95,9 @@ export default function SplashScreen() {
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#2d1b54', '#0a1030']}
+        colors={["#0a1030", "#2d1b54", "#0a1030"]}
         locations={[0, 0.5, 1]}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
 
       <StarField />
@@ -94,10 +106,19 @@ export default function SplashScreen() {
         <View className="h-2" />
 
         <View className="items-center px-6 w-full">
-          <View style={{ width: 230, height: 230 }} className="items-center justify-center">
+          <View
+            style={{ width: 230, height: 230 }}
+            className="items-center justify-center"
+          >
             <Svg width="100%" height="100%" viewBox="0 0 200 200">
               <Defs>
-                <SvgLinearGradient id="helmetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <SvgLinearGradient
+                  id="helmetGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="0%"
+                  y2="100%"
+                >
                   <Stop offset="0%" stopColor="#ff8a70" />
                   <Stop offset="55%" stopColor="#b9a7ff" />
                   <Stop offset="100%" stopColor="#5c67f2" />
@@ -211,7 +232,7 @@ export default function SplashScreen() {
               </G>
             </Svg>
           </View>
-          
+
           <Text className="text-text-high font-title text-5xl mt-6 tracking-[6px] text-center">
             Estelar
           </Text>
@@ -228,7 +249,14 @@ export default function SplashScreen() {
                 <Stop offset="1" stopColor="#5c67f2" />
               </SvgLinearGradient>
             </Defs>
-            <Line x1="0" y1="1" x2="65" y2="1" stroke="url(#lineGrad)" strokeWidth="2" />
+            <Line
+              x1="0"
+              y1="1"
+              x2="65"
+              y2="1"
+              stroke="url(#lineGrad)"
+              strokeWidth="2"
+            />
           </Svg>
         </View>
 
@@ -236,10 +264,10 @@ export default function SplashScreen() {
           <Text className="text-text-high font-sans text-2xl tracking-[6px] font-light">
             FIAP
           </Text>
-          
+
           <View className="flex-row items-center mt-1">
             <Text className="text-text-high font-sans text-sm tracking-[1.5px] font-light">
-              global{' '}
+              global{" "}
             </Text>
             <Text className="text-text-high font-semibold text-sm tracking-[1.5px]">
               solution
@@ -254,4 +282,3 @@ export default function SplashScreen() {
     </View>
   );
 }
-
