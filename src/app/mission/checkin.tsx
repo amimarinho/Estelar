@@ -106,7 +106,7 @@ export default function CheckinScreen() {
           title="Check-in emocional"
           subtitle="Como você se sente nesta órbita hoje?"
           leftIcon="arrow-back"
-          onLeftPress={() => router.back()}
+          onLeftPress={() => router.replace("/(tabs)")}
           compact
         />
 

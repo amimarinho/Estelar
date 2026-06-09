@@ -64,7 +64,7 @@ export default function ReportScreen() {
           title="Relato emocional"
           subtitle="Envie um relato à Terra."
           leftIcon="arrow-back"
-          onLeftPress={() => router.back()}
+          onLeftPress={() => router.replace("/(tabs)/radar")}
           compact
         />
 

@@ -2,7 +2,7 @@ import { StarField } from "@/src/components/space/star-field";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, {
@@ -14,10 +14,24 @@ import Svg, {
 
 export default function SplashScreen() {
   const router = useRouter();
+  const hasNavigatedRef = useRef(false);
 
   const navigateToOnboarding = useCallback(() => {
+    if (hasNavigatedRef.current) {
+      return;
+    }
+
+    hasNavigatedRef.current = true;
     router.replace("/onboarding/onboarding");
   }, [router]);
+
+  useEffect(() => {
+    const fallbackTimer = setTimeout(navigateToOnboarding, 3800);
+
+    return () => {
+      clearTimeout(fallbackTimer);
+    };
+  }, [navigateToOnboarding]);
 
   return (
     <View className="flex-1 bg-surface relative">

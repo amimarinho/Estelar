@@ -220,7 +220,7 @@ export default function GuidedBreathingScreen() {
           title="Respiração guiada"
           subtitle="Uma pausa curta para estabilizar corpo e mente."
           leftIcon="arrow-back"
-          onLeftPress={() => router.back()}
+          onLeftPress={() => router.replace("/(tabs)/care")}
           compact
         />
 

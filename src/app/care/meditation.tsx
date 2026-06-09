@@ -242,7 +242,7 @@ export default function MeditationScreen() {
       <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
         <View className="absolute top-6 left-6 z-20">
           <Pressable
-            onPress={() => router.back()}
+            onPress={() => router.replace("/(tabs)/care")}
             className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center active:opacity-80"
           >
             <Ionicons name="arrow-back" size={20} color="#b8bde0" />

@@ -178,7 +178,7 @@ export default function CapsuleScreen() {
         >
           <View className="flex-row items-center mb-6">
             <Pressable
-              onPress={() => router.back()}
+              onPress={() => router.replace("/(tabs)/earth")}
               className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center mr-4 active:opacity-80"
             >
               <Ionicons name="arrow-back" size={20} color="#b8bde0" />

@@ -94,7 +94,7 @@ export default function RegisterScreen() {
           title="Registro emocional"
           subtitle="Transforme este momento em parte da sua constelação."
           leftIcon="arrow-back"
-          onLeftPress={() => router.back()}
+          onLeftPress={() => router.replace("/(tabs)/journey")}
           compact
         />
 

@@ -329,7 +329,7 @@ export default function RadarScreen() {
             <Pressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push("/(tabs)/journey");
+                router.push("/care/breathing");
               }}
               className="w-full h-12 rounded-full bg-feedback-warning items-center justify-center flex-row active:opacity-90 mt-5"
             >
