@@ -18,7 +18,7 @@ export function useSplashAnimation() {
   const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigateToOnboarding = useCallback(() => {
-    router.replace("/onboarding");
+    router.replace("/onboarding/onboarding");
   }, [router]);
 
   const handleNavigationAfterDelay = useCallback(() => {

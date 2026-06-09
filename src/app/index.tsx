@@ -4,24 +4,20 @@ import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
 import React, { useCallback, useEffect, useRef } from "react";
 import { Text, View } from "react-native";
-import Animated, {
+import {
   cancelAnimation,
   Easing,
   runOnJS,
-  useAnimatedProps,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, {
-  Circle,
   Defs,
   Line,
   Stop,
   LinearGradient as SvgLinearGradient,
 } from "react-native-svg";
-
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default function SplashScreen() {
   const router = useRouter();
@@ -29,7 +25,7 @@ export default function SplashScreen() {
   const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigateToOnboarding = useCallback(() => {
-    router.replace("/");
+    router.replace("/onboarding/onboarding");
   }, [router]);
 
   const handleNavigationAfterDelay = useCallback(() => {
@@ -66,30 +62,6 @@ export default function SplashScreen() {
       cancelAnimation(orbitAngle);
     };
   }, [orbitAngle, handleNavigationAfterDelay]);
-
-  const backPlanetProps = useAnimatedProps(() => {
-    const theta = orbitAngle.value;
-    const cx = 85 * Math.cos(theta);
-    const cy = 28 * Math.sin(theta);
-    const sinValue = Math.sin(theta);
-    return {
-      cx,
-      cy,
-      opacity: sinValue < 0 ? 1 : 0,
-    };
-  });
-
-  const frontPlanetProps = useAnimatedProps(() => {
-    const theta = orbitAngle.value;
-    const cx = 85 * Math.cos(theta);
-    const cy = 28 * Math.sin(theta);
-    const sinValue = Math.sin(theta);
-    return {
-      cx,
-      cy,
-      opacity: sinValue >= 0 ? 1 : 0,
-    };
-  });
 
   return (
     <View className="flex-1 bg-surface relative">

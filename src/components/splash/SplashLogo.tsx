@@ -6,10 +6,10 @@ import Svg, {
   Path,
   Stop,
   LinearGradient as SvgLinearGradient,
+  type CircleProps,
 } from "react-native-svg";
 
-import Animated, { AnimatedProps } from "react-native-reanimated";
-import { CircleProps } from "react-native-svg";
+import Animated, { type AnimatedProps } from "react-native-reanimated";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 

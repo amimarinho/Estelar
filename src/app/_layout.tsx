@@ -53,32 +53,32 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen
-            name="onboarding"
+            name="onboarding/onboarding"
             options={{ headerShown: false, animation: "fade" }}
           />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen
-            name="checkin"
+            name="mission/checkin"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
           <Stack.Screen
-            name="report"
+            name="mission/report"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
           <Stack.Screen
-            name="breathing"
+            name="care/breathing"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
           <Stack.Screen
-            name="capsule"
+            name="care/capsule"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
           <Stack.Screen
-            name="register"
+            name="mission/register"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
           <Stack.Screen
-            name="meditation"
+            name="care/meditation"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
         </Stack>

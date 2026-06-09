@@ -104,7 +104,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="heart"
+        name="care"
         options={{
           title: "Cuidar",
           tabBarIcon: ({ focused, color }) => (
@@ -156,7 +156,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="suggestions"
+        name="journey"
         options={{
           title: "Jornada",
           tabBarIcon: ({ focused, color }) => (

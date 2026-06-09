@@ -6,6 +6,7 @@ import {
   Pressable,
   StyleSheet,
   Alert,
+  type ColorValue,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -25,6 +26,7 @@ import Animated, {
 import { ChromaButton } from "@/src/components/chroma-button";
 
 type Phase = "inspire" | "segure" | "expire" | "descanse";
+type GradientColors = readonly [ColorValue, ColorValue, ...ColorValue[]];
 
 export default function GuidedBreathingScreen() {
   const router = useRouter();
@@ -36,9 +38,13 @@ export default function GuidedBreathingScreen() {
   const [phaseTimeLeft, setPhaseTimeLeft] = useState(4);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const [orbSpeed, setOrbSpeed] = useState(0.4);
+  const [, setOrbSpeed] = useState(0.4);
   const [orbIntensity, setOrbIntensity] = useState(0.85);
-  const [orbColors, setOrbColors] = useState(["#b9a7ff", "#5c67f2", "#ff8a70"]);
+  const [orbColors, setOrbColors] = useState<GradientColors>([
+    "#b9a7ff",
+    "#5c67f2",
+    "#ff8a70",
+  ]);
 
   const totalElapsedRef = useRef(0);
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -463,7 +469,7 @@ export default function GuidedBreathingScreen() {
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                   setShowSuccessModal(false);
-                  router.replace("/(tabs)/heart");
+                  router.replace("/(tabs)/care");
                 }}
                 className="w-full h-12 rounded-full border border-stroke-soft items-center justify-center active:bg-surface-card/65"
               >
