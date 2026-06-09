@@ -2,15 +2,8 @@ import { StarField } from "@/src/components/space/star-field";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback } from "react";
 import { Text, View } from "react-native";
-import {
-  cancelAnimation,
-  Easing,
-  runOnJS,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, {
   Defs,
@@ -21,47 +14,10 @@ import Svg, {
 
 export default function SplashScreen() {
   const router = useRouter();
-  const orbitAngle = useSharedValue(Math.atan2(-11 / 28, -72 / 85));
-  const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigateToOnboarding = useCallback(() => {
     router.replace("/onboarding/onboarding");
   }, [router]);
-
-  const handleNavigationAfterDelay = useCallback(() => {
-    navTimeoutRef.current = setTimeout(() => {
-      navigateToOnboarding();
-    }, 800);
-  }, [navigateToOnboarding]);
-
-  useEffect(() => {
-    const startAngle = Math.atan2(-11 / 28, -72 / 85);
-    cancelAnimation(orbitAngle);
-    orbitAngle.value = startAngle;
-
-    const timeout = setTimeout(() => {
-      orbitAngle.value = withTiming(
-        startAngle + 2 * Math.PI,
-        {
-          duration: 2500,
-          easing: Easing.inOut(Easing.cubic),
-        },
-        (finished) => {
-          if (finished) {
-            runOnJS(handleNavigationAfterDelay)();
-          }
-        },
-      );
-    }, 100);
-
-    return () => {
-      clearTimeout(timeout);
-      if (navTimeoutRef.current) {
-        clearTimeout(navTimeoutRef.current);
-      }
-      cancelAnimation(orbitAngle);
-    };
-  }, [orbitAngle, handleNavigationAfterDelay]);
 
   return (
     <View className="flex-1 bg-surface relative">
