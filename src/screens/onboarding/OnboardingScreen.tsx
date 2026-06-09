@@ -1,22 +1,22 @@
-import React, { useState, useCallback } from "react";
-import { View, Text, useWindowDimensions } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import { useCallback, useState } from "react";
+import { Text, useWindowDimensions, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import Animated, {
-  useSharedValue,
   useAnimatedScrollHandler,
+  useSharedValue,
 } from "react-native-reanimated";
 
+import { ChromaButton } from "@/src/components/chroma-button";
 import { StarField } from "@/src/components/space/star-field";
 import { StarDivider } from "@/src/components/star-divider";
-import { ChromaButton } from "@/src/components/chroma-button";
 
 import { onboardingStyles } from "./OnboardingStyles";
 import { AnimatedCard } from "./components/AnimatedCard";
-import { CAROUSEL_DATA } from "./onboarding.data";
 import { OnboardingPagination } from "./components/OnboardingPagination";
+import { CAROUSEL_DATA } from "./onboarding.data";
 
 export default function OnboardingScreen() {
   const router = useRouter();
