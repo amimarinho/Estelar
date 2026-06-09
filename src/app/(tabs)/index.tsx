@@ -110,7 +110,9 @@ export default function MissionHomeScreen() {
       rest = "alto nível de estresse";
     } else if (lastCheckin.sleepQuality === 0) {
       rest = "necessidade de descanso emocional";
-    } else if (lastCheckin.mood === "sobrecarregado") {
+    } else if (lastCheckin.mood === "cansado") {
+      rest = "necessidade de recuperação";
+    } else if (lastCheckin.mood === "esgotado") {
       rest = "sinais de sobrecarga";
     }
     return `Seu último check-in indicou ${energy} e ${rest}.`;

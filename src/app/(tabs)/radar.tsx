@@ -1,6 +1,6 @@
 import { AppButton } from "@/src/components/app-button";
-import { ScreenHeader } from "@/src/components/screen-header";
 import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
+import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -28,7 +28,8 @@ export default function RadarScreen() {
     if (lastCheckin.mood === "bem") moodVal = 12;
     if (lastCheckin.mood === "instavel") moodVal = 18;
     if (lastCheckin.mood === "ansioso") moodVal = 22;
-    if (lastCheckin.mood === "sobrecarregado") moodVal = 25;
+    if (lastCheckin.mood === "cansado") moodVal = 20;
+    if (lastCheckin.mood === "esgotado") moodVal = 25;
 
     const stressVal = lastCheckin.stressLevel * 17.5;
     const energyVal = (2 - lastCheckin.energyLevel) * 7.5;
@@ -64,8 +65,14 @@ export default function RadarScreen() {
         color: "#ff8a70",
         icon: "sync-outline" as const,
       };
+    if (lastCheckin.mood === "cansado")
+      return {
+        text: "Cansado",
+        color: "#7ccbff",
+        icon: "battery-dead-outline" as const,
+      };
     return {
-      text: "Sobrecarregado",
+      text: "Esgotado",
       color: "#ff8a8a",
       icon: "layers-outline" as const,
     };

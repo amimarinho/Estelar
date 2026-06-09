@@ -52,6 +52,8 @@ export default function SuggestionsScreen() {
       return { hex: "#ff8a70", glow: "rgba(255, 138, 112, 0.2)" };
     if (mood === "ansioso")
       return { hex: "#ffd66b", glow: "rgba(255, 214, 107, 0.2)" };
+    if (mood === "cansado")
+      return { hex: "#7ccbff", glow: "rgba(124, 203, 255, 0.2)" };
     return { hex: "#b9a7ff", glow: "rgba(185, 167, 255, 0.2)" };
   };
 
