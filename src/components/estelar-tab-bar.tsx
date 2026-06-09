@@ -3,15 +3,7 @@ import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { LinearGradient } from "expo-linear-gradient";
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useMemo, useRef } from "react";
-import {
-  Animated,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { Pressable, StyleSheet, Text, View, Animated, useWindowDimensions } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 
 import {

@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
-type AppButtonVariant = "primary" | "secondary" | "ghost";
+type AppButtonVariant = "primary" | "secondary" | "ghost" | "warning";
 type AppButtonSize = "md" | "lg";
 
 interface AppButtonProps {
@@ -42,6 +42,12 @@ const VARIANT_CLASSES: Record<
     text: "text-primary",
     icon: "#b9a7ff",
     loader: "#b9a7ff",
+  },
+  warning: {
+    container: "bg-feedback-warning border-feedback-warning active:opacity-90",
+    text: "text-surface",
+    icon: "#0a1030",
+    loader: "#0a1030",
   },
 };
 
