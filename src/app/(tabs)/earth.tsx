@@ -117,7 +117,7 @@ export default function EarthScreen() {
                   name="location-outline"
                   size={16}
                   color="#ff8a70"
-                  className="mr-2.5"
+                  style={styles.inlineIcon}
                 />
                 <Text className="font-sans text-sm font-semibold text-accent-affective">
                   SÃO PAULO, TERRA
@@ -129,7 +129,7 @@ export default function EarthScreen() {
                   name="time-outline"
                   size={16}
                   color="#b8bde0"
-                  className="mr-2.5"
+                  style={styles.inlineIcon}
                 />
                 <Text className="font-mono text-sm text-text-high">
                   {saoPauloClock.time} · {saoPauloClock.weekday}
@@ -263,7 +263,7 @@ export default function EarthScreen() {
                 name="call-outline"
                 size={16}
                 color="#ffd66b"
-                className="mr-2.5"
+                style={styles.inlineIcon}
               />
               <Text className="font-sans text-sm font-semibold text-feedback-warning">
                 Chamada especial sugerida
@@ -298,5 +298,8 @@ const styles = StyleSheet.create({
   skylineImage: {
     width: "100%",
     height: 180,
+  },
+  inlineIcon: {
+    marginRight: 10,
   },
 });

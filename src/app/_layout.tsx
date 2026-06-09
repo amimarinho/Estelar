@@ -14,6 +14,7 @@ import "react-native-reanimated";
 
 import {
   Lexend_400Regular,
+  Lexend_500Medium,
   Lexend_600SemiBold,
 } from "@expo-google-fonts/lexend";
 import { SpaceGrotesk_700Bold } from "@expo-google-fonts/space-grotesk";
@@ -33,6 +34,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceGrotesk_700Bold,
     Lexend_400Regular,
+    Lexend_500Medium,
     Lexend_600SemiBold,
     SpaceMono_400Regular,
   });
