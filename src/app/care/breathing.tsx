@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { StarField } from "@/components/star-field";
+import { StarField } from "@/src/components/space/star-field";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import Animated, {
@@ -22,8 +22,7 @@ import Animated, {
   Easing,
   FadeIn,
 } from "react-native-reanimated";
-import { ChromaButton } from "@/components/chroma-button";
-import { EnergyOrb } from "@/components/splash/SplashLogo";
+import { ChromaButton } from "@/src/components/chroma-button";
 
 type Phase = "inspire" | "segure" | "expire" | "descanse";
 
@@ -80,7 +79,7 @@ export default function GuidedBreathingScreen() {
 
   const animatedOrbStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: scaleVal.value }],
+      transform: [{ scale: scaleVal.value * glowVal.value }],
     };
   });
 
@@ -256,13 +255,19 @@ export default function GuidedBreathingScreen() {
                 style={[animatedOrbStyle]}
                 className="absolute inset-0 items-center justify-center"
               >
-                <EnergyOrb
-                  width={240}
-                  height={240}
-                  speed={orbSpeed}
-                  intensity={orbIntensity}
+                <LinearGradient
                   colors={orbColors}
-                  glowRadius={0.4}
+                  start={{ x: 0.2, y: 0.2 }}
+                  end={{ x: 0.8, y: 0.8 }}
+                  style={{
+                    width: 240,
+                    height: 240,
+                    borderRadius: 120,
+                    opacity: orbIntensity,
+                    shadowColor: "#fff",
+                    shadowRadius: 30,
+                    shadowOpacity: 0.35,
+                  }}
                 />
               </Animated.View>
               <View className="absolute z-10 items-center justify-center">

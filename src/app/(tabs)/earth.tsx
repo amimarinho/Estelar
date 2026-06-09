@@ -162,7 +162,7 @@ export default function EarthScreen() {
             </Text>
 
             <Image
-              source={require("@/assets/images/saopaulo_skyline.png")}
+              source={require("@/src/assets/images/saopaulo_skyline.png")}
               style={styles.skylineImage}
               contentFit="cover"
               className="rounded-[20px] mt-6 border border-white/5"
