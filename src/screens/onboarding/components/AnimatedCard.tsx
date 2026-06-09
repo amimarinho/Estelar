@@ -1,57 +1,74 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { View, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
 import Animated, {
-  SharedValue,
+  Extrapolation,
   interpolate,
   useAnimatedStyle,
+  type SharedValue,
 } from "react-native-reanimated";
 
-import { onboardingStyles } from "../OnboardingStyles";
 import { CarouselItem } from "../onboarding.data";
 
-interface AnimatedCardProps {
+type AnimatedCardProps = {
   item: CarouselItem;
   index: number;
+  activeIndex: number;
   scrollX: SharedValue<number>;
   snapInterval: number;
   cardWidth: number;
-  gap: number;
-}
+  cardHeight: number;
+};
 
 export function AnimatedCard({
   item,
   index,
+  activeIndex,
   scrollX,
   snapInterval,
   cardWidth,
-  gap,
+  cardHeight,
 }: AnimatedCardProps) {
-  const animatedStyle = useAnimatedStyle(() => {
-    const inputRange = [
-      (index - 1) * snapInterval,
-      index * snapInterval,
-      (index + 1) * snapInterval,
-    ];
+  const isActive = activeIndex === index;
+
+  const wrapperAnimatedStyle = useAnimatedStyle(() => {
+    const center = index * snapInterval;
+    const distance = Math.abs(scrollX.value - center);
+    const isNearCenter = distance < snapInterval / 2;
+
+    return {
+      zIndex: isNearCenter ? 100 : 1,
+      elevation: isNearCenter ? 100 : 1,
+    };
+  });
+
+  const cardAnimatedStyle = useAnimatedStyle(() => {
+    const center = index * snapInterval;
 
     const scale = interpolate(
       scrollX.value,
-      inputRange,
-      [0.88, 1, 0.88],
-      "clamp",
+      [center - snapInterval, center, center + snapInterval],
+      [0.72, 1.24, 0.72],
+      Extrapolation.CLAMP,
     );
 
     const opacity = interpolate(
       scrollX.value,
-      inputRange,
-      [0.65, 1, 0.65],
-      "clamp",
+      [center - snapInterval, center, center + snapInterval],
+      [0.82, 1, 0.82],
+      Extrapolation.CLAMP,
+    );
+
+    const translateY = interpolate(
+      scrollX.value,
+      [center - snapInterval, center, center + snapInterval],
+      [18, 0, 18],
+      Extrapolation.CLAMP,
     );
 
     return {
-      transform: [{ scale }],
       opacity,
+      transform: [{ scale }, { translateY }],
     };
   });
 
@@ -59,28 +76,34 @@ export function AnimatedCard({
     <Animated.View
       style={[
         {
-          width: cardWidth,
-          marginHorizontal: gap / 2,
-          backgroundColor: item.color,
+          width: snapInterval,
+          height: cardHeight * 1.42,
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "visible",
+          position: "relative",
+          zIndex: isActive ? 100 : 1,
+          elevation: isActive ? 100 : 1,
         },
-        onboardingStyles.card,
-        animatedStyle,
+        wrapperAnimatedStyle,
       ]}
-      className="rounded-[32px] p-6 justify-between border border-white/5"
     >
-      <View className="w-full h-32 bg-surface/10 rounded-[20px] items-center justify-center border border-white/10">
-        <Ionicons name={item.icon} size={48} color="#0a1030" />
-      </View>
-
-      <View className="mt-4 flex-1 justify-end">
-        <Text className="text-surface font-sans font-bold text-xl leading-6">
-          {item.title}
-        </Text>
-
-        <Text className="text-surface/80 font-sans text-sm mt-2 leading-5">
-          {item.description}
-        </Text>
-      </View>
+      <Animated.View
+        accessibilityLabel={item.title}
+        style={[
+          {
+            width: cardWidth,
+            height: cardHeight,
+            backgroundColor: item.color,
+            zIndex: isActive ? 100 : 1,
+            elevation: isActive ? 100 : 1,
+          },
+          cardAnimatedStyle,
+        ]}
+        className="rounded-[28px] overflow-hidden"
+      >
+        <LinearGradient colors={[item.color, item.color]} style={{ flex: 1 }} />
+      </Animated.View>
     </Animated.View>
   );
 }

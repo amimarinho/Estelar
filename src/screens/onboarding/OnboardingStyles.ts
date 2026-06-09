@@ -7,19 +7,11 @@ export const onboardingStyles = {
     bottom: 0,
   },
 
+  carouselContainer: {
+    overflow: "visible" as const,
+  },
+
   card: {
-    height: 310,
-  },
-
-  iconContainer: {
-    height: 128,
-  },
-
-  paginationActive: {
-    width: 24,
-  },
-
-  paginationInactive: {
-    width: 10,
+    aspectRatio: 0.68,
   },
 };

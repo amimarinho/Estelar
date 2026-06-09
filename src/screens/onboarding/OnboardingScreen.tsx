@@ -1,7 +1,13 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { Text, useWindowDimensions, View } from "react-native";
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Animated, {
@@ -15,26 +21,41 @@ import { StarDivider } from "@/src/components/star-divider";
 
 import { onboardingStyles } from "./OnboardingStyles";
 import { AnimatedCard } from "./components/AnimatedCard";
-import { OnboardingPagination } from "./components/OnboardingPagination";
 import { CAROUSEL_DATA } from "./onboarding.data";
 
 export default function OnboardingScreen() {
-  const router = useRouter();
   const { width } = useWindowDimensions();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
 
-  const CARD_WIDTH = width * 0.72;
-  const GAP = 16;
-  const SNAP_INTERVAL = CARD_WIDTH + GAP;
-  const SIDE_INSET = (width - CARD_WIDTH) / 2;
+  const INITIAL_INDEX = 1;
 
-  const scrollX = useSharedValue(0);
+  const CARD_WIDTH = Math.min(width * 0.46, 188);
+  const CARD_HEIGHT = CARD_WIDTH * 1.5;
+  const CARD_SLOT_WIDTH = CARD_WIDTH * 0.58;
+  const SIDE_INSET = (width - CARD_SLOT_WIDTH) / 2;
+
+  const [activeIndex, setActiveIndex] = useState(INITIAL_INDEX);
+  const scrollX = useSharedValue(CARD_SLOT_WIDTH * INITIAL_INDEX);
+
+  const snapOffsets = CAROUSEL_DATA.map((_, index) => index * CARD_SLOT_WIDTH);
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       scrollX.value = event.contentOffset.x;
     },
   });
+
+  const handleSnapEnd = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const offsetX = event.nativeEvent.contentOffset.x;
+      const nextIndex = Math.round(offsetX / CARD_SLOT_WIDTH);
+
+      if (nextIndex >= 0 && nextIndex < CAROUSEL_DATA.length) {
+        setActiveIndex(nextIndex);
+      }
+    },
+    [CARD_SLOT_WIDTH],
+  );
 
   const handleProceed = useCallback(() => {
     router.replace("/(tabs)");
@@ -50,71 +71,75 @@ export default function OnboardingScreen() {
 
       <StarField />
 
-      <SafeAreaView className="flex-1 justify-between pt-12 pb-6 z-10">
-        <View className="items-center px-6 w-full gap-y-8">
+      <SafeAreaView className="flex-1 justify-between pt-10 pb-6 z-10">
+        <View className="items-center px-4 w-full gap-y-4">
           <View className="items-center">
-            <Text className="text-text-high font-sans text-3xl text-center font-bold">
-              Boas vindas ao <Text className="text-primary">Estelar</Text>.
+            <Text className="text-text-high font-title text-[28px] leading-[40px] text-center font-bold">
+              Boas vindas à {"\n"}
+              <Text className="text-primary text-[36px]">Estelar</Text>
             </Text>
 
-            <Text className="text-text-high font-sans text-sm text-center mt-2 opacity-80 tracking-wide">
-              Seu apoio emocional durante toda a missão.
+            <Text className="text-text-muted font-sans text-[16px] text-center mt-3 leading-6 max-w-[310px]">
+              Seu apoio emocional antes, durante e depois da missão.
             </Text>
           </View>
 
           <StarDivider />
 
-          <Text className="text-text-muted font-sans text-sm text-center px-4 leading-5">
-            Monitore seu estado emocional, receba cuidados imediatos e mantenha
-            sua conexão com a Terra, mesmo longe de casa.
+          <Text className="text-text-muted font-sans text-[14px] text-center px-2 leading-[18px]">
+            Monitore seu estado emocional, receba cuidado imediato e mantenha a
+            Terra sempre por perto.
           </Text>
         </View>
 
-        <View className="w-full justify-center py-4">
-          <Animated.FlatList
-            data={CAROUSEL_DATA}
-            renderItem={({ item, index }) => (
-              <AnimatedCard
-                item={item}
-                index={index}
-                scrollX={scrollX}
-                snapInterval={SNAP_INTERVAL}
-                cardWidth={CARD_WIDTH}
-                gap={GAP}
-              />
-            )}
-            keyExtractor={(item) => item.id}
+        <View
+          className="w-full justify-center py-2"
+          style={{ overflow: "visible" }}
+        >
+          <Animated.ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            snapToInterval={SNAP_INTERVAL}
+            snapToOffsets={snapOffsets}
             decelerationRate="fast"
-            snapToAlignment="center"
+            disableIntervalMomentum
+            bounces={false}
+            contentOffset={{
+              x: CARD_SLOT_WIDTH * INITIAL_INDEX,
+              y: 0,
+            }}
             contentContainerStyle={{
               paddingHorizontal: SIDE_INSET,
               alignItems: "center",
+              overflow: "visible",
+            }}
+            style={{
+              overflow: "visible",
             }}
             onScroll={scrollHandler}
             scrollEventThrottle={16}
-            onMomentumScrollEnd={(event) => {
-              const offsetX = event.nativeEvent.contentOffset.x;
-              const idx = Math.round(offsetX / SNAP_INTERVAL);
-              if (idx >= 0 && idx < CAROUSEL_DATA.length) {
-                setActiveIndex(idx);
-              }
-            }}
-          />
-
-          <OnboardingPagination
-            activeIndex={activeIndex}
-            total={CAROUSEL_DATA.length}
-          />
+            onMomentumScrollEnd={handleSnapEnd}
+            onScrollEndDrag={handleSnapEnd}
+          >
+            {CAROUSEL_DATA.map((item, index) => (
+              <AnimatedCard
+                key={item.id}
+                item={item}
+                index={index}
+                activeIndex={activeIndex}
+                scrollX={scrollX}
+                snapInterval={CARD_SLOT_WIDTH}
+                cardWidth={CARD_WIDTH}
+                cardHeight={CARD_HEIGHT}
+              />
+            ))}
+          </Animated.ScrollView>
         </View>
 
-        <View className="w-full px-8 items-center mt-8">
-          <ChromaButton onPress={handleProceed} text="Começar Jornada" />
+        <View className="px-4 items-center mt-2">
+          <ChromaButton onPress={handleProceed} text="Começar jornada" />
 
-          <Text className="text-text-muted font-sans text-center text-sm px-2 leading-4 mt-4">
-            Projetado para missões longas, isolamento e cuidado emocional
+          <Text className="text-text-muted font-sans text-center text-[13px] px-2 py-0 leading-[18px] mt-8">
+            Criado para missões longas, rotina extrema e cuidado emocional
             contínuo.
           </Text>
         </View>
