@@ -68,18 +68,7 @@ export default function CheckinScreen() {
     });
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    Alert.alert(
-      "Check-in Salvo",
-      "Seus registros emocionais foram salvos com sucesso na jornada.",
-      [
-        {
-          text: "OK",
-          onPress: () => {
-            router.replace("/(tabs)");
-          },
-        },
-      ],
-    );
+    router.replace("/(tabs)");
   };
 
   return (
