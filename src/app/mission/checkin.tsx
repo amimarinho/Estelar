@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  StyleSheet,
-  TextInput,
-  Alert,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StarField } from "@/components/star-field";
+import { useMission } from "@/context/mission-context";
+import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { StarField } from "@/components/star-field";
-import { Ionicons } from "@expo/vector-icons";
-import type { ComponentProps } from 'react';
-import * as Haptics from "expo-haptics";
-import { useMission } from "@/context/mission-context";
+import type { ComponentProps } from "react";
+import React, { useState } from "react";
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-type IoniconName = ComponentProps<typeof Ionicons>['name'];
+type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
 export default function CheckinScreen() {
   const router = useRouter();

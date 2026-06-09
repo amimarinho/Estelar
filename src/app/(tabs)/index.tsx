@@ -1,40 +1,41 @@
-import React, { useRef } from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import * as Haptics from 'expo-haptics';
-import { StarField } from '@/components/star-field';
-import { ChromaCard } from '@/components/chroma-card';
-import Svg, { Path } from 'react-native-svg';
+import { ChromaCard } from "@/components/chroma-card";
+import { StarField } from "@/components/star-field";
+import * as Haptics from "expo-haptics";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import React, { useRef } from "react";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Svg, { Path } from "react-native-svg";
 
-import { useMission } from '@/context/mission-context';
+import { useMission } from "@/src/context/mission-context";
 
 export default function MissionHomeScreen() {
   const router = useRouter();
   const isNavigating = useRef(false);
   const { checkins } = useMission();
 
-  const lastCheckin = checkins.length > 0 ? checkins[checkins.length - 1] : null;
+  const lastCheckin =
+    checkins.length > 0 ? checkins[checkins.length - 1] : null;
 
   const getEnergyText = (lvl: number) => {
-    if (lvl === 0) return 'energia baixa';
-    if (lvl === 1) return 'energia moderada';
-    return 'energia alta';
+    if (lvl === 0) return "energia baixa";
+    if (lvl === 1) return "energia moderada";
+    return "energia alta";
   };
 
   const getStatusText = () => {
     if (!lastCheckin) {
-      return 'Você ainda não realizou o check-in emocional de hoje.';
+      return "Você ainda não realizou o check-in emocional de hoje.";
     }
     const energy = getEnergyText(lastCheckin.energyLevel);
-    let rest = 'estabilidade emocional';
+    let rest = "estabilidade emocional";
     if (lastCheckin.stressLevel === 2) {
-      rest = 'alto nível de estresse';
+      rest = "alto nível de estresse";
     } else if (lastCheckin.sleepQuality === 0) {
-      rest = 'necessidade de descanso emocional';
-    } else if (lastCheckin.mood === 'sobrecarregado') {
-      rest = 'sinais de sobrecarga';
+      rest = "necessidade de descanso emocional";
+    } else if (lastCheckin.mood === "sobrecarregado") {
+      rest = "sinais de sobrecarga";
     }
     return `Seu último check-in indicou ${energy} e ${rest}.`;
   };
@@ -42,14 +43,14 @@ export default function MissionHomeScreen() {
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
 
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
           className="flex-1 px-6 pt-6"
           showsVerticalScrollIndicator={false}
@@ -61,9 +62,15 @@ export default function MissionHomeScreen() {
             </Text>
             <View className="flex-row items-center mt-1">
               <Text className="font-sans text-base text-accent-affective font-medium">
-                Dia {checkins.length > 0 ? checkins[checkins.length - 1].sol + 5 : 47} da missão
+                Dia{" "}
+                {checkins.length > 0
+                  ? checkins[checkins.length - 1].sol + 5
+                  : 47}{" "}
+                da missão
               </Text>
-              <Text className="font-sans text-base text-text-muted mx-2">•</Text>
+              <Text className="font-sans text-base text-text-muted mx-2">
+                •
+              </Text>
               <Text className="font-sans text-base text-text-high">
                 Órbita terrestre
               </Text>
@@ -87,7 +94,7 @@ export default function MissionHomeScreen() {
                 }
                 isNavigating.current = true;
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push('/checkin');
+                router.push("/checkin");
                 setTimeout(() => {
                   isNavigating.current = false;
                 }, 1000);
@@ -149,7 +156,8 @@ export default function MissionHomeScreen() {
                 Respiração orbital • 3 min
               </Text>
               <Text className="font-sans text-xs text-text-muted leading-relaxed mt-1">
-                Uma pausa curta pode ajudar a reduzir a tensão antes da próxima tarefa.
+                Uma pausa curta pode ajudar a reduzir a tensão antes da próxima
+                tarefa.
               </Text>
             </View>
           </ChromaCard>
@@ -164,7 +172,7 @@ const styles = StyleSheet.create({
     paddingBottom: 140,
   },
   shadowButton: {
-    shadowColor: '#b9a7ff',
+    shadowColor: "#b9a7ff",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 10,

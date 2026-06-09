@@ -1,13 +1,20 @@
-import React from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { StarField } from '@/components/star-field';
-import { Ionicons } from '@expo/vector-icons';
-import Svg, { Line, Circle } from 'react-native-svg';
-import * as Haptics from 'expo-haptics';
-import { useRouter } from 'expo-router';
-import { useMission } from '@/context/mission-context';
+import { StarField } from "@/components/star-field";
+import { useMission } from "@/src/context/mission-context";
+import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import React from "react";
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Svg, { Circle, Line } from "react-native-svg";
 
 export default function SuggestionsScreen() {
   const router = useRouter();
@@ -15,26 +22,30 @@ export default function SuggestionsScreen() {
 
   const handleNewRegistry = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    router.push('/register');
+    router.push("/register");
   };
 
   const handleOpenDiary = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     Alert.alert(
       "Diário de Bordo",
-      "Carregando histórico completo dos seus registros emocionais da missão..."
+      "Carregando histórico completo dos seus registros emocionais da missão...",
     );
   };
 
   const lastSeven = checkins.slice(-7);
 
   const getMoodColor = (mood?: string) => {
-    if (!mood) return { hex: '#2f3768', glow: 'rgba(47, 55, 104, 0.2)' };
-    if (mood === 'calmo') return { hex: '#5c67f2', glow: 'rgba(92, 103, 242, 0.2)' };
-    if (mood === 'bem') return { hex: '#8fe3b0', glow: 'rgba(143, 227, 176, 0.2)' };
-    if (mood === 'instavel') return { hex: '#ff8a70', glow: 'rgba(255, 138, 112, 0.2)' };
-    if (mood === 'ansioso') return { hex: '#ffd66b', glow: 'rgba(255, 214, 107, 0.2)' };
-    return { hex: '#b9a7ff', glow: 'rgba(185, 167, 255, 0.2)' };
+    if (!mood) return { hex: "#2f3768", glow: "rgba(47, 55, 104, 0.2)" };
+    if (mood === "calmo")
+      return { hex: "#5c67f2", glow: "rgba(92, 103, 242, 0.2)" };
+    if (mood === "bem")
+      return { hex: "#8fe3b0", glow: "rgba(143, 227, 176, 0.2)" };
+    if (mood === "instavel")
+      return { hex: "#ff8a70", glow: "rgba(255, 138, 112, 0.2)" };
+    if (mood === "ansioso")
+      return { hex: "#ffd66b", glow: "rgba(255, 214, 107, 0.2)" };
+    return { hex: "#b9a7ff", glow: "rgba(185, 167, 255, 0.2)" };
   };
 
   const node0 = getMoodColor(lastSeven[0]?.mood);
@@ -48,14 +59,14 @@ export default function SuggestionsScreen() {
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
-      
+
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
           className="flex-1 px-6 pt-6"
           showsVerticalScrollIndicator={false}
@@ -72,22 +83,89 @@ export default function SuggestionsScreen() {
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <Text className="font-title text-base font-bold text-text-high">
-              Hoje: dia {checkins.length > 0 ? checkins[checkins.length - 1].sol + 5 : 47} da missão
+              Hoje: dia{" "}
+              {checkins.length > 0 ? checkins[checkins.length - 1].sol + 5 : 47}{" "}
+              da missão
             </Text>
             <Text className="font-sans text-xs text-text-muted mt-1 leading-relaxed">
-              Seus registros formam uma constelação de momentos bons, difíceis e superados.
+              Seus registros formam uma constelação de momentos bons, difíceis e
+              superados.
             </Text>
 
             <View className="w-full h-[180px] mt-6 justify-center items-center relative">
               <Svg width="100%" height="100%" viewBox="0 0 320 180">
-                <Line x1="40" y1="110" x2="80" y2="50" stroke="rgba(185, 167, 255, 0.15)" strokeWidth="1" strokeDasharray="3,3" />
-                <Line x1="80" y1="50" x2="120" y2="100" stroke="rgba(185, 167, 255, 0.15)" strokeWidth="1" strokeDasharray="3,3" />
-                <Line x1="120" y1="100" x2="160" y2="70" stroke="rgba(185, 167, 255, 0.15)" strokeWidth="1" strokeDasharray="3,3" />
-                <Line x1="160" y1="70" x2="200" y2="40" stroke="rgba(185, 167, 255, 0.15)" strokeWidth="1" strokeDasharray="3,3" />
-                <Line x1="200" y1="40" x2="240" y2="110" stroke="rgba(185, 167, 255, 0.15)" strokeWidth="1" strokeDasharray="3,3" />
-                <Line x1="240" y1="110" x2="280" y2="130" stroke="rgba(185, 167, 255, 0.15)" strokeWidth="1" strokeDasharray="3,3" />
-                <Line x1="80" y1="50" x2="160" y2="70" stroke="rgba(185, 167, 255, 0.08)" strokeWidth="1" strokeDasharray="3,3" />
-                <Line x1="120" y1="100" x2="240" y2="110" stroke="rgba(185, 167, 255, 0.08)" strokeWidth="1" strokeDasharray="3,3" />
+                <Line
+                  x1="40"
+                  y1="110"
+                  x2="80"
+                  y2="50"
+                  stroke="rgba(185, 167, 255, 0.15)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
+                <Line
+                  x1="80"
+                  y1="50"
+                  x2="120"
+                  y2="100"
+                  stroke="rgba(185, 167, 255, 0.15)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
+                <Line
+                  x1="120"
+                  y1="100"
+                  x2="160"
+                  y2="70"
+                  stroke="rgba(185, 167, 255, 0.15)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
+                <Line
+                  x1="160"
+                  y1="70"
+                  x2="200"
+                  y2="40"
+                  stroke="rgba(185, 167, 255, 0.15)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
+                <Line
+                  x1="200"
+                  y1="40"
+                  x2="240"
+                  y2="110"
+                  stroke="rgba(185, 167, 255, 0.15)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
+                <Line
+                  x1="240"
+                  y1="110"
+                  x2="280"
+                  y2="130"
+                  stroke="rgba(185, 167, 255, 0.15)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
+                <Line
+                  x1="80"
+                  y1="50"
+                  x2="160"
+                  y2="70"
+                  stroke="rgba(185, 167, 255, 0.08)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
+                <Line
+                  x1="120"
+                  y1="100"
+                  x2="240"
+                  y2="110"
+                  stroke="rgba(185, 167, 255, 0.08)"
+                  strokeWidth="1"
+                  strokeDasharray="3,3"
+                />
 
                 <Circle cx="40" cy="110" r="8" fill={node0.glow} />
                 <Circle cx="40" cy="110" r="4" fill={node0.hex} />
@@ -115,30 +193,45 @@ export default function SuggestionsScreen() {
             <View className="bg-surface rounded-2xl p-4 border border-stroke-soft flex-row flex-wrap justify-between items-center mt-4 gap-y-2">
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#5c67f2] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">Estável</Text>
+                <Text className="font-sans text-[10px] text-text-high">
+                  Estável
+                </Text>
               </View>
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#ffd66b] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">Ansioso</Text>
+                <Text className="font-sans text-[10px] text-text-high">
+                  Ansioso
+                </Text>
               </View>
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#ff8a70] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">Cansado</Text>
+                <Text className="font-sans text-[10px] text-text-high">
+                  Cansado
+                </Text>
               </View>
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#8fe3b0] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">Superado</Text>
+                <Text className="font-sans text-[10px] text-text-high">
+                  Superado
+                </Text>
               </View>
               <View className="flex-row items-center">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#b9a7ff] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">Marco</Text>
+                <Text className="font-sans text-[10px] text-text-high">
+                  Marco
+                </Text>
               </View>
             </View>
           </View>
 
           <View className="mb-8">
             <View className="flex-row items-center mb-4">
-              <Ionicons name="sparkles-outline" size={18} color="#b9a7ff" className="mr-2" />
+              <Ionicons
+                name="sparkles-outline"
+                size={18}
+                color="#b9a7ff"
+                className="mr-2"
+              />
               <Text className="font-title text-2xl font-bold text-text-high">
                 Destaques da jornada
               </Text>
@@ -150,7 +243,11 @@ export default function SuggestionsScreen() {
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-surface-card/80 mb-4"
               >
                 <View className="w-11 h-11 rounded-full bg-feedback-warning/15 items-center justify-center mr-4 border border-feedback-warning/10">
-                  <Ionicons name="trending-down-outline" size={20} color="#ffd66b" />
+                  <Ionicons
+                    name="trending-down-outline"
+                    size={20}
+                    color="#ffd66b"
+                  />
                 </View>
                 <View className="flex-1 mr-2">
                   <Text className="font-title text-base font-bold text-text-high">
@@ -204,7 +301,11 @@ export default function SuggestionsScreen() {
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-surface-card/80 mb-4"
               >
                 <View className="w-11 h-11 rounded-full bg-feedback-success/15 items-center justify-center mr-4 border border-feedback-success/10">
-                  <Ionicons name="trending-up-outline" size={20} color="#8fe3b0" />
+                  <Ionicons
+                    name="trending-up-outline"
+                    size={20}
+                    color="#8fe3b0"
+                  />
                 </View>
                 <View className="flex-1 mr-2">
                   <Text className="font-title text-base font-bold text-text-high">

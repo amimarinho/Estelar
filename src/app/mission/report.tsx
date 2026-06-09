@@ -1,27 +1,39 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet, TextInput, Switch, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import { StarField } from '@/components/star-field';
-import { Ionicons } from '@expo/vector-icons';
-import Svg, { Path } from 'react-native-svg';
-import * as Haptics from 'expo-haptics';
+import { StarField } from "@/src/components/space/star-field";
+import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import React, { useState } from "react";
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Svg, { Path } from "react-native-svg";
 
-import { useMission } from '@/context/mission-context';
+import { useMission } from "@/src/context/mission-context";
 
 export default function ReportScreen() {
   const router = useRouter();
   const { addReport } = useMission();
 
-  const [reportText, setReportText] = useState('');
+  const [reportText, setReportText] = useState("");
   const [priority, setPriority] = useState(1);
   const [attachCheckin, setAttachCheckin] = useState(true);
 
   const handleSend = async () => {
     if (reportText.trim().length === 0) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      Alert.alert("Relato Requerido", "Por favor, descreva como você está se sentindo antes de enviar.");
+      Alert.alert(
+        "Relato Requerido",
+        "Por favor, descreva como você está se sentindo antes de enviar.",
+      );
       return;
     }
 
@@ -39,10 +51,10 @@ export default function ReportScreen() {
         {
           text: "OK",
           onPress: () => {
-            router.replace('/(tabs)/radar');
-          }
-        }
-      ]
+            router.replace("/(tabs)/radar");
+          },
+        },
+      ],
     );
   };
 
@@ -54,21 +66,21 @@ export default function ReportScreen() {
   return (
     <View className="flex-1 bg-surface relative">
       <LinearGradient
-        colors={['#0a1030', '#1c224a', '#0a1030']}
+        colors={["#0a1030", "#1c224a", "#0a1030"]}
         locations={[0, 0.5, 1]}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
-      
+
       <StarField />
 
-      <SafeAreaView className="flex-1 z-10" edges={['top', 'bottom']}>
+      <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
         <ScrollView
           className="flex-1 px-6 pt-4"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
           <View className="flex-row items-center mb-6">
-            <Pressable 
+            <Pressable
               onPress={() => router.back()}
               className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center mr-4 active:opacity-80"
             >
@@ -88,10 +100,30 @@ export default function ReportScreen() {
             <View className="flex-row items-start">
               <View className="w-10 h-10 rounded-xl bg-primary/10 items-center justify-center mr-4 shrink-0 border border-primary/25">
                 <Svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <Path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12" stroke="#b9a7ff" strokeWidth="2" strokeLinecap="round" />
-                  <Path d="M12 8C9.8 8 8 9.8 8 12C8 14.2 9.8 16 12 16" stroke="#b9a7ff" strokeWidth="2" strokeLinecap="round" />
-                  <Path d="M12 11V13" stroke="#b9a7ff" strokeWidth="2.5" strokeLinecap="round" />
-                  <Path d="M19 5L17 7M15 9L14 10" stroke="#b9a7ff" strokeWidth="2" strokeLinecap="round" />
+                  <Path
+                    d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12"
+                    stroke="#b9a7ff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <Path
+                    d="M12 8C9.8 8 8 9.8 8 12C8 14.2 9.8 16 12 16"
+                    stroke="#b9a7ff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <Path
+                    d="M12 11V13"
+                    stroke="#b9a7ff"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                  <Path
+                    d="M19 5L17 7M15 9L14 10"
+                    stroke="#b9a7ff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </Svg>
               </View>
               <View className="flex-1">
@@ -99,7 +131,8 @@ export default function ReportScreen() {
                   Canal assíncrono ativo
                 </Text>
                 <Text className="font-sans text-xs text-text-muted mt-1 leading-relaxed">
-                  Sua mensagem será transmitida para a equipe psicológica. O tempo de resposta pode variar conforme a posição orbital.
+                  Sua mensagem será transmitida para a equipe psicológica. O
+                  tempo de resposta pode variar conforme a posição orbital.
                 </Text>
               </View>
             </View>
@@ -131,23 +164,28 @@ export default function ReportScreen() {
             <Text className="font-title text-base font-bold text-text-high">
               Prioridade do Relato
             </Text>
-            
+
             <View className="flex-row justify-between items-center mt-4 gap-3">
-              {['Baixa', 'Média', 'Alta'].map((option, idx) => {
+              {["Baixa", "Média", "Alta"].map((option, idx) => {
                 const isSelected = priority === idx;
                 return (
                   <Pressable
                     key={option}
-                    onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); setPriority(idx); }}
+                    onPress={() => {
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      setPriority(idx);
+                    }}
                     className={`flex-1 h-12 rounded-full border items-center justify-center active:opacity-90 ${
-                      isSelected 
-                        ? 'bg-primary/20 border-primary' 
-                        : 'bg-surface border-stroke-soft'
+                      isSelected
+                        ? "bg-primary/20 border-primary"
+                        : "bg-surface border-stroke-soft"
                     }`}
                   >
-                    <Text className={`font-sans font-bold text-sm ${
-                      isSelected ? 'text-primary' : 'text-text-muted'
-                    }`}>
+                    <Text
+                      className={`font-sans font-bold text-sm ${
+                        isSelected ? "text-primary" : "text-text-muted"
+                      }`}
+                    >
                       {option}
                     </Text>
                   </Pressable>
@@ -167,14 +205,22 @@ export default function ReportScreen() {
             </View>
             <Switch
               value={attachCheckin}
-              onValueChange={(val) => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); setAttachCheckin(val); }}
-              trackColor={{ false: '#2f3768', true: '#b9a7ff' }}
-              thumbColor={attachCheckin ? '#17142a' : '#b8bde0'}
+              onValueChange={(val) => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                setAttachCheckin(val);
+              }}
+              trackColor={{ false: "#2f3768", true: "#b9a7ff" }}
+              thumbColor={attachCheckin ? "#17142a" : "#b8bde0"}
             />
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8 items-center justify-center">
-            <Ionicons name="time-outline" size={24} color="#b9a7ff" className="mb-3" />
+            <Ionicons
+              name="time-outline"
+              size={24}
+              color="#b9a7ff"
+              className="mb-3"
+            />
             <Text className="font-mono text-[9px] text-text-muted/60 uppercase tracking-[2px] text-center mb-1">
               TEMPO ESTIMADO DE RESPOSTA:
             </Text>
@@ -216,10 +262,10 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   textArea: {
-    backgroundColor: 'rgba(10, 16, 48, 0.4)',
+    backgroundColor: "rgba(10, 16, 48, 0.4)",
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)',
+    borderColor: "rgba(255, 255, 255, 0.08)",
     height: 140,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
   },
 });
