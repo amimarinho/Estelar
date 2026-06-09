@@ -37,83 +37,83 @@ O Estelar foi criado para atuar como um sistema de suporte emocional contínuo d
 
 ---
 
-## ✨ Funcionalidades
+## ✨ Funcionalidades da versão atual
 
-### ❤️ Registro Emocional
+A versão funcional do Estelar apresenta os principais recursos do MVP:
 
-Registre diariamente:
+### ❤️ Check-in emocional
 
-- Humor
-- Energia
-- Qualidade do sono
-- Nível de estresse
-- Estado emocional
+Permite registrar humor, energia, estresse, sono e uma observação breve sobre o momento atual.
 
+### 📡 Radar de suporte
 
+Apresenta sinais de sobrecarga emocional, indicadores do estado da tripulação e comunicação assíncrona com a equipe da Terra.
 
-### 🧘 Central de Cuidado
+### 🧘 Cuidado imediato
 
-Acesso rápido a:
-
-- Exercícios de respiração
-- Meditações guiadas
-- Sons calmantes
-- Protocolos de recuperação emocional
-
-
+Oferece acesso a práticas de respiração, meditação e recursos de regulação emocional para momentos de sobrecarga.
 
 ### 🌎 Conexão com a Terra
 
-Receba:
+Reúne lembranças afetivas, mensagens, cápsulas emocionais e referências da cidade de origem do astronauta.
 
-- Mensagens da família
-- Fotos
-- Áudios
-- Lembretes afetivos
-- Conteúdos personalizados da sua cidade natal
+### 🌌 Jornada emocional
 
-
-
-### 🌌 Constelação Emocional
-
-Transforma a jornada emocional da missão em uma constelação visual.
-
-Cada ponto representa:
-
-- Momentos positivos
-- Desafios emocionais
-- Marcos importantes
-- Superações
+Transforma registros e momentos importantes da missão em uma constelação visual, destacando fases difíceis, boas e superadas.
 
 ---
+
 ## 🛰️ Telas do Projeto
 
-### Splash Screen
-Apresentação da identidade do Estelar.
+A versão atual do app conta com as seguintes telas e áreas principais:
 
-### Onboarding
-Introdução à missão e às funcionalidades.
+### 🚀 Splash Screen
 
-### Missão
-Visão geral da jornada espacial.
+Apresentação inicial da identidade do Estelar.
 
-### Check-in
+### 👨‍🚀 Onboarding
+
+Introdução à proposta do app e ao cuidado emocional durante a missão.
+
+### 🛰️ Missão
+
+Home principal com resumo do estado emocional, acesso ao check-in, sugestão de cuidado e atalhos para os módulos principais.
+
+### ❤️ Check-in
+
 Registro de humor, estresse, energia, sono e observação breve.
 
-### Radar
-Acompanhamento diário do estado emocional.
+### 📡 Radar
 
-### Cuidar
-Cuidado imediato para momentos de sobrecarga.
+Monitoramento emocional, alerta preventivo e suporte psicológico assíncrono com a Terra.
 
-### Terra
-Canal de conexão afetiva com o planeta de origem.
+### 🧘 Cuidar
 
-### Jornada
-Visualização da Constelação Emocional.
+Área de cuidado imediato com recomendações de respiração, meditação e recursos calmantes.
 
-### Diário de Bordo
-Histórico completo da missão.
+### 🌬️ Respiração guiada
+
+Exercício visual de respiração com animação e feedback de conclusão.
+
+### 🌙 Meditação
+
+Tela de apoio para prática curta de meditação e regulação emocional.
+
+### 🌎 Terra
+
+Área de conexão afetiva com mensagens, memórias e cápsulas emocionais.
+
+### 💌 Cápsula emocional
+
+Memória programada para fortalecer o vínculo afetivo com a Terra.
+
+### 🌌 Jornada
+
+Visualização da jornada emocional em formato de constelação.
+
+### ✨ Registro emocional
+
+Registro de momentos importantes para compor a jornada emocional.
 
 ---
 
@@ -160,7 +160,7 @@ Cada interação contribui para a construção de uma constelação única, repr
 
 ![React Native](https://img.shields.io/badge/React%20Native-20232A?style=flat-rounded&logo=react&logoColor=61DAFB)  
 ![Expo](https://img.shields.io/badge/Expo-000020?style=flat-rounded&logo=expo&logoColor=white)  
-![Expo Router](https://img.shields.io/badge/Expo%20Router-000020?style=flat-roundedlogo=expo&logoColor=white)  
+![Expo Router](https://img.shields.io/badge/Expo%20Router-000020?style=flat-rounded&logo=expo&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-rounded&logo=typescript&logoColor=white)  
 ![NativeWind](https://img.shields.io/badge/NativeWind-38BDF8?style=flat-rounded&logo=tailwindcss&logoColor=white)  
 ![AsyncStorage](https://img.shields.io/badge/AsyncStorage-FFCA28?style=flat-rounded&logo=react&logoColor=black)  
@@ -241,44 +241,56 @@ Executa a verificação de lint do projeto.
 ## 📃 Estrutura principal
 
 ```txt
-app/
-  _layout.tsx
-  index.tsx
-  onboarding.tsx
-  checkin.tsx
-  report.tsx
-  breathing.tsx
-  capsule.tsx
-  register.tsx
-  meditation.tsx
-
-  (tabs)/
+src/
+  app/
     _layout.tsx
     index.tsx
-    radar.tsx
-    heart.tsx
-    earth.tsx
-    suggestions.tsx
 
-components/
-  chroma-button.tsx
-  chroma-card.tsx
-  haptic-tab.tsx
-  star-field.tsx
-  star-divider.tsx
+    onboarding/
+      onboarding.tsx
 
-context/
-  mission-context.tsx
+    mission/
+      checkin.tsx
+      report.tsx
+      register.tsx
 
-constants/
-  theme.ts
+    care/
+      breathing.tsx
+      capsule.tsx
+      meditation.tsx
 
-hooks/
-  use-color-scheme.ts
-  use-theme-color.ts
+    (tabs)/
+      _layout.tsx
+      index.tsx
+      radar.tsx
+      care.tsx
+      earth.tsx
+      journey.tsx
 
-assets/
-  images/
+  components/
+    chroma-button.tsx
+    chroma-card.tsx
+    haptic-tab.tsx
+    star-divider.tsx
+
+    space/
+      star-field.tsx
+
+  context/
+    mission-context.tsx
+
+  constants/
+    theme.ts
+
+  hooks/
+    use-color-scheme.ts
+    use-theme-color.ts
+
+  screens/
+    onboarding/
+
+  assets/
+    images/
 ```
 
 ---
