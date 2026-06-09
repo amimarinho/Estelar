@@ -3,7 +3,7 @@ import { AppButton } from "@/src/components/app-button";
 import { AppToast } from "@/src/components/app-toast";
 import { ChromaCard } from "@/src/components/chroma-card";
 import { ScreenHeader } from "@/src/components/screen-header";
-import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
+//import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { StarField } from "@/src/components/space/star-field";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
@@ -151,7 +151,7 @@ export default function MissionHomeScreen() {
       />
 
       <StarField />
-      <ScreenGlassZones />
+      {/* <ScreenGlassZones /> */}
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
