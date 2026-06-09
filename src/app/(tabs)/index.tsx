@@ -60,7 +60,7 @@ const SHORTCUTS: Shortcut[] = [
     description: "Ambiência para foco e descanso",
     icon: "headset-outline",
     iconColor: "#8FE3B0",
-    toastMessage: "Sons calmantes preparados na área Cuidar.",
+    toastMessage: "Sons calmantes estarão disponíveis em outra versão do app.",
   },
   {
     title: "Cápsula",
@@ -231,23 +231,31 @@ export default function MissionHomeScreen() {
             </View>
           </View>
 
-          <ChromaCard>
-            <View className="w-12 h-12 rounded-2xl bg-surface/40 flex items-center justify-center mr-4 shrink-0">
-              <Ionicons name="sparkles" size={23} color="#FF8A70" />
-            </View>
-            <View className="flex-1 flex-col">
-              <Text className="font-mono text-[12px] text-text-muted uppercase tracking-[2px] opacity-60">
-                SUGESTÃO PARA AGORA
-              </Text>
-              <Text className="font-title text-lg font-bold text-text-high mt-1">
-                Respiração orbital • 3 min
-              </Text>
-              <Text className="font-sans text-sm text-text-muted leading-relaxed mt-1">
-                Uma pausa curta pode ajudar a reduzir a tensão antes da próxima
-                tarefa.
-              </Text>
-            </View>
-          </ChromaCard>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Iniciar respiração orbital"
+            hitSlop={6}
+            onPress={() => handleRoute("/care/breathing")}
+            className="active:opacity-90"
+          >
+            <ChromaCard>
+              <View className="w-12 h-12 rounded-2xl bg-surface/40 flex items-center justify-center mr-4 shrink-0">
+                <Ionicons name="sparkles" size={23} color="#FF8A70" />
+              </View>
+              <View className="flex-1 flex-col">
+                <Text className="font-mono text-[12px] text-text-muted uppercase tracking-[2px] opacity-60">
+                  SUGESTÃO PARA AGORA
+                </Text>
+                <Text className="font-title text-lg font-bold text-text-high mt-1">
+                  Respiração orbital • 3 min
+                </Text>
+                <Text className="font-sans text-sm text-text-muted leading-relaxed mt-1">
+                  Uma pausa curta pode ajudar a reduzir a tensão antes da próxima
+                  tarefa.
+                </Text>
+              </View>
+            </ChromaCard>
+          </Pressable>
 
           <View className="mt-7 mb-4">
             <Text className="font-title text-[22px] font-bold text-text-high mb-4">
@@ -282,11 +290,7 @@ export default function MissionHomeScreen() {
         </ScrollView>
       </SafeAreaView>
 
-      <AppToast
-        message={toast.message}
-        type={toast.type}
-        offset={TAB_BAR_CONTENT_PADDING_BOTTOM + 8}
-      />
+      <AppToast message={toast.message} type={toast.type} />
     </View>
   );
 }

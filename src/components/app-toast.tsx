@@ -1,12 +1,12 @@
 import type { ComponentProps } from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
 export type AppToastType = "success" | "warning" | "error" | "info";
 
-type ToastPosition = "top" | "bottom";
+type ToastPosition = "top" | "center" | "bottom";
 
 interface AppToastProps {
   message: string;
@@ -36,7 +36,7 @@ const TOAST_CONFIG: Record<
   },
   info: {
     icon: "sparkles-outline",
-    wrapper: "bg-surface-card/95 border-primary/25",
+    wrapper: "bg-[#2D1B54]/95 border-primary/40",
     iconColor: "#b9a7ff",
   },
 };
@@ -44,17 +44,23 @@ const TOAST_CONFIG: Record<
 export function AppToast({
   message,
   type = "info",
-  position = "bottom",
+  position = "center",
   offset = 24,
 }: AppToastProps) {
   if (!message) return null;
 
   const config = TOAST_CONFIG[type];
+  const positionStyle =
+    position === "center"
+      ? styles.centerToast
+      : position === "bottom"
+        ? { bottom: offset }
+        : { top: offset };
 
   return (
     <View
       pointerEvents="none"
-      style={position === "bottom" ? { bottom: offset } : { top: offset }}
+      style={[positionStyle, styles.toastShadow]}
       className={`absolute left-6 right-6 z-50 rounded-[24px] border px-4 py-3 flex-row items-center ${config.wrapper}`}
     >
       <View className="w-9 h-9 rounded-full bg-surface/50 items-center justify-center mr-3">
@@ -66,3 +72,17 @@ export function AppToast({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  centerToast: {
+    top: "50%",
+    transform: [{ translateY: -44 }],
+  },
+  toastShadow: {
+    shadowColor: "#B9A7FF",
+    shadowOffset: { width: 0, height: 14 },
+    shadowOpacity: 0.22,
+    shadowRadius: 24,
+    elevation: 8,
+  },
+});

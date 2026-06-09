@@ -201,8 +201,23 @@ export default function GuidedBreathingScreen() {
     return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
 
+  const handleBack = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+    if (isPlaying) {
+      stopExercise(false);
+    }
+
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+
+    router.replace("/(tabs)/care");
+  };
+
   const showAmbientFeedback = () => {
-    showToast("Sons calmantes preparados para esta pausa.", "info");
+    showToast("Sons calmantes estarão disponíveis em outra versão do app.", "info");
   };
 
   return (
@@ -220,7 +235,7 @@ export default function GuidedBreathingScreen() {
           title="Respiração guiada"
           subtitle="Uma pausa curta para estabilizar corpo e mente."
           leftIcon="arrow-back"
-          onLeftPress={() => router.replace("/(tabs)/care")}
+          onLeftPress={handleBack}
           compact
         />
 
