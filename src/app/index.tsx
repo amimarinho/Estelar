@@ -63,7 +63,12 @@ export default function SplashScreen() {
             Porque até entre as estrelas, sua mente precisa de um lar.
           </Text>
 
-          <Svg width="65" height="2" viewBox="0 0 65 2" className="mt-8">
+          <Svg
+            width="65"
+            height="2"
+            viewBox="0 0 65 2"
+            style={{ marginTop: 32 }}
+          >
             <Defs>
               <SvgLinearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
                 <Stop offset="0" stopColor="#ff8a70" />
