@@ -102,18 +102,19 @@ export default function CheckinScreen() {
       <StarField />
 
       <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
+        <ScreenHeader
+          title="Check-in emocional"
+          subtitle="Como você se sente nesta órbita hoje?"
+          leftIcon="arrow-back"
+          onLeftPress={() => router.back()}
+          compact
+        />
+
         <ScrollView
           className="flex-1 px-6 pt-4"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <ScreenHeader
-            title="Check-in emocional"
-            subtitle="Como você se sente nesta órbita hoje?"
-            showUser
-            rightIcon="close"
-            onRightPress={() => router.back()}
-          />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <Text className="font-title text-lg font-bold text-text-high mb-4">

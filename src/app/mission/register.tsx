@@ -90,18 +90,19 @@ export default function RegisterScreen() {
       <StarField />
 
       <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
+        <ScreenHeader
+          title="Registro emocional"
+          subtitle="Transforme este momento em parte da sua constelação."
+          leftIcon="arrow-back"
+          onLeftPress={() => router.back()}
+          compact
+        />
+
         <ScrollView
           className="flex-1 px-6 pt-4"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <ScreenHeader
-            title="Registro emocional"
-            subtitle="Transforme este momento em parte da sua constelação."
-            leftIcon="arrow-back"
-            onLeftPress={() => router.back()}
-            compact
-          />
 
           <View className="mb-6">
             <Text className="font-sans text-sm font-semibold text-text-high mb-2">

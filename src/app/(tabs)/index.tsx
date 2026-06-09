@@ -1,6 +1,7 @@
 import { AppButton } from "@/src/components/app-button";
 import { ChromaCard } from "@/src/components/chroma-card";
 import { ScreenHeader } from "@/src/components/screen-header";
+import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { StarField } from "@/src/components/space/star-field";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
@@ -11,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
 import { useMission } from "@/src/context/mission-context";
+import { TAB_BAR_CONTENT_PADDING_BOTTOM } from "../../constants/layout";
 
 export default function MissionHomeScreen() {
   const router = useRouter();
@@ -51,6 +53,7 @@ export default function MissionHomeScreen() {
       />
 
       <StarField />
+      <ScreenGlassZones />
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
@@ -61,7 +64,6 @@ export default function MissionHomeScreen() {
           <ScreenHeader
             title="Olá, comandante."
             subtitle={`Dia ${lastCheckin ? lastCheckin.sol : 47} da missão · Órbita terrestre`}
-            showUser
           />
 
           <View className="bg-surface-card rounded-[28px] p-7 border border-primary/10 mb-6">
@@ -154,7 +156,7 @@ export default function MissionHomeScreen() {
 
 const styles = StyleSheet.create({
   scrollContent: {
-    paddingBottom: 140,
+    paddingBottom: TAB_BAR_CONTENT_PADDING_BOTTOM,
   },
   shadowButton: {
     shadowColor: "#b9a7ff",

@@ -1,0 +1,11 @@
+export const SCREEN_PADDING_X = 16;
+
+export const TAB_BAR_HEIGHT = 78;
+export const TAB_BAR_BOTTOM_OFFSET = 24;
+export const TAB_BAR_HORIZONTAL_MARGIN = 16;
+export const TAB_BAR_RADIUS = 36;
+export const TAB_BAR_ZONE_HEIGHT = TAB_BAR_HEIGHT + TAB_BAR_BOTTOM_OFFSET;
+export const TAB_BAR_SAFE_GAP = 36;
+
+export const TAB_BAR_CONTENT_PADDING_BOTTOM =
+  TAB_BAR_ZONE_HEIGHT + TAB_BAR_SAFE_GAP;

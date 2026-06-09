@@ -60,18 +60,19 @@ export default function ReportScreen() {
       <StarField />
 
       <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
+        <ScreenHeader
+          title="Relato emocional"
+          subtitle="Envie um relato à Terra."
+          leftIcon="arrow-back"
+          onLeftPress={() => router.back()}
+          compact
+        />
+
         <ScrollView
           className="flex-1 px-6 pt-4"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <ScreenHeader
-            title="Relato emocional"
-            subtitle="Envie um relato à Terra."
-            leftIcon="arrow-back"
-            onLeftPress={() => router.back()}
-            compact
-          />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <View className="flex-row items-start">

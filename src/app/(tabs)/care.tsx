@@ -2,6 +2,7 @@ import React from "react";
 import { AppButton } from "@/src/components/app-button";
 import { AppToast } from "@/src/components/app-toast";
 import { ScreenHeader } from "@/src/components/screen-header";
+import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { useAppToast } from "@/src/hooks/use-app-toast";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,6 +11,7 @@ import { StarField } from "@/src/components/space/star-field";
 import Svg, { Path } from "react-native-svg";
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
+import { TAB_BAR_CONTENT_PADDING_BOTTOM } from "../../constants/layout";
 
 export default function HeartScreen() {
   const router = useRouter();
@@ -34,6 +36,7 @@ export default function HeartScreen() {
       />
 
       <StarField />
+      <ScreenGlassZones />
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
@@ -44,7 +47,6 @@ export default function HeartScreen() {
           <ScreenHeader
             title="Cuidar"
             subtitle="Cuidado imediato para momentos de sobrecarga."
-            showUser
           />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
@@ -279,6 +281,6 @@ export default function HeartScreen() {
 
 const styles = StyleSheet.create({
   scrollContent: {
-    paddingBottom: 140,
+    paddingBottom: TAB_BAR_CONTENT_PADDING_BOTTOM,
   },
 });

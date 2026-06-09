@@ -216,18 +216,19 @@ export default function GuidedBreathingScreen() {
       <StarField />
 
       <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
+        <ScreenHeader
+          title="Respiração guiada"
+          subtitle="Uma pausa curta para estabilizar corpo e mente."
+          leftIcon="arrow-back"
+          onLeftPress={() => router.back()}
+          compact
+        />
+
         <ScrollView
           className="flex-1 px-6 pt-4"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <ScreenHeader
-            title="Respiração guiada"
-            subtitle="Uma pausa curta para estabilizar corpo e mente."
-            leftIcon="arrow-back"
-            onLeftPress={() => router.back()}
-            compact
-          />
 
           <View className="mb-6 items-center">
             <Animated.Text

@@ -1,6 +1,7 @@
 import { AppButton } from "@/src/components/app-button";
 import { AppToast } from "@/src/components/app-toast";
 import { ScreenHeader } from "@/src/components/screen-header";
+import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { StarField } from "@/src/components/space/star-field";
 import { useMission } from "@/src/context/mission-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -12,6 +13,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Circle, Line } from "react-native-svg";
 import { useAppToast } from "@/src/hooks/use-app-toast";
+import { TAB_BAR_CONTENT_PADDING_BOTTOM } from "../../constants/layout";
 
 export default function SuggestionsScreen() {
   const router = useRouter();
@@ -70,6 +72,7 @@ export default function SuggestionsScreen() {
       />
 
       <StarField />
+      <ScreenGlassZones />
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
@@ -80,7 +83,6 @@ export default function SuggestionsScreen() {
           <ScreenHeader
             title="Jornada emocional"
             subtitle="Sua jornada emocional ao longo da missão."
-            showUser
           />
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <Text className="font-title text-lg font-bold text-text-high">
@@ -341,6 +343,6 @@ export default function SuggestionsScreen() {
 
 const styles = StyleSheet.create({
   scrollContent: {
-    paddingBottom: 140,
+    paddingBottom: TAB_BAR_CONTENT_PADDING_BOTTOM,
   },
 });

@@ -1,6 +1,7 @@
-import type { ComponentProps } from "react";
-import { Pressable, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
+import type { ComponentProps } from "react";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
@@ -23,9 +24,6 @@ export function ScreenHeader({
   title,
   subtitle,
   eyebrow,
-  showUser = false,
-  userName = "William Ferraz",
-  missionLabel = "SOL 42 · QUADRANTE BETA",
   leftIcon,
   rightIcon,
   onLeftPress,
@@ -33,52 +31,70 @@ export function ScreenHeader({
   compact = false,
   className = "",
 }: ScreenHeaderProps) {
-  const hasTopActions = showUser || leftIcon || rightIcon;
+  const isNavigationHeader = Boolean(leftIcon || rightIcon);
 
-  return (
-    <View className={`mb-6 ${className}`}>
-      {hasTopActions ? (
-        <View className="flex-row justify-between items-center mb-6">
-          {showUser ? (
-            <View className="flex-row items-center flex-1 mr-3">
-              <View className="w-10 h-10 rounded-full bg-primary/20 items-center justify-center border border-primary/20 mr-3">
-                <Ionicons name="person-outline" size={20} color="#b9a7ff" />
-              </View>
-              <View className="flex-1">
-                <Text className="font-sans font-bold text-text-high text-base">
-                  {userName}
-                </Text>
-                <Text className="font-mono text-[11px] text-text-muted uppercase tracking-[1px]">
-                  {missionLabel}
-                </Text>
-              </View>
-            </View>
-          ) : leftIcon ? (
+  if (isNavigationHeader) {
+    return (
+      <View className={`px-6 pt-2 pb-3 ${className}`} style={styles.fixedHeaderWrap}>
+        <View style={styles.fixedGlassLayer}>
+          <View style={styles.fixedFallback} />
+          <BlurView
+            intensity={12}
+            tint="dark"
+            experimentalBlurMethod={
+              Platform.OS === "android" ? "dimezisBlurView" : undefined
+            }
+            style={StyleSheet.absoluteFill}
+          />
+          <View style={styles.fixedTint} />
+        </View>
+
+        <View className="flex-row items-center min-h-[48px]" style={styles.contentLayer}>
+          {leftIcon ? (
             <Pressable
               accessibilityRole="button"
               hitSlop={8}
               onPress={onLeftPress}
-              className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center active:opacity-80"
+              className="w-10 h-10 rounded-full bg-surface-card/50 border border-stroke-soft/40 items-center justify-center active:opacity-80"
             >
-              <Ionicons name={leftIcon} size={20} color="#b8bde0" />
+              <Ionicons name={leftIcon} size={20} color="#f7f4ff" />
             </Pressable>
-          ) : (
-            <View />
-          )}
+          ) : null}
+
+          <View className="flex-1 ml-3 mr-3">
+            <Text
+              numberOfLines={1}
+              className={`font-title font-bold text-text-high ${compact ? "text-xl" : "text-2xl"}`}
+            >
+              {title}
+            </Text>
+            {subtitle ? (
+              <Text
+                numberOfLines={1}
+                className="font-sans text-sm text-text-muted mt-0.5"
+              >
+                {subtitle}
+              </Text>
+            ) : null}
+          </View>
 
           {rightIcon ? (
             <Pressable
               accessibilityRole="button"
               hitSlop={8}
               onPress={onRightPress}
-              className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center active:opacity-80"
+              className="w-10 h-10 rounded-full bg-surface-card/50 border border-stroke-soft/40 items-center justify-center active:opacity-80"
             >
-              <Ionicons name={rightIcon} size={20} color="#b8bde0" />
+              <Ionicons name={rightIcon} size={20} color="#f7f4ff" />
             </Pressable>
           ) : null}
         </View>
-      ) : null}
+      </View>
+    );
+  }
 
+  return (
+    <View className={`mb-6 ${className}`}>
       {eyebrow ? (
         <Text className="font-mono text-[12px] text-primary uppercase tracking-[2px] mb-2">
           {eyebrow}
@@ -99,3 +115,29 @@ export function ScreenHeader({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  fixedHeaderWrap: {
+    position: "relative",
+    overflow: "visible",
+  },
+  fixedGlassLayer: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: -120,
+    bottom: 0,
+  },
+  fixedFallback: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(11, 16, 38, 0.10)",
+  },
+  fixedTint: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "transparent",
+  },
+  contentLayer: {
+    position: "relative",
+    zIndex: 1,
+  },
+});

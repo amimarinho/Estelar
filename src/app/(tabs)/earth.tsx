@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AppButton } from "@/src/components/app-button";
 import { AppToast } from "@/src/components/app-toast";
 import { ScreenHeader } from "@/src/components/screen-header";
+import { ScreenGlassZones } from "@/src/components/screen-glass-zones";
 import { useAppToast } from "@/src/hooks/use-app-toast";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
+import { TAB_BAR_CONTENT_PADDING_BOTTOM } from "../../constants/layout";
 
 export default function EarthScreen() {
   const router = useRouter();
@@ -67,6 +69,7 @@ export default function EarthScreen() {
       />
 
       <StarField />
+      <ScreenGlassZones />
 
       <SafeAreaView className="flex-1 z-10" edges={["top"]}>
         <ScrollView
@@ -77,7 +80,6 @@ export default function EarthScreen() {
           <ScreenHeader
             title="Conexão com a Terra"
             subtitle="Mensagens, memórias e vínculos com seu lar."
-            showUser
           />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
@@ -267,7 +269,7 @@ export default function EarthScreen() {
 
 const styles = StyleSheet.create({
   scrollContent: {
-    paddingBottom: 140,
+    paddingBottom: TAB_BAR_CONTENT_PADDING_BOTTOM,
   },
   skylineImage: {
     width: "100%",
