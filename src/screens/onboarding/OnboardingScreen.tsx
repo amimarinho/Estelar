@@ -113,7 +113,7 @@ export default function OnboardingScreen() {
         <View className="w-full px-8 items-center mt-8">
           <ChromaButton onPress={handleProceed} text="Começar Jornada" />
 
-          <Text className="text-text-muted font-sans text-center text-xs px-2 leading-4 mt-4">
+          <Text className="text-text-muted font-sans text-center text-sm px-2 leading-4 mt-4">
             Projetado para missões longas, isolamento e cuidado emocional
             contínuo.
           </Text>

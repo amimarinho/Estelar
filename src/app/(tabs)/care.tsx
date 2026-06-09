@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { AppButton } from "@/src/components/app-button";
+import { AppToast } from "@/src/components/app-toast";
+import { ScreenHeader } from "@/src/components/screen-header";
+import { useAppToast } from "@/src/hooks/use-app-toast";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { StarField } from "@/src/components/space/star-field";
-import { Ionicons } from "@expo/vector-icons";
 import Svg, { Path } from "react-native-svg";
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
@@ -11,14 +14,10 @@ import { useRouter } from "expo-router";
 export default function HeartScreen() {
   const router = useRouter();
 
-  const [careFeedback, setCareFeedback] = useState("");
+  const { toast, showToast } = useAppToast();
 
   const showCareFeedback = (message: string) => {
-    setCareFeedback(message);
-
-    setTimeout(() => {
-      setCareFeedback("");
-    }, 2600);
+    showToast(message, "success");
   };
 
   const handleStartProtocol = () => {
@@ -42,14 +41,11 @@ export default function HeartScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="space-y-1 mb-8">
-            <Text className="font-title text-[32px] font-bold text-text-high leading-tight mt-1">
-              Cuidar
-            </Text>
-            <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
-              Cuidado imediato para momentos de sobrecarga.
-            </Text>
-          </View>
+          <ScreenHeader
+            title="Cuidar"
+            subtitle="Cuidado imediato para momentos de sobrecarga."
+            showUser
+          />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
             <View className="flex-row items-center mb-4">
@@ -75,7 +71,7 @@ export default function HeartScreen() {
                   />
                 </Svg>
               </View>
-              <Text className="font-mono text-[9px] text-primary uppercase tracking-[2px]">
+              <Text className="font-mono text-[11px] text-primary uppercase tracking-[2px]">
                 PROTOCOLO ATIVO
               </Text>
             </View>
@@ -84,25 +80,14 @@ export default function HeartScreen() {
               Pausa de emergência emocional
             </Text>
 
-            <Text className="font-sans text-sm text-text-muted leading-relaxed mb-6">
+            <Text className="font-sans text-base text-text-muted leading-relaxed mb-6">
               Um protocolo curto para reduzir ansiedade, reorganizar a
               respiração e recuperar presença.
             </Text>
 
-            <Pressable
-              onPress={handleStartProtocol}
-              className="w-full h-14 rounded-full bg-primary items-center justify-center flex-row active:opacity-90"
-            >
-              <Ionicons
-                name="play"
-                size={16}
-                color="#17142a"
-                className="mr-2"
-              />
-              <Text className="text-primary-on font-sans font-bold text-base">
-                Iniciar pausa agora
-              </Text>
-            </Pressable>
+            <AppButton onPress={handleStartProtocol} leftIcon="play-outline">
+              Iniciar pausa agora
+            </AppButton>
           </View>
 
           <View className="mb-6">
@@ -141,10 +126,10 @@ export default function HeartScreen() {
                   </Svg>
                 </View>
                 <View className="flex-1">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Respiração guiada
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     3 minutos para desacelerar o corpo
                   </Text>
                 </View>
@@ -183,10 +168,10 @@ export default function HeartScreen() {
                   </Svg>
                 </View>
                 <View className="flex-1">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Meditação curta
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Uma pausa mental antes da missão
                   </Text>
                 </View>
@@ -225,10 +210,10 @@ export default function HeartScreen() {
                   </Svg>
                 </View>
                 <View className="flex-1">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Sons calmantes
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Ambientes sonoros para foco e descanso
                   </Text>
                 </View>
@@ -258,10 +243,10 @@ export default function HeartScreen() {
                   </Svg>
                 </View>
                 <View className="flex-1">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Pulso coletivo
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Veja como a tripulação está se sentindo, de forma anônima
                   </Text>
                 </View>
@@ -270,7 +255,7 @@ export default function HeartScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
-            <Text className="font-mono text-[9px] text-text-muted uppercase tracking-[2px] mb-4 opacity-70">
+            <Text className="font-mono text-[11px] text-text-muted uppercase tracking-[2px] mb-4 opacity-70">
               PULSO DA TRIPULAÇÃO
             </Text>
 
@@ -281,24 +266,13 @@ export default function HeartScreen() {
               </Text>
             </View>
 
-            <Text className="font-sans text-[11px] text-text-muted/70 leading-relaxed pl-5">
+            <Text className="font-sans text-sm text-text-muted/70 leading-relaxed pl-5">
               Dados anônimos para fortalecer percepção coletiva e cuidado mútuo.
             </Text>
           </View>
         </ScrollView>
       </SafeAreaView>
-      {careFeedback ? (
-        <View
-          pointerEvents="none"
-          className="absolute inset-0 z-50 items-center justify-center px-8"
-        >
-          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
-            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
-              {careFeedback}
-            </Text>
-          </View>
-        </View>
-      ) : null}
+      <AppToast message={toast.message} type={toast.type} offset={34} />
     </View>
   );
 }

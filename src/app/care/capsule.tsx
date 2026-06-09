@@ -187,7 +187,7 @@ export default function CapsuleScreen() {
               <Text className="font-title text-2xl font-bold text-text-high leading-tight">
                 Cápsula emocional
               </Text>
-              <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
+              <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
                 Uma memória programada para chegar no momento certo.
               </Text>
             </View>
@@ -219,7 +219,7 @@ export default function CapsuleScreen() {
 
               <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8 w-full items-center">
                 <View className="px-3.5 py-1.5 rounded-full bg-feedback-success/15 border border-feedback-success/25 mb-4">
-                  <Text className="font-mono text-[9px] font-bold text-feedback-success uppercase tracking-[1.5px]">
+                  <Text className="font-mono text-[11px] font-bold text-feedback-success uppercase tracking-[1.5px]">
                     Disponível para abertura
                   </Text>
                 </View>
@@ -265,7 +265,7 @@ export default function CapsuleScreen() {
                       Áudio + foto
                     </Text>
                   </View>
-                  <Text className="font-mono text-[9px] text-text-muted/70 uppercase tracking-[0.5px]">
+                  <Text className="font-mono text-[11px] text-text-muted/70 uppercase tracking-[0.5px]">
                     Dia 50 da missão
                   </Text>
                 </View>
@@ -285,10 +285,10 @@ export default function CapsuleScreen() {
 
                 <View className="bg-surface rounded-2xl p-4 border border-stroke-soft">
                   <View className="flex-row items-center justify-between mb-3">
-                    <Text className="font-sans font-bold text-xs text-text-high">
+                    <Text className="font-sans font-bold text-sm text-text-high">
                       Mensagem de Voz
                     </Text>
-                    <Text className="font-mono text-[10px] text-text-muted">
+                    <Text className="font-mono text-[12px] text-text-muted">
                       1.2 MB · 01:20
                     </Text>
                   </View>
@@ -305,7 +305,7 @@ export default function CapsuleScreen() {
                   </View>
 
                   <View className="flex-row items-center justify-between gap-4">
-                    <Text className="font-mono text-[10px] text-text-muted w-10">
+                    <Text className="font-mono text-[12px] text-text-muted w-10">
                       {formatAudioTime(audioProgress)}
                     </Text>
 
@@ -316,7 +316,7 @@ export default function CapsuleScreen() {
                       />
                     </View>
 
-                    <Text className="font-mono text-[10px] text-text-muted w-10 text-right">
+                    <Text className="font-mono text-[12px] text-text-muted w-10 text-right">
                       01:20
                     </Text>
                   </View>

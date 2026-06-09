@@ -1,3 +1,5 @@
+import { AppButton } from "@/src/components/app-button";
+import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -150,14 +152,11 @@ export default function RadarScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="space-y-1 mb-8">
-            <Text className="font-title text-[32px] font-bold text-text-high leading-tight mt-1">
-              Radar de suporte
-            </Text>
-            <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
-              Monitoramento emocional e conexão com a equipe da Terra.
-            </Text>
-          </View>
+          <ScreenHeader
+            title="Radar de suporte"
+            subtitle="Monitoramento emocional e conexão com a equipe da Terra."
+            showUser
+          />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <View className="flex-row items-center">
@@ -186,14 +185,14 @@ export default function RadarScreen() {
                 </Svg>
                 <View className="absolute inset-0 items-center justify-center pt-1">
                   <Ionicons name={moodInd.icon} size={24} color="#f7f4ff" />
-                  <Text className="font-mono text-xs font-bold text-text-high mt-0.5">
+                  <Text className="font-mono text-sm font-bold text-text-high mt-0.5">
                     {percentage}%
                   </Text>
                 </View>
               </View>
 
               <View className="flex-1 ml-5">
-                <Text className="font-mono text-[9px] text-text-muted/60 uppercase tracking-[2px]">
+                <Text className="font-mono text-[11px] text-text-muted/60 uppercase tracking-[2px]">
                   ESTADO ATUAL
                 </Text>
                 <Text className="font-title text-lg font-bold text-text-high mt-1 leading-tight">
@@ -226,7 +225,7 @@ export default function RadarScreen() {
 
             <View className="h-[1px] bg-primary/10 w-full my-6" />
 
-            <Text className="font-mono text-[9px] text-text-muted/60 uppercase tracking-[2px] mb-4">
+            <Text className="font-mono text-[11px] text-text-muted/60 uppercase tracking-[2px] mb-4">
               SEUS INDICADORES HOJE
             </Text>
 
@@ -244,7 +243,7 @@ export default function RadarScreen() {
                 </Text>
                 <Text
                   style={{ color: moodInd.color }}
-                  className="font-sans text-[11px] font-semibold mt-0.5"
+                  className="font-sans text-sm font-semibold mt-0.5"
                 >
                   {moodInd.text}
                 </Text>
@@ -263,7 +262,7 @@ export default function RadarScreen() {
                 </Text>
                 <Text
                   style={{ color: stressInd.color }}
-                  className="font-sans text-[11px] font-semibold mt-0.5"
+                  className="font-sans text-sm font-semibold mt-0.5"
                 >
                   {stressInd.text}
                 </Text>
@@ -282,7 +281,7 @@ export default function RadarScreen() {
                 </Text>
                 <Text
                   style={{ color: energyInd.color }}
-                  className="font-sans text-[11px] font-semibold mt-0.5"
+                  className="font-sans text-sm font-semibold mt-0.5"
                 >
                   {energyInd.text}
                 </Text>
@@ -301,7 +300,7 @@ export default function RadarScreen() {
                 </Text>
                 <Text
                   style={{ color: sleepInd.color }}
-                  className="font-sans text-[11px] font-semibold mt-0.5"
+                  className="font-sans text-sm font-semibold mt-0.5"
                 >
                   {sleepInd.text}
                 </Text>
@@ -315,7 +314,7 @@ export default function RadarScreen() {
                 <Ionicons name="warning-outline" size={20} color="#ffd66b" />
               </View>
               <View className="flex-1">
-                <Text className="font-mono text-[9px] text-feedback-warning uppercase tracking-[2px]">
+                <Text className="font-mono text-[11px] text-feedback-warning uppercase tracking-[2px]">
                   ATENÇÃO PREVENTIVA
                 </Text>
                 <Text className="font-sans text-sm text-text-high leading-relaxed mt-1.5">
@@ -340,47 +339,45 @@ export default function RadarScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
-            <Text className="font-mono text-[9px] text-text-muted uppercase tracking-[2px] mb-4 opacity-70">
+            <Text className="font-mono text-[11px] text-text-muted uppercase tracking-[2px] mb-4 opacity-70">
               COMUNICAÇÃO COM A TERRA
             </Text>
 
             <View className="flex-row items-center mb-6">
               <View className="w-2.5 h-2.5 rounded-full bg-feedback-success mr-3 animate-pulse" />
               <View className="flex-1">
-                <Text className="font-title text-base font-bold text-text-high">
+                <Text className="font-title text-lg font-bold text-text-high">
                   Canal assíncrono disponível
                 </Text>
-                <Text className="font-sans text-xs text-text-muted mt-0.5">
+                <Text className="font-sans text-sm text-text-muted mt-0.5">
                   Tempo estimado de resposta: 18 min
                 </Text>
               </View>
             </View>
 
-            <Pressable
+            <AppButton
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push("/mission/report");
               }}
-              className="w-full h-14 rounded-full bg-primary items-center justify-center active:opacity-90 mb-3"
+              leftIcon="send-outline"
+              className="mb-3"
             >
-              <Text className="text-primary-on font-sans font-bold text-base">
-                Enviar relato emocional
-              </Text>
-            </Pressable>
+              Enviar relato emocional
+            </AppButton>
 
-            <Pressable
+            <AppButton
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                router.push("/(tabs)/journey");
+                router.push("/(tabs)/care");
               }}
-              className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
+              variant="secondary"
+              leftIcon="heart-outline"
             >
-              <Text className="text-text-high font-sans font-bold text-base">
-                Iniciar cuidado imediato
-              </Text>
-            </Pressable>
+              Iniciar cuidado imediato
+            </AppButton>
 
-            <Text className="font-sans text-[10px] text-text-muted/60 text-center leading-relaxed mt-4 px-2">
+            <Text className="font-sans text-sm text-text-muted/60 text-center leading-relaxed mt-4 px-2">
               O Estelar identifica padrões de risco sem substituir o
               acompanhamento humano.
             </Text>

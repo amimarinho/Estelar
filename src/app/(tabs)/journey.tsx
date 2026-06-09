@@ -1,28 +1,26 @@
+import { AppButton } from "@/src/components/app-button";
+import { AppToast } from "@/src/components/app-toast";
+import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
 import { useMission } from "@/src/context/mission-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Circle, Line } from "react-native-svg";
+import { useAppToast } from "@/src/hooks/use-app-toast";
 
 export default function SuggestionsScreen() {
   const router = useRouter();
   const { checkins } = useMission();
 
-  const [diaryFeedback, setDiaryFeedback] = useState("");
+  const { toast, showToast } = useAppToast();
 
   const showDiaryFeedback = () => {
-    setDiaryFeedback(
-      "Diário estará disponível em uma próxima versão.",
-    );
-
-    setTimeout(() => {
-      setDiaryFeedback("");
-    }, 2600);
+    showToast("Diário estará disponível em uma próxima versão.", "info");
   };
 
   const lastCheckin =
@@ -79,20 +77,16 @@ export default function SuggestionsScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="space-y-1 mb-8">
-            <Text className="font-title text-[32px] font-bold text-text-high leading-tight mt-1">
-              Jornada Emocional
-            </Text>
-            <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
-              Sua jornada emocional ao longo da missão.
-            </Text>
-          </View>
-
+          <ScreenHeader
+            title="Jornada emocional"
+            subtitle="Sua jornada emocional ao longo da missão."
+            showUser
+          />
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high">
+            <Text className="font-title text-lg font-bold text-text-high">
               Hoje: dia {missionDay} da missão
             </Text>
-            <Text className="font-sans text-xs text-text-muted mt-1 leading-relaxed">
+            <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
               Seus registros formam uma constelação de momentos bons, difíceis e
               superados.
             </Text>
@@ -198,31 +192,31 @@ export default function SuggestionsScreen() {
             <View className="bg-surface rounded-2xl p-4 border border-stroke-soft flex-row flex-wrap justify-between items-center mt-4 gap-y-2">
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#5c67f2] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">
+                <Text className="font-sans text-sm text-text-high">
                   Estável
                 </Text>
               </View>
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#ffd66b] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">
+                <Text className="font-sans text-sm text-text-high">
                   Ansioso
                 </Text>
               </View>
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#ff8a70] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">
+                <Text className="font-sans text-sm text-text-high">
                   Cansado
                 </Text>
               </View>
               <View className="flex-row items-center mr-2">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#8fe3b0] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">
+                <Text className="font-sans text-sm text-text-high">
                   Superado
                 </Text>
               </View>
               <View className="flex-row items-center">
                 <View className="w-2.5 h-2.5 rounded-full bg-[#b9a7ff] mr-1.5" />
-                <Text className="font-sans text-[10px] text-text-high">
+                <Text className="font-sans text-sm text-text-high">
                   Marco
                 </Text>
               </View>
@@ -255,10 +249,10 @@ export default function SuggestionsScreen() {
                   />
                 </View>
                 <View className="flex-1 mr-2">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Momento ansioso
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Dia 12 · Aguardando resposta da Terra
                   </Text>
                 </View>
@@ -273,10 +267,10 @@ export default function SuggestionsScreen() {
                   <Ionicons name="heart-outline" size={20} color="#5c67f2" />
                 </View>
                 <View className="flex-1 mr-2">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Momento bom
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Dia 31 · Mensagem recebida da Terra
                   </Text>
                 </View>
@@ -291,10 +285,10 @@ export default function SuggestionsScreen() {
                   <Ionicons name="rainy-outline" size={20} color="#ff8a8a" />
                 </View>
                 <View className="flex-1 mr-2">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Momento difícil
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Dia 42 · Sobrecarga emocional detectada
                   </Text>
                 </View>
@@ -313,10 +307,10 @@ export default function SuggestionsScreen() {
                   />
                 </View>
                 <View className="flex-1 mr-2">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Momento superado
                   </Text>
-                  <Text className="font-sans text-xs text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Dia 43 · Retorno gradual de estabilidade
                   </Text>
                 </View>
@@ -325,39 +319,22 @@ export default function SuggestionsScreen() {
             </View>
           </View>
 
-          <View className="flex-row justify-between items-center mb-8 gap-4">
-            <Pressable
-              onPress={handleNewRegistry}
-              className="flex-1 h-14 rounded-full bg-primary items-center justify-center active:opacity-90"
-            >
-              <Text className="text-primary-on font-sans font-bold text-base">
-                Novo Registro
-              </Text>
-            </Pressable>
+          <View className="mb-8 gap-3">
+            <AppButton onPress={handleNewRegistry} leftIcon="add-circle-outline">
+              Novo registro
+            </AppButton>
 
-            <Pressable
+            <AppButton
               onPress={handleOpenDiary}
-              className="flex-1 h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
+              variant="secondary"
+              leftIcon="book-outline"
             >
-              <Text className="text-text-high font-sans font-bold text-base">
-                Ver Diário
-              </Text>
-            </Pressable>
+              Ver diário
+            </AppButton>
           </View>
         </ScrollView>
       </SafeAreaView>
-      {diaryFeedback ? (
-        <View
-          pointerEvents="none"
-          className="absolute inset-0 z-50 items-center justify-center px-8"
-        >
-          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
-            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
-              {diaryFeedback}
-            </Text>
-          </View>
-        </View>
-      ) : null}
+      <AppToast message={toast.message} type={toast.type} offset={34} />
     </View>
   );
 }

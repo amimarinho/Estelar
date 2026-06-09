@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { AppButton } from "@/src/components/app-button";
+import { AppToast } from "@/src/components/app-toast";
+import { ScreenHeader } from "@/src/components/screen-header";
+import { useAppToast } from "@/src/hooks/use-app-toast";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -29,7 +33,7 @@ export default function GuidedBreathingScreen() {
   const [currentPhase, setCurrentPhase] = useState<Phase>("inspire");
   const [phaseTimeLeft, setPhaseTimeLeft] = useState(4);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [ambientFeedback, setAmbientFeedback] = useState("");
+  const { toast, showToast } = useAppToast();
 
   const [orbSpeed, setOrbSpeed] = useState(0.4);
   const [orbIntensity, setOrbIntensity] = useState(0.85);
@@ -198,11 +202,7 @@ export default function GuidedBreathingScreen() {
   };
 
   const showAmbientFeedback = () => {
-    setAmbientFeedback("Sons calmantes preparados para esta pausa.");
-
-    setTimeout(() => {
-      setAmbientFeedback("");
-    }, 2600);
+    showToast("Sons calmantes preparados para esta pausa.", "info");
   };
 
   return (
@@ -221,22 +221,13 @@ export default function GuidedBreathingScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="flex-row items-center mb-6">
-            <Pressable
-              onPress={() => router.back()}
-              className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center mr-4 active:opacity-80"
-            >
-              <Ionicons name="arrow-back" size={20} color="#b8bde0" />
-            </Pressable>
-            <View>
-              <Text className="font-title text-2xl font-bold text-text-high leading-tight">
-                Respiração guiada
-              </Text>
-              <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
-                Uma pausa curta para estabilizar corpo e mente.
-              </Text>
-            </View>
-          </View>
+          <ScreenHeader
+            title="Respiração guiada"
+            subtitle="Uma pausa curta para estabilizar corpo e mente."
+            leftIcon="arrow-back"
+            onLeftPress={() => router.back()}
+            compact
+          />
 
           <View className="mb-6 items-center">
             <Animated.Text
@@ -247,7 +238,7 @@ export default function GuidedBreathingScreen() {
             </Animated.Text>
             <Animated.Text
               entering={FadeIn.duration(500).delay(200)}
-              className="font-sans text-xs text-text-muted text-center leading-relaxed px-4 mb-6"
+              className="font-sans text-sm text-text-muted text-center leading-relaxed px-4 mb-6"
             >
               Inspire, segure e solte no ritmo indicado. Concentre-se apenas no
               próximo ciclo.
@@ -291,7 +282,7 @@ export default function GuidedBreathingScreen() {
                 <Animated.Text
                   key="idle"
                   entering={FadeIn.duration(300)}
-                  className="font-sans text-xs text-text-muted"
+                  className="font-sans text-sm text-text-muted"
                 >
                   Aguardando início...
                 </Animated.Text>
@@ -315,7 +306,7 @@ export default function GuidedBreathingScreen() {
                           )}
                         </View>
                         <Text
-                          className={`font-sans text-[10px] mt-2 ${
+                          className={`font-sans text-sm mt-2 ${
                             isActive
                               ? "text-primary font-bold"
                               : "text-text-muted/60"
@@ -349,7 +340,7 @@ export default function GuidedBreathingScreen() {
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <View className="flex-row justify-between items-center mb-4">
-              <Text className="font-title text-base font-bold text-text-high">
+              <Text className="font-title text-lg font-bold text-text-high">
                 Duração
               </Text>
               {isPlaying && (
@@ -397,19 +388,18 @@ export default function GuidedBreathingScreen() {
               />
             </View>
 
-            <Pressable
+            <AppButton
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 showAmbientFeedback();
               }}
-              className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
+              variant="secondary"
+              leftIcon="musical-notes-outline"
             >
-              <Text className="text-text-high font-sans font-bold text-base">
-                Trocar para sons calmantes
-              </Text>
-            </Pressable>
+              Trocar para sons calmantes
+            </AppButton>
 
-            <Text className="font-sans text-[11px] text-text-muted/60 text-center leading-relaxed px-6 mt-4">
+            <Text className="font-sans text-sm text-text-muted/60 text-center leading-relaxed px-6 mt-4">
               Este exercício pode ser usado antes de dormir, após conflitos ou
               em momentos de ansiedade.
             </Text>
@@ -417,18 +407,7 @@ export default function GuidedBreathingScreen() {
         </ScrollView>
       </SafeAreaView>
 
-      {ambientFeedback ? (
-        <View
-          pointerEvents="none"
-          className="absolute inset-0 z-50 items-center justify-center px-8"
-        >
-          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
-            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
-              {ambientFeedback}
-            </Text>
-          </View>
-        </View>
-      ) : null}
+      <AppToast message={toast.message} type={toast.type} offset={34} />
 
       {showSuccessModal && (
         <View
@@ -449,35 +428,32 @@ export default function GuidedBreathingScreen() {
             <Text className="font-title text-xl font-bold text-text-high text-center mb-2">
               Exercício Concluído
             </Text>
-            <Text className="font-sans text-xs text-text-muted text-center leading-relaxed px-2 mb-8">
+            <Text className="font-sans text-sm text-text-muted text-center leading-relaxed px-2 mb-8">
               Você completou a pausa de respiração guiada. Como está se sentindo
               agora?
             </Text>
             <View className="w-full gap-3">
-              <Pressable
+              <AppButton
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                   setShowSuccessModal(false);
                   router.replace("/(tabs)/radar");
                 }}
-                className="w-full h-12 rounded-full bg-primary items-center justify-center active:opacity-90"
+                size="md"
               >
-                <Text className="font-sans font-bold text-sm text-surface">
-                  Estou melhor
-                </Text>
-              </Pressable>
-              <Pressable
+                Estou melhor
+              </AppButton>
+              <AppButton
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                   setShowSuccessModal(false);
                   router.replace("/(tabs)/care");
                 }}
-                className="w-full h-12 rounded-full border border-stroke-soft items-center justify-center active:bg-surface-card/65"
+                variant="secondary"
+                size="md"
               >
-                <Text className="font-sans font-bold text-sm text-text-muted">
-                  Estou igual
-                </Text>
-              </Pressable>
+                Estou igual
+              </AppButton>
             </View>
           </Animated.View>
         </View>

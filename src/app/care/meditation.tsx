@@ -254,7 +254,7 @@ export default function MeditationScreen() {
             <Text className="font-title text-3xl font-bold text-text-high text-center leading-tight">
               Meditação curta
             </Text>
-            <Text className="font-sans text-xs text-text-muted mt-1.5 text-center leading-relaxed px-4">
+            <Text className="font-sans text-sm text-text-muted mt-1.5 text-center leading-relaxed px-4">
               Pausa mental para reestabelecer o foco e reduzir a ansiedade.
             </Text>
           </View>
@@ -309,7 +309,7 @@ export default function MeditationScreen() {
             text={isActive ? "Pausar silêncio" : "Iniciar meditação"}
           />
 
-          <Text className="font-sans text-[10px] text-text-muted/40 text-center leading-relaxed px-6 mt-8 max-w-[300px]">
+          <Text className="font-sans text-[12px] text-text-muted/40 text-center leading-relaxed px-6 mt-8 max-w-[300px]">
             A meditação regular ajuda a fortalecer a resiliência psicológica
             diante do isolamento e do silêncio espacial.
           </Text>

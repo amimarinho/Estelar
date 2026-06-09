@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import { AppButton } from "@/src/components/app-button";
+import { AppToast } from "@/src/components/app-toast";
+import { ScreenHeader } from "@/src/components/screen-header";
+import { useAppToast } from "@/src/hooks/use-app-toast";
+import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { StarField } from "@/src/components/space/star-field";
@@ -19,7 +16,7 @@ export default function EarthScreen() {
   const router = useRouter();
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
-  const [transmissionFeedback, setTransmissionFeedback] = useState("");
+  const { toast, showToast } = useAppToast(3000);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -41,13 +38,6 @@ export default function EarthScreen() {
     return `00:${secs < 10 ? "0" : ""}${secs}`;
   };
 
-  const showTransmissionFeedback = (message: string) => {
-    setTransmissionFeedback(message);
-
-    setTimeout(() => {
-      setTransmissionFeedback("");
-    }, 3000);
-  };
 
   const handlePlayAudio = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -64,31 +54,8 @@ export default function EarthScreen() {
 
   const handleSendResponse = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    Alert.alert(
-      "Enviar Mensagem",
-      "Sua conexão espacial está estável. Deseja transmitir um texto ou gravação de voz para casa?",
-      [
-        { text: "Cancelar", style: "cancel" },
-        {
-          text: "Gravar Áudio",
-          onPress: () => {
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            showTransmissionFeedback(
-              "Gravação enviada para a fila de transmissão.",
-            );
-          },
-        },
-        {
-          text: "Escrever Texto",
-          onPress: () => {
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            showTransmissionFeedback(
-              "Mensagem enviada para a fila de transmissão.",
-            );
-          },
-        },
-      ],
-    );
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    showToast("Resposta enviada para a fila de transmissão.", "success");
   };
 
   return (
@@ -107,23 +74,11 @@ export default function EarthScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="flex-row justify-between items-start mb-8">
-            <View className="space-y-1 flex-1 mr-4">
-              <Text className="font-title text-[32px] font-bold text-text-high leading-tight mt-1">
-                Conexão com a Terra
-              </Text>
-              <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
-                Mensagens, memórias e vínculos com seu lar.
-              </Text>
-            </View>
-            <Pressable className="w-10 h-10 rounded-full bg-surface-card border border-primary/20 items-center justify-center active:opacity-85">
-              <Ionicons
-                name="person-circle-outline"
-                size={26}
-                color="#f7f4ff"
-              />
-            </Pressable>
-          </View>
+          <ScreenHeader
+            title="Conexão com a Terra"
+            subtitle="Mensagens, memórias e vínculos com seu lar."
+            showUser
+          />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
             <Text className="font-title text-xl font-bold text-text-high mb-4">
@@ -156,7 +111,7 @@ export default function EarthScreen() {
               </View>
             </View>
 
-            <Text className="font-sans text-sm text-text-muted leading-relaxed">
+            <Text className="font-sans text-base text-text-muted leading-relaxed">
               Enquanto você orbita a Terra, sua referência de casa continua
               sincronizada.
             </Text>
@@ -184,14 +139,14 @@ export default function EarthScreen() {
                   />
                 </View>
                 <View className="flex-1 mr-2">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Mensagem da família
                   </Text>
-                  <Text className="font-sans text-[13px] text-text-muted mt-0.5 italic">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5 italic">
                     “Estamos pensando em você hoje.”
                   </Text>
                   <Text
-                    className={`font-mono text-[10px] uppercase tracking-[1px] mt-1.5 ${isPlayingAudio ? "text-primary font-bold" : "text-text-muted/65"}`}
+                    className={`font-mono text-[12px] uppercase tracking-[1px] mt-1.5 ${isPlayingAudio ? "text-primary font-bold" : "text-text-muted/65"}`}
                   >
                     {isPlayingAudio
                       ? `TOCANDO • ${formatTime(audioProgress)} / 00:42`
@@ -215,13 +170,13 @@ export default function EarthScreen() {
                   <Ionicons name="image-outline" size={20} color="#ff8a70" />
                 </View>
                 <View className="flex-1">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Foto recebida
                   </Text>
-                  <Text className="font-sans text-[13px] text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Praça perto de casa
                   </Text>
-                  <Text className="font-mono text-[10px] text-text-muted/65 uppercase tracking-[1px] mt-1.5">
+                  <Text className="font-mono text-[12px] text-text-muted/65 uppercase tracking-[1px] mt-1.5">
                     ENVIADA HÁ 2 DIAS
                   </Text>
                 </View>
@@ -242,13 +197,13 @@ export default function EarthScreen() {
                   />
                 </View>
                 <View className="flex-1">
-                  <Text className="font-title text-base font-bold text-text-high">
+                  <Text className="font-title text-lg font-bold text-text-high">
                     Cápsula emocional
                   </Text>
-                  <Text className="font-sans text-[13px] text-text-muted mt-0.5">
+                  <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Mensagem programada para uma data importante
                   </Text>
-                  <Text className="font-mono text-[10px] text-feedback-warning font-bold uppercase tracking-[1px] mt-1.5">
+                  <Text className="font-mono text-[12px] text-feedback-warning font-bold uppercase tracking-[1px] mt-1.5">
                     ABRIR EM: 3 DIAS
                   </Text>
                 </View>
@@ -257,7 +212,7 @@ export default function EarthScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
-            <Text className="font-mono text-[9px] text-text-muted uppercase tracking-[2px] mb-4 opacity-70">
+            <Text className="font-mono text-[11px] text-text-muted uppercase tracking-[2px] mb-4 opacity-70">
               DATAS AFETIVAS
             </Text>
 
@@ -269,7 +224,7 @@ export default function EarthScreen() {
                 <Text className="font-sans text-sm font-bold text-text-high">
                   Aniversário da mãe
                 </Text>
-                <Text className="font-sans text-xs text-text-muted mt-0.5">
+                <Text className="font-sans text-sm text-text-muted mt-0.5">
                   em 5 dias
                 </Text>
               </View>
@@ -284,45 +239,28 @@ export default function EarthScreen() {
                 color="#ffd66b"
                 className="mr-2.5"
               />
-              <Text className="font-sans text-xs font-semibold text-feedback-warning">
+              <Text className="font-sans text-sm font-semibold text-feedback-warning">
                 Chamada especial sugerida
               </Text>
             </View>
           </View>
 
-          <View className="space-y-4 mb-8">
-            <Pressable
-              onPress={handleOpenCapsules}
-              className="w-full h-14 rounded-full bg-primary items-center justify-center active:opacity-90 mb-3"
-            >
-              <Text className="text-primary-on font-sans font-bold text-base">
-                Ver cápsulas emocionais
-              </Text>
-            </Pressable>
+          <View className="mb-8 gap-3">
+            <AppButton onPress={handleOpenCapsules} leftIcon="archive-outline">
+              Ver cápsulas emocionais
+            </AppButton>
 
-            <Pressable
+            <AppButton
               onPress={handleSendResponse}
-              className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
+              variant="secondary"
+              leftIcon="send-outline"
             >
-              <Text className="text-text-high font-sans font-bold text-base">
-                Enviar resposta para casa
-              </Text>
-            </Pressable>
+              Enviar resposta para casa
+            </AppButton>
           </View>
         </ScrollView>
       </SafeAreaView>
-      {transmissionFeedback ? (
-        <View
-          pointerEvents="none"
-          className="absolute inset-0 z-50 items-center justify-center px-8"
-        >
-          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
-            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
-              {transmissionFeedback}
-            </Text>
-          </View>
-        </View>
-      ) : null}
+      <AppToast message={toast.message} type={toast.type} offset={34} />
     </View>
   );
 }

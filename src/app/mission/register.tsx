@@ -1,21 +1,15 @@
+import { AppButton } from "@/src/components/app-button";
+import { AppToast } from "@/src/components/app-toast";
 import { ChromaButton } from "@/src/components/chroma-button";
+import { ScreenHeader } from "@/src/components/screen-header";
+import { useAppToast } from "@/src/hooks/use-app-toast";
 import { StarField } from "@/src/components/space/star-field";
 import { useMission } from "@/src/context/mission-context";
-import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import {
-  Alert,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type RegisterType = "bom" | "dificil" | "superacao" | "reflexao" | "marco";
@@ -55,15 +49,12 @@ export default function RegisterScreen() {
   const [intensity, setIntensity] = useState<IntensityType>("moderada");
   const [addToConstellation, setAddToConstellation] = useState(true);
 
-  const [saveFeedback, setSaveFeedback] = useState("");
+  const { toast, showToast } = useAppToast();
 
   const handleSave = async (forceConstellation: boolean) => {
     if (text.trim().length === 0) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      Alert.alert(
-        "Registro Requerido",
-        "Por favor, escreva o que aconteceu hoje antes de salvar.",
-      );
+      showToast("Escreva o que aconteceu hoje antes de salvar.", "warning");
       return;
     }
 
@@ -76,10 +67,11 @@ export default function RegisterScreen() {
     });
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    setSaveFeedback(
+    showToast(
       forceConstellation
         ? "Registro adicionado à sua constelação."
         : "Registro salvo apenas no diário.",
+      "success",
     );
 
     setTimeout(() => {
@@ -103,22 +95,13 @@ export default function RegisterScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="flex-row items-center mb-6">
-            <Pressable
-              onPress={() => router.back()}
-              className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center mr-4 active:opacity-80"
-            >
-              <Ionicons name="arrow-back" size={20} color="#b8bde0" />
-            </Pressable>
-            <View className="flex-1">
-              <Text className="font-title text-2xl font-bold text-text-high leading-tight">
-                Registro emocional
-              </Text>
-              <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
-                Transforme este momento em parte da sua constelação.
-              </Text>
-            </View>
-          </View>
+          <ScreenHeader
+            title="Registro emocional"
+            subtitle="Transforme este momento em parte da sua constelação."
+            leftIcon="arrow-back"
+            onLeftPress={() => router.back()}
+            compact
+          />
 
           <View className="mb-6">
             <Text className="font-sans text-sm font-semibold text-text-high mb-2">
@@ -134,16 +117,16 @@ export default function RegisterScreen() {
                 numberOfLines={6}
                 maxLength={2000}
                 style={styles.textArea}
-                className="rounded-[20px] p-4 pb-8 text-text-high text-sm font-sans"
+                className="rounded-[20px] p-4 pb-8 text-text-high text-base font-sans"
               />
-              <Text className="font-mono text-[10px] text-text-muted/50 absolute bottom-3 right-4">
+              <Text className="font-mono text-[12px] text-text-muted/50 absolute bottom-3 right-4">
                 {text.length}/2000
               </Text>
             </View>
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high mb-3">
+            <Text className="font-title text-lg font-bold text-text-high mb-3">
               Tipo de registro
             </Text>
             <View className="flex-row flex-wrap gap-2">
@@ -163,7 +146,7 @@ export default function RegisterScreen() {
                     }`}
                   >
                     <Text
-                      className={`font-sans text-xs font-semibold ${
+                      className={`font-sans text-sm font-semibold ${
                         isSelected ? "text-primary" : "text-text-muted"
                       }`}
                     >
@@ -176,7 +159,7 @@ export default function RegisterScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high mb-3">
+            <Text className="font-title text-lg font-bold text-text-high mb-3">
               Emoção principal
             </Text>
             <View className="flex-row flex-wrap gap-2">
@@ -196,7 +179,7 @@ export default function RegisterScreen() {
                     }`}
                   >
                     <Text
-                      className={`font-sans text-xs font-semibold ${
+                      className={`font-sans text-sm font-semibold ${
                         isSelected ? "text-primary" : "text-text-muted"
                       }`}
                     >
@@ -209,7 +192,7 @@ export default function RegisterScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high">
+            <Text className="font-title text-lg font-bold text-text-high">
               Intensidade
             </Text>
             <View className="flex-row justify-between items-center mt-4 gap-3">
@@ -249,7 +232,7 @@ export default function RegisterScreen() {
                 <Text className="font-sans text-sm font-bold text-text-high">
                   Adicionar à constelação
                 </Text>
-                <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
+                <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
                   Este registro aparecerá como um ponto na sua jornada
                   emocional.
                 </Text>
@@ -266,7 +249,7 @@ export default function RegisterScreen() {
             </View>
           </View>
 
-          <Text className="font-sans text-[11px] text-text-muted/60 text-center leading-relaxed px-6 mb-6">
+          <Text className="font-sans text-sm text-text-muted/60 text-center leading-relaxed px-6 mb-6">
             Você pode editar ou ocultar este registro depois.
           </Text>
 
@@ -278,29 +261,17 @@ export default function RegisterScreen() {
               />
             </View>
 
-            <Pressable
+            <AppButton
               onPress={() => handleSave(false)}
-              className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
+              variant="secondary"
+              leftIcon="book-outline"
             >
-              <Text className="text-text-high font-sans font-bold text-base">
-                Salvar apenas no diário
-              </Text>
-            </Pressable>
+              Salvar apenas no diário
+            </AppButton>
           </View>
         </ScrollView>
       </SafeAreaView>
-      {saveFeedback ? (
-        <View
-          pointerEvents="none"
-          className="absolute inset-0 z-50 items-center justify-center px-8"
-        >
-          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
-            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
-              {saveFeedback}
-            </Text>
-          </View>
-        </View>
-      ) : null}
+      <AppToast message={toast.message} type={toast.type} offset={34} />
     </View>
   );
 }

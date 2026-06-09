@@ -1,3 +1,6 @@
+import { AppButton } from "@/src/components/app-button";
+import { AppToast, type AppToastType } from "@/src/components/app-toast";
+import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
 import { useMission } from "@/src/context/mission-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -5,9 +8,8 @@ import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import type { ComponentProps } from "react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
-  Alert,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -30,6 +32,23 @@ export default function CheckinScreen() {
   const [energyLevel, setEnergyLevel] = useState(2);
   const [sleepQuality, setSleepQuality] = useState(2);
   const [notes, setNotes] = useState("");
+  const [toast, setToast] = useState<{
+    message: string;
+    type: AppToastType;
+  }>({ message: "", type: "info" });
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showToast = (message: string, type: AppToastType = "info") => {
+    if (toastTimerRef.current) {
+      clearTimeout(toastTimerRef.current);
+    }
+
+    setToast({ message, type });
+
+    toastTimerRef.current = setTimeout(() => {
+      setToast({ message: "", type: "info" });
+    }, 2600);
+  };
 
   const moods: {
     id: "calmo" | "bem" | "instavel" | "ansioso";
@@ -52,10 +71,7 @@ export default function CheckinScreen() {
   const handleSave = async () => {
     if (!selectedMood) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      Alert.alert(
-        "Humor Requerido",
-        "Por favor, selecione seu humor atual antes de salvar.",
-      );
+      showToast("Selecione seu humor atual antes de salvar.", "warning");
       return;
     }
 
@@ -68,7 +84,11 @@ export default function CheckinScreen() {
     });
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    router.replace("/(tabs)");
+    showToast("Check-in salvo. Radar emocional atualizado.", "success");
+
+    setTimeout(() => {
+      router.replace("/(tabs)");
+    }, 700);
   };
 
   return (
@@ -87,39 +107,16 @@ export default function CheckinScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="flex-row justify-between items-center mb-6">
-            <View className="flex-row items-center">
-              <View className="w-10 h-10 rounded-full bg-primary/20 items-center justify-center border border-primary/20 mr-3">
-                <Ionicons name="person-outline" size={20} color="#b9a7ff" />
-              </View>
-              <View>
-                <Text className="font-sans font-bold text-text-high text-sm">
-                  William Ferraz
-                </Text>
-                <Text className="font-mono text-[9px] text-text-muted uppercase tracking-[1px]">
-                  SOL 42 · QUADRANTE BETA
-                </Text>
-              </View>
-            </View>
-            <Pressable
-              onPress={() => router.back()}
-              className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center active:opacity-80"
-            >
-              <Ionicons name="close" size={20} color="#b8bde0" />
-            </Pressable>
-          </View>
-
-          <View className="mb-6">
-            <Text className="font-title text-[32px] font-bold text-text-high leading-tight">
-              Check-in emocional
-            </Text>
-            <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
-              Como você se sente nesta órbita hoje?
-            </Text>
-          </View>
+          <ScreenHeader
+            title="Check-in emocional"
+            subtitle="Como você se sente nesta órbita hoje?"
+            showUser
+            rightIcon="close"
+            onRightPress={() => router.back()}
+          />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high mb-4">
+            <Text className="font-title text-lg font-bold text-text-high mb-4">
               Seu Humor
             </Text>
 
@@ -143,7 +140,7 @@ export default function CheckinScreen() {
                       color={isSelected ? "#b9a7ff" : "#b8bde0"}
                     />
                     <Text
-                      className={`font-sans text-xs mt-1.5 ${isSelected ? "text-primary font-bold" : "text-text-muted"}`}
+                      className={`font-sans text-sm mt-1.5 ${isSelected ? "text-primary font-bold" : "text-text-muted"}`}
                     >
                       {mood.label}
                     </Text>
@@ -169,7 +166,7 @@ export default function CheckinScreen() {
                 className="mr-2.5"
               />
               <Text
-                className={`font-sans text-xs ${selectedMood === "sobrecarregado" ? "text-primary font-bold" : "text-text-muted"}`}
+                className={`font-sans text-sm ${selectedMood === "sobrecarregado" ? "text-primary font-bold" : "text-text-muted"}`}
               >
                 Sobrecarregado
               </Text>
@@ -177,10 +174,10 @@ export default function CheckinScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high">
+            <Text className="font-title text-lg font-bold text-text-high">
               Nível de Estresse
             </Text>
-            <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
+            <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
               Arraste para indicar sua percepção atual.
             </Text>
 
@@ -266,10 +263,10 @@ export default function CheckinScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high">
+            <Text className="font-title text-lg font-bold text-text-high">
               Nível de Energia
             </Text>
-            <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
+            <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
               Como está sua disposição física e mental?
             </Text>
 
@@ -355,10 +352,10 @@ export default function CheckinScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high">
+            <Text className="font-title text-lg font-bold text-text-high">
               Sono e descanso
             </Text>
-            <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
+            <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
               Descansou o suficiente?
             </Text>
 
@@ -392,10 +389,10 @@ export default function CheckinScreen() {
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
-            <Text className="font-title text-base font-bold text-text-high">
+            <Text className="font-title text-lg font-bold text-text-high">
               Quer registrar algo sobre este momento?
             </Text>
-            <Text className="font-sans text-xs text-text-muted mt-0.5 mb-4 leading-relaxed">
+            <Text className="font-sans text-sm text-text-muted mt-0.5 mb-4 leading-relaxed">
               Algum evento específico afetou seu humor?
             </Text>
 
@@ -412,20 +409,15 @@ export default function CheckinScreen() {
           </View>
 
           <View className="mb-6">
-            <Pressable
-              onPress={handleSave}
-              className="w-full h-14 rounded-full bg-primary items-center justify-center active:opacity-90"
-            >
-              <Text className="text-primary-on font-sans font-bold text-base">
-                Salvar check-in
-              </Text>
-            </Pressable>
-            <Text className="font-sans text-[10px] text-text-muted/60 text-center mt-3 leading-relaxed px-4">
+            <AppButton onPress={handleSave}>Salvar check-in</AppButton>
+            <Text className="font-sans text-sm text-text-muted/60 text-center mt-3 leading-relaxed px-4">
               Seus registros ajudam o Estelar a sugerir cuidados mais adequados.
             </Text>
           </View>
         </ScrollView>
       </SafeAreaView>
+
+      <AppToast message={toast.message} type={toast.type} offset={34} />
     </View>
   );
 }

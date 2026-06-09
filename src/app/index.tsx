@@ -101,7 +101,7 @@ export default function SplashScreen() {
             </Text>
           </View>
 
-          <Text className="text-text-muted font-sans text-xs tracking-[1px] mt-4 uppercase">
+          <Text className="text-text-muted font-sans text-sm tracking-[1px] mt-4 uppercase">
             Web Design · 2TWDOA
           </Text>
         </View>

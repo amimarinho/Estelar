@@ -1,19 +1,14 @@
+import { AppButton } from "@/src/components/app-button";
+import { AppToast } from "@/src/components/app-toast";
+import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
+import { useAppToast } from "@/src/hooks/use-app-toast";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import {
-  Alert,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
@@ -26,15 +21,12 @@ export default function ReportScreen() {
   const [reportText, setReportText] = useState("");
   const [priority, setPriority] = useState(1);
   const [attachCheckin, setAttachCheckin] = useState(true);
-  const [reportFeedback, setReportFeedback] = useState("");
+  const { toast, showToast } = useAppToast();
 
   const handleSend = async () => {
     if (reportText.trim().length === 0) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      Alert.alert(
-        "Relato Requerido",
-        "Por favor, descreva como você está se sentindo antes de enviar.",
-      );
+      showToast("Descreva como você está se sentindo antes de enviar.", "warning");
       return;
     }
 
@@ -45,7 +37,7 @@ export default function ReportScreen() {
     });
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    setReportFeedback("Relato transmitido para a equipe da Terra.");
+    showToast("Relato transmitido para a equipe da Terra.", "success");
 
     setTimeout(() => {
       router.replace("/(tabs)/radar");
@@ -54,7 +46,7 @@ export default function ReportScreen() {
 
   const handleSaveDraft = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    setReportFeedback("Rascunho salvo localmente.");
+    showToast("Rascunho salvo localmente.", "success");
   };
 
   return (
@@ -73,22 +65,13 @@ export default function ReportScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="flex-row items-center mb-6">
-            <Pressable
-              onPress={() => router.back()}
-              className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center mr-4 active:opacity-80"
-            >
-              <Ionicons name="arrow-back" size={20} color="#b8bde0" />
-            </Pressable>
-            <View>
-              <Text className="font-title text-2xl font-bold text-text-high leading-tight">
-                Relato emocional
-              </Text>
-              <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
-                Envie um relato à Terra.
-              </Text>
-            </View>
-          </View>
+          <ScreenHeader
+            title="Relato emocional"
+            subtitle="Envie um relato à Terra."
+            leftIcon="arrow-back"
+            onLeftPress={() => router.back()}
+            compact
+          />
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
             <View className="flex-row items-start">
@@ -121,10 +104,10 @@ export default function ReportScreen() {
                 </Svg>
               </View>
               <View className="flex-1">
-                <Text className="font-title text-base font-bold text-text-high">
+                <Text className="font-title text-lg font-bold text-text-high">
                   Canal assíncrono ativo
                 </Text>
-                <Text className="font-sans text-xs text-text-muted mt-1 leading-relaxed">
+                <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
                   Sua mensagem será transmitida para a equipe psicológica. O
                   tempo de resposta pode variar conforme a posição orbital.
                 </Text>
@@ -146,16 +129,16 @@ export default function ReportScreen() {
                 numberOfLines={6}
                 maxLength={2000}
                 style={styles.textArea}
-                className="rounded-[20px] p-4 pb-8 text-text-high text-sm font-sans"
+                className="rounded-[20px] p-4 pb-8 text-text-high text-base font-sans"
               />
-              <Text className="font-mono text-[10px] text-text-muted/50 absolute bottom-3 right-4">
+              <Text className="font-mono text-[12px] text-text-muted/50 absolute bottom-3 right-4">
                 {reportText.length}/2000
               </Text>
             </View>
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6">
-            <Text className="font-title text-base font-bold text-text-high">
+            <Text className="font-title text-lg font-bold text-text-high">
               Prioridade do Relato
             </Text>
 
@@ -193,7 +176,7 @@ export default function ReportScreen() {
               <Text className="font-sans text-sm font-bold text-text-high">
                 Anexar check-in atual
               </Text>
-              <Text className="font-sans text-xs text-text-muted mt-0.5 leading-relaxed">
+              <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
                 Inclui humor, estresse, energia e sono registrados hoje.
               </Text>
             </View>
@@ -215,50 +198,33 @@ export default function ReportScreen() {
               color="#b9a7ff"
               className="mb-3"
             />
-            <Text className="font-mono text-[9px] text-text-muted/60 uppercase tracking-[2px] text-center mb-1">
+            <Text className="font-mono text-[11px] text-text-muted/60 uppercase tracking-[2px] text-center mb-1">
               TEMPO ESTIMADO DE RESPOSTA:
             </Text>
             <Text className="font-mono text-3xl font-bold text-[#b9a7ff] text-center mb-2">
               18 minutos
             </Text>
-            <Text className="font-sans text-[10px] text-text-muted/60 text-center leading-relaxed px-4">
+            <Text className="font-sans text-sm text-text-muted/60 text-center leading-relaxed px-4">
               Atrasos de comunicação fazem parte da experiência em missão.
             </Text>
           </View>
 
-          <View className="space-y-4 mb-6">
-            <Pressable
-              onPress={handleSend}
-              className="w-full h-14 rounded-full bg-primary items-center justify-center active:opacity-90 mb-3"
-            >
-              <Text className="text-primary-on font-sans font-bold text-base">
-                Enviar para suporte
-              </Text>
-            </Pressable>
+          <View className="mb-6 gap-3">
+            <AppButton onPress={handleSend} leftIcon="send-outline">
+              Enviar para suporte
+            </AppButton>
 
-            <Pressable
+            <AppButton
               onPress={handleSaveDraft}
-              className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
+              variant="secondary"
+              leftIcon="document-text-outline"
             >
-              <Text className="text-text-high font-sans font-bold text-base">
-                Salvar como rascunho
-              </Text>
-            </Pressable>
+              Salvar como rascunho
+            </AppButton>
           </View>
         </ScrollView>
       </SafeAreaView>
-      {reportFeedback ? (
-        <View
-          pointerEvents="none"
-          className="absolute inset-0 z-50 items-center justify-center px-8"
-        >
-          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
-            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
-              {reportFeedback}
-            </Text>
-          </View>
-        </View>
-      ) : null}
+      <AppToast message={toast.message} type={toast.type} offset={34} />
     </View>
   );
 }

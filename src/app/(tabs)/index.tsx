@@ -1,10 +1,12 @@
+import { AppButton } from "@/src/components/app-button";
 import { ChromaCard } from "@/src/components/chroma-card";
+import { ScreenHeader } from "@/src/components/screen-header";
 import { StarField } from "@/src/components/space/star-field";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useRef } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
@@ -56,34 +58,23 @@ export default function MissionHomeScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <View className="space-y-1 mb-8">
-            <Text className="font-title text-[32px] font-bold text-text-high leading-tight mt-1">
-              Olá, comandante.
-            </Text>
-            <View className="flex-row items-center mt-1">
-              <Text className="font-sans text-base text-accent-affective font-medium">
-                Dia {lastCheckin ? lastCheckin.sol : 47} da missão
-              </Text>
-              <Text className="font-sans text-base text-text-muted mx-2">
-                •
-              </Text>
-              <Text className="font-sans text-base text-text-high">
-                Órbita terrestre
-              </Text>
-            </View>
-          </View>
+          <ScreenHeader
+            title="Olá, comandante."
+            subtitle={`Dia ${lastCheckin ? lastCheckin.sol : 47} da missão · Órbita terrestre`}
+            showUser
+          />
 
           <View className="bg-surface-card rounded-[28px] p-7 border border-primary/10 mb-6">
-            <Text className="font-mono text-[10px] text-text-muted uppercase tracking-[3px] mb-3 opacity-60">
+            <Text className="font-mono text-[12px] text-text-muted uppercase tracking-[3px] mb-3 opacity-60">
               STATUS EMOCIONAL
             </Text>
             <Text className="font-title text-[24px] font-bold text-text-high mb-4">
               Como você está hoje?
             </Text>
-            <Text className="font-sans text-text-muted text-sm leading-relaxed mb-8">
+            <Text className="font-sans text-text-muted text-base leading-relaxed mb-8">
               {getStatusText()}
             </Text>
-            <Pressable
+            <AppButton
               onPress={() => {
                 if (isNavigating.current) {
                   return;
@@ -95,18 +86,16 @@ export default function MissionHomeScreen() {
                   isNavigating.current = false;
                 }, 1000);
               }}
-              className="w-full h-14 rounded-full bg-primary items-center justify-center active:opacity-90"
-              style={styles.shadowButton}
+              leftIcon="pulse-outline"
+              className="shadow-lg"
             >
-              <Text className="text-primary-on font-sans font-bold text-base">
-                Fazer check-in
-              </Text>
-            </Pressable>
+              Fazer check-in
+            </AppButton>
           </View>
 
           <View className="flex-row gap-4 mb-6">
             <View className="flex-1 bg-surface-card rounded-[24px] p-5 border border-primary/10 items-center justify-between">
-              <Text className="font-mono text-[9px] text-text-muted uppercase tracking-[2px] mb-4 opacity-60">
+              <Text className="font-mono text-[11px] text-text-muted uppercase tracking-[2px] mb-4 opacity-60">
                 MINHA TERRINHA
               </Text>
               <View className="items-center">
@@ -117,19 +106,19 @@ export default function MissionHomeScreen() {
                   14:32
                 </Text>
               </View>
-              <Text className="font-sans text-[11px] text-text-muted">
+              <Text className="font-sans text-sm text-text-muted">
                 Quarta-feira
               </Text>
             </View>
 
             <View className="flex-1 bg-surface-card rounded-[24px] p-5 border border-primary/10 items-center justify-between">
-              <Text className="font-mono text-[9px] text-text-muted uppercase tracking-[2px] mb-4 opacity-60">
+              <Text className="font-mono text-[11px] text-text-muted uppercase tracking-[2px] mb-4 opacity-60">
                 CICLO
               </Text>
               <Text className="font-title text-[18px] font-bold text-text-high leading-tight text-center mb-6 mt-4">
                 Missão em andamento
               </Text>
-              <Text className="font-sans text-[11px] text-text-muted mt-auto">
+              <Text className="font-sans text-sm text-text-muted mt-auto">
                 Dia {lastCheckin ? lastCheckin.sol : 47} da jornada
               </Text>
             </View>
@@ -145,13 +134,13 @@ export default function MissionHomeScreen() {
               </Svg>
             </View>
             <View className="flex-1 flex-col">
-              <Text className="font-mono text-[10px] text-text-muted uppercase tracking-[2px] opacity-60">
+              <Text className="font-mono text-[12px] text-text-muted uppercase tracking-[2px] opacity-60">
                 SUGESTÃO PARA AGORA
               </Text>
-              <Text className="font-title text-base font-bold text-text-high mt-1">
+              <Text className="font-title text-lg font-bold text-text-high mt-1">
                 Respiração orbital • 3 min
               </Text>
-              <Text className="font-sans text-xs text-text-muted leading-relaxed mt-1">
+              <Text className="font-sans text-sm text-text-muted leading-relaxed mt-1">
                 Uma pausa curta pode ajudar a reduzir a tensão antes da próxima
                 tarefa.
               </Text>
