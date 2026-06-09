@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AppButton } from "@/src/components/app-button";
 import { AppToast } from "@/src/components/app-toast";
 import { ScreenHeader } from "@/src/components/screen-header";
@@ -13,12 +13,36 @@ import { Image } from "expo-image";
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
 import { TAB_BAR_CONTENT_PADDING_BOTTOM } from "../../constants/layout";
+import { getSaoPauloClockState } from "@/src/utils/sao-paulo-time";
+
+const SAO_PAULO_IMAGES = {
+  day: require("@/src/assets/images/saopaulo_dia.png"),
+  night: require("@/src/assets/images/saopaulo_noite.png"),
+};
 
 export default function EarthScreen() {
   const router = useRouter();
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [clockDate, setClockDate] = useState(() => new Date());
   const { toast, showToast } = useAppToast(3000);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setClockDate(new Date());
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const saoPauloClock = useMemo(
+    () => getSaoPauloClockState(clockDate),
+    [clockDate],
+  );
+
+  const saoPauloImage = saoPauloClock.isDaytime
+    ? SAO_PAULO_IMAGES.day
+    : SAO_PAULO_IMAGES.night;
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -108,7 +132,7 @@ export default function EarthScreen() {
                   className="mr-2.5"
                 />
                 <Text className="font-mono text-sm text-text-high">
-                  14:32 · Quarta-feira
+                  {saoPauloClock.time} · {saoPauloClock.weekday}
                 </Text>
               </View>
             </View>
@@ -119,7 +143,7 @@ export default function EarthScreen() {
             </Text>
 
             <Image
-              source={require("@/src/assets/images/saopaulo_skyline.png")}
+              source={saoPauloImage}
               style={styles.skylineImage}
               contentFit="cover"
               className="rounded-[20px] mt-6 border border-white/5"
