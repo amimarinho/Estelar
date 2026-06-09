@@ -6,7 +6,6 @@ import {
   Pressable,
   StyleSheet,
   Alert,
-  type ColorValue,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -24,9 +23,9 @@ import Animated, {
   FadeIn,
 } from "react-native-reanimated";
 import { ChromaButton } from "@/src/components/chroma-button";
+import { EnergyOrb } from "@/src/components";
 
 type Phase = "inspire" | "segure" | "expire" | "descanse";
-type GradientColors = readonly [ColorValue, ColorValue, ...ColorValue[]];
 
 export default function GuidedBreathingScreen() {
   const router = useRouter();
@@ -38,13 +37,9 @@ export default function GuidedBreathingScreen() {
   const [phaseTimeLeft, setPhaseTimeLeft] = useState(4);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const [, setOrbSpeed] = useState(0.4);
+  const [orbSpeed, setOrbSpeed] = useState(0.4);
   const [orbIntensity, setOrbIntensity] = useState(0.85);
-  const [orbColors, setOrbColors] = useState<GradientColors>([
-    "#b9a7ff",
-    "#5c67f2",
-    "#ff8a70",
-  ]);
+  const [orbColors, setOrbColors] = useState(["#b9a7ff", "#5c67f2", "#ff8a70"]);
 
   const totalElapsedRef = useRef(0);
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -85,7 +80,7 @@ export default function GuidedBreathingScreen() {
 
   const animatedOrbStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: scaleVal.value * glowVal.value }],
+      transform: [{ scale: scaleVal.value }],
     };
   });
 
@@ -261,19 +256,13 @@ export default function GuidedBreathingScreen() {
                 style={[animatedOrbStyle]}
                 className="absolute inset-0 items-center justify-center"
               >
-                <LinearGradient
+                <EnergyOrb
+                  width={240}
+                  height={240}
+                  speed={orbSpeed}
+                  intensity={orbIntensity}
                   colors={orbColors}
-                  start={{ x: 0.2, y: 0.2 }}
-                  end={{ x: 0.8, y: 0.8 }}
-                  style={{
-                    width: 240,
-                    height: 240,
-                    borderRadius: 120,
-                    opacity: orbIntensity,
-                    shadowColor: "#fff",
-                    shadowRadius: 30,
-                    shadowOpacity: 0.35,
-                  }}
+                  glowRadius={0.4}
                 />
               </Animated.View>
               <View className="absolute z-10 items-center justify-center">
