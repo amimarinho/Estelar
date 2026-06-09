@@ -1,12 +1,5 @@
-import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import React, { useState } from "react";
+import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { StarField } from "@/src/components/space/star-field";
@@ -17,6 +10,16 @@ import { useRouter } from "expo-router";
 
 export default function HeartScreen() {
   const router = useRouter();
+
+  const [careFeedback, setCareFeedback] = useState("");
+
+  const showCareFeedback = (message: string) => {
+    setCareFeedback(message);
+
+    setTimeout(() => {
+      setCareFeedback("");
+    }, 2600);
+  };
 
   const handleStartProtocol = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -195,10 +198,7 @@ export default function HeartScreen() {
                   Haptics.notificationAsync(
                     Haptics.NotificationFeedbackType.Success,
                   );
-                  Alert.alert(
-                    "Sons Calmantes",
-                    "Reproduzindo ondas alfa para indução de relaxamento.",
-                  );
+                  showCareFeedback("Ondas alfa ativadas para relaxamento.");
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-feedback-success/15 active:border-feedback-success/25 mb-4"
               >
@@ -240,9 +240,8 @@ export default function HeartScreen() {
                   Haptics.notificationAsync(
                     Haptics.NotificationFeedbackType.Success,
                   );
-                  Alert.alert(
-                    "Pulso Coletivo",
-                    "Carregando métricas agregadas de bem-estar da tripulação.",
+                  showCareFeedback(
+                    "Pulso coletivo sincronizado com a tripulação.",
                   );
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-feedback-warning/15 active:border-feedback-warning/25 mb-4"
@@ -288,6 +287,18 @@ export default function HeartScreen() {
           </View>
         </ScrollView>
       </SafeAreaView>
+      {careFeedback ? (
+        <View
+          pointerEvents="none"
+          className="absolute inset-0 z-50 items-center justify-center px-8"
+        >
+          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
+            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
+              {careFeedback}
+            </Text>
+          </View>
+        </View>
+      ) : null}
     </View>
   );
 }

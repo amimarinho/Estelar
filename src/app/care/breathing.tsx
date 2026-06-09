@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -36,6 +29,7 @@ export default function GuidedBreathingScreen() {
   const [currentPhase, setCurrentPhase] = useState<Phase>("inspire");
   const [phaseTimeLeft, setPhaseTimeLeft] = useState(4);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [ambientFeedback, setAmbientFeedback] = useState("");
 
   const [orbSpeed, setOrbSpeed] = useState(0.4);
   const [orbIntensity, setOrbIntensity] = useState(0.85);
@@ -201,6 +195,14 @@ export default function GuidedBreathingScreen() {
     const m = Math.floor(secs / 60);
     const s = secs % 60;
     return `${m}:${s < 10 ? "0" : ""}${s}`;
+  };
+
+  const showAmbientFeedback = () => {
+    setAmbientFeedback("Sons calmantes preparados para esta pausa.");
+
+    setTimeout(() => {
+      setAmbientFeedback("");
+    }, 2600);
   };
 
   return (
@@ -398,10 +400,7 @@ export default function GuidedBreathingScreen() {
             <Pressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                Alert.alert(
-                  "Sons Calmantes",
-                  "Iniciando tocador de frequências calmantes e ruído rosa...",
-                );
+                showAmbientFeedback();
               }}
               className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35"
             >
@@ -417,6 +416,19 @@ export default function GuidedBreathingScreen() {
           </View>
         </ScrollView>
       </SafeAreaView>
+
+      {ambientFeedback ? (
+        <View
+          pointerEvents="none"
+          className="absolute inset-0 z-50 items-center justify-center px-8"
+        >
+          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
+            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
+              {ambientFeedback}
+            </Text>
+          </View>
+        </View>
+      ) : null}
 
       {showSuccessModal && (
         <View

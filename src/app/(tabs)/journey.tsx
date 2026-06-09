@@ -4,15 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import React from "react";
-import {
-  Alert,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import React, { useState } from "react";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Circle, Line } from "react-native-svg";
 
@@ -20,8 +13,20 @@ export default function SuggestionsScreen() {
   const router = useRouter();
   const { checkins } = useMission();
 
+  const [diaryFeedback, setDiaryFeedback] = useState("");
+
+  const showDiaryFeedback = () => {
+    setDiaryFeedback(
+      "Diário estará disponível em uma próxima versão.",
+    );
+
+    setTimeout(() => {
+      setDiaryFeedback("");
+    }, 2600);
+  };
+
   const lastCheckin =
-  checkins.length > 0 ? checkins[checkins.length - 1] : null;
+    checkins.length > 0 ? checkins[checkins.length - 1] : null;
 
   const missionDay = lastCheckin ? lastCheckin.sol : 47;
 
@@ -32,10 +37,7 @@ export default function SuggestionsScreen() {
 
   const handleOpenDiary = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    Alert.alert(
-      "Diário de Bordo",
-      "Carregando histórico completo dos seus registros emocionais da missão...",
-    );
+    showDiaryFeedback();
   };
 
   const lastSeven = checkins.slice(-7);
@@ -344,6 +346,18 @@ export default function SuggestionsScreen() {
           </View>
         </ScrollView>
       </SafeAreaView>
+      {diaryFeedback ? (
+        <View
+          pointerEvents="none"
+          className="absolute inset-0 z-50 items-center justify-center px-8"
+        >
+          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
+            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
+              {diaryFeedback}
+            </Text>
+          </View>
+        </View>
+      ) : null}
     </View>
   );
 }

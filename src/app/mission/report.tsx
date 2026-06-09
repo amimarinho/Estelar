@@ -26,6 +26,7 @@ export default function ReportScreen() {
   const [reportText, setReportText] = useState("");
   const [priority, setPriority] = useState(1);
   const [attachCheckin, setAttachCheckin] = useState(true);
+  const [reportFeedback, setReportFeedback] = useState("");
 
   const handleSend = async () => {
     if (reportText.trim().length === 0) {
@@ -44,23 +45,16 @@ export default function ReportScreen() {
     });
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    Alert.alert(
-      "Relato Enviado",
-      "Seu relato emocional foi transmitido com sucesso para a equipe médica na Terra.",
-      [
-        {
-          text: "OK",
-          onPress: () => {
-            router.replace("/(tabs)/radar");
-          },
-        },
-      ],
-    );
+    setReportFeedback("Relato transmitido para a equipe da Terra.");
+
+    setTimeout(() => {
+      router.replace("/(tabs)/radar");
+    }, 900);
   };
 
   const handleSaveDraft = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    Alert.alert("Rascunho Salvo", "Seu relato foi salvo como rascunho local.");
+    setReportFeedback("Rascunho salvo localmente.");
   };
 
   return (
@@ -253,6 +247,18 @@ export default function ReportScreen() {
           </View>
         </ScrollView>
       </SafeAreaView>
+      {reportFeedback ? (
+        <View
+          pointerEvents="none"
+          className="absolute inset-0 z-50 items-center justify-center px-8"
+        >
+          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
+            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
+              {reportFeedback}
+            </Text>
+          </View>
+        </View>
+      ) : null}
     </View>
   );
 }

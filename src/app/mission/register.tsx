@@ -55,6 +55,8 @@ export default function RegisterScreen() {
   const [intensity, setIntensity] = useState<IntensityType>("moderada");
   const [addToConstellation, setAddToConstellation] = useState(true);
 
+  const [saveFeedback, setSaveFeedback] = useState("");
+
   const handleSave = async (forceConstellation: boolean) => {
     if (text.trim().length === 0) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
@@ -74,20 +76,15 @@ export default function RegisterScreen() {
     });
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    Alert.alert(
-      "Registro Salvo",
+    setSaveFeedback(
       forceConstellation
-        ? "Seu registro emocional foi adicionado à sua constelação com sucesso!"
-        : "Seu registro foi guardado apenas no seu diário de bordo local.",
-      [
-        {
-          text: "OK",
-          onPress: () => {
-            router.replace("/(tabs)/journey");
-          },
-        },
-      ],
+        ? "Registro adicionado à sua constelação."
+        : "Registro salvo apenas no diário.",
     );
+
+    setTimeout(() => {
+      router.replace("/(tabs)/journey");
+    }, 900);
   };
 
   return (
@@ -292,6 +289,18 @@ export default function RegisterScreen() {
           </View>
         </ScrollView>
       </SafeAreaView>
+      {saveFeedback ? (
+        <View
+          pointerEvents="none"
+          className="absolute inset-0 z-50 items-center justify-center px-8"
+        >
+          <View className="rounded-[24px] bg-primary px-5 py-4 border border-primary/20">
+            <Text className="font-sans text-sm font-semibold text-text-high text-center leading-relaxed">
+              {saveFeedback}
+            </Text>
+          </View>
+        </View>
+      ) : null}
     </View>
   );
 }
