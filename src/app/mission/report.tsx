@@ -23,6 +23,17 @@ export default function ReportScreen() {
   const [attachCheckin, setAttachCheckin] = useState(true);
   const { toast, showToast } = useAppToast();
 
+  const handleBack = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+
+    router.replace("/(tabs)/radar");
+  };
+
   const handleSend = async () => {
     if (reportText.trim().length === 0) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
@@ -64,7 +75,7 @@ export default function ReportScreen() {
           title="Relato emocional"
           subtitle="Envie um relato à Terra."
           leftIcon="arrow-back"
-          onLeftPress={() => router.replace("/(tabs)/radar")}
+          onLeftPress={handleBack}
           compact
         />
 

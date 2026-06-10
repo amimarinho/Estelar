@@ -152,6 +152,34 @@ export default function CapsuleScreen() {
     );
   };
 
+  const closeOpenedCapsule = () => {
+    setIsOpened(false);
+    setIsPlaying(false);
+    setAudioProgress(0);
+    revealVal.value = 0;
+  };
+
+  const handleCloseOpenedCapsule = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    closeOpenedCapsule();
+  };
+
+  const handleBack = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+    if (isOpened) {
+      closeOpenedCapsule();
+      return;
+    }
+
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+
+    router.replace("/(tabs)/earth");
+  };
+
   const formatAudioTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
@@ -178,7 +206,7 @@ export default function CapsuleScreen() {
         >
           <View className="flex-row items-center mb-6">
             <Pressable
-              onPress={() => router.replace("/(tabs)/earth")}
+              onPress={handleBack}
               className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center mr-4 active:opacity-80"
             >
               <Ionicons name="arrow-back" size={20} color="#b8bde0" />
@@ -205,7 +233,6 @@ export default function CapsuleScreen() {
                     "rgba(92, 103, 242, 0.05)",
                   ]}
                   style={styles.capsuleGlow}
-                  className="rounded-full items-center justify-center border-2 border-primary/30"
                 >
                   <View className="w-40 h-40 rounded-full bg-surface-card border border-primary/20 items-center justify-center shadow-lg">
                     <Ionicons
@@ -364,14 +391,11 @@ export default function CapsuleScreen() {
 
               <View className="space-y-4">
                 <Pressable
-                  onPress={() => {
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                    router.replace("/(tabs)/earth");
-                  }}
+                  onPress={handleCloseOpenedCapsule}
                   className="w-full h-14 rounded-full bg-transparent border border-stroke-soft items-center justify-center active:bg-surface/35 mb-4"
                 >
                   <Text className="text-text-high font-sans font-bold text-base">
-                    Voltar para Conexão
+                    Voltar para cápsula
                   </Text>
                 </Pressable>
 
@@ -410,6 +434,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 112,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 2,
+    borderColor: "rgba(185, 167, 255, 0.3)",
   },
   polaroidImage: {
     width: "100%",

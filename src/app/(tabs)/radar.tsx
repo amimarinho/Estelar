@@ -7,7 +7,7 @@ import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Circle } from "react-native-svg";
 
@@ -333,18 +333,18 @@ export default function RadarScreen() {
               </View>
             </View>
 
-            <Pressable
+            <AppButton
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push("/care/breathing");
               }}
-              className="w-full h-12 rounded-full bg-feedback-warning items-center justify-center flex-row active:opacity-90 mt-5"
+              variant="primary"
+              size="md"
+              rightIcon="arrow-forward"
+              className="mt-5"
             >
-              <Text className="text-surface font-sans font-bold text-sm mr-2">
-                INICIAR PAUSA GUIADA
-              </Text>
-              <Ionicons name="arrow-forward" size={16} color="#0a1030" />
-            </Pressable>
+              Iniciar pausa guiada
+            </AppButton>
           </View>
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">

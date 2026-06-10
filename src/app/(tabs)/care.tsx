@@ -18,8 +18,8 @@ export default function HeartScreen() {
 
   const { toast, showToast } = useAppToast();
 
-  const showCareFeedback = (message: string) => {
-    showToast(message, "success");
+  const showUpcomingFeature = (message: string) => {
+    showToast(message, "info");
   };
 
   const handleStartProtocol = () => {
@@ -182,10 +182,9 @@ export default function HeartScreen() {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  Haptics.notificationAsync(
-                    Haptics.NotificationFeedbackType.Success,
+                  showUpcomingFeature(
+                    "Sons calmantes estarão disponíveis em outra versão do app.",
                   );
-                  showCareFeedback("Ondas alfa ativadas para relaxamento.");
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-feedback-success/15 active:border-feedback-success/25 mb-4"
               >
@@ -224,11 +223,8 @@ export default function HeartScreen() {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  Haptics.notificationAsync(
-                    Haptics.NotificationFeedbackType.Success,
-                  );
-                  showCareFeedback(
-                    "Pulso coletivo sincronizado com a tripulação.",
+                  showUpcomingFeature(
+                    "Pulso coletivo estará disponível em outra versão do app.",
                   );
                 }}
                 className="bg-surface-card rounded-[24px] p-5 border border-primary/5 flex-row items-center active:bg-feedback-warning/15 active:border-feedback-warning/25 mb-4"
@@ -274,7 +270,7 @@ export default function HeartScreen() {
           </View>
         </ScrollView>
       </SafeAreaView>
-      <AppToast message={toast.message} type={toast.type} offset={34} />
+      <AppToast message={toast.message} type={toast.type} />
     </View>
   );
 }

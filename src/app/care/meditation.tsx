@@ -3,7 +3,6 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import Animated, {
   useSharedValue,
@@ -20,6 +19,7 @@ import Animated, {
 import { BlurView } from "expo-blur";
 import { StarField } from "@/src/components/space/star-field";
 import { ChromaButton } from "@/src/components/chroma-button";
+import { ScreenHeader } from "@/src/components/screen-header";
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
@@ -196,6 +196,24 @@ export default function MeditationScreen() {
     setIsActive(!isActive);
   };
 
+  const handleBack = useCallback(() => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setIsActive(false);
+
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+
+    router.replace("/(tabs)/care");
+  }, [router]);
+
+
   const formatTimer = (seconds: number) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
@@ -240,25 +258,15 @@ export default function MeditationScreen() {
       <StarField />
 
       <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
-        <View className="absolute top-6 left-6 z-20">
-          <Pressable
-            onPress={() => router.replace("/(tabs)/care")}
-            className="w-10 h-10 rounded-full bg-surface-card border border-stroke-soft items-center justify-center active:opacity-80"
-          >
-            <Ionicons name="arrow-back" size={20} color="#b8bde0" />
-          </Pressable>
-        </View>
+        <ScreenHeader
+          title="Meditação curta"
+          subtitle="Pausa mental para reestabelecer o foco e reduzir a ansiedade."
+          leftIcon="arrow-back"
+          onLeftPress={handleBack}
+          compact
+        />
 
         <View className="flex-1 items-center justify-center px-8">
-          <View className="items-center mb-8">
-            <Text className="font-title text-3xl font-bold text-text-high text-center leading-tight">
-              Meditação curta
-            </Text>
-            <Text className="font-sans text-sm text-text-muted mt-1.5 text-center leading-relaxed px-4">
-              Pausa mental para reestabelecer o foco e reduzir a ansiedade.
-            </Text>
-          </View>
-
           <View className="w-56 h-56 items-center justify-center relative mb-8">
             <Animated.View
               style={[styles.zenRing, animatedZenStyle]}
