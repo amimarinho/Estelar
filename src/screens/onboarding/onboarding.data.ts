@@ -1,44 +1,43 @@
-import { Ionicons } from "@expo/vector-icons";
-
-export interface CarouselItem {
+export type CarouselItem = {
   id: string;
-  eyebrow: string;
   title: string;
   description: string;
   color: string;
-  glow: string;
-  icon: keyof typeof Ionicons.glyphMap;
-}
+  image: any;
+};
 
 export const CAROUSEL_DATA: CarouselItem[] = [
   {
     id: "1",
-    eyebrow: "Monitoramento contínuo",
     title: "Acompanhe sua missão",
-    description:
-      "Registre humor, energia, sono e sinais de sobrecarga ao longo dos dias.",
-    color: "#8FE3B0",
-    glow: "rgba(143, 227, 176, 0.22)",
-    icon: "stats-chart-outline",
+    description: "Registre humor, energia, sono e sinais de sobrecarga.",
+
+    color: "#8fe3b0",
+
+    image: require("@/src/assets/images/onboarding/mission.png"),
   },
+
   {
     id: "2",
-    eyebrow: "Cuidado imediato",
+
     title: "Cuide-se no momento certo",
-    description:
-      "Acesse pausas guiadas, respiração, meditação e sons calmantes.",
-    color: "#FF8A70",
-    glow: "rgba(255, 138, 112, 0.22)",
-    icon: "leaf-outline",
+
+    description: "Respiração guiada e suporte imediato.",
+
+    color: "#ff8a70",
+
+    image: require("@/src/assets/images/onboarding/breathing.png"),
   },
+
   {
     id: "3",
-    eyebrow: "Vínculo com casa",
+
     title: "Sinta a Terra mais perto",
-    description:
-      "Receba mensagens, fotos, áudios e lembretes afetivos da sua cidade de origem.",
-    color: "#FFD66B",
-    glow: "rgba(255, 214, 107, 0.22)",
-    icon: "earth-outline",
+
+    description: "Conexão emocional durante a missão.",
+
+    color: "#ffd66b",
+
+    image: require("@/src/assets/images/onboarding/journey.png"),
   },
 ];

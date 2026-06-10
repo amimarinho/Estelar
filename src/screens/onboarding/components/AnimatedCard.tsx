@@ -1,5 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
+import { Image } from "react-native";
 
 import Animated, {
   Extrapolation,
@@ -34,41 +35,43 @@ export function AnimatedCard({
   const wrapperAnimatedStyle = useAnimatedStyle(() => {
     const center = index * snapInterval;
     const distance = Math.abs(scrollX.value - center);
-    const isNearCenter = distance < snapInterval / 2;
 
     return {
-      zIndex: isNearCenter ? 100 : 1,
-      elevation: isNearCenter ? 100 : 1,
+      zIndex: distance < snapInterval / 2 ? 100 : 1,
+      elevation: distance < snapInterval / 2 ? 100 : 1,
     };
   });
 
   const cardAnimatedStyle = useAnimatedStyle(() => {
     const center = index * snapInterval;
 
-    const scale = interpolate(
-      scrollX.value,
-      [center - snapInterval, center, center + snapInterval],
-      [0.72, 1.24, 0.72],
-      Extrapolation.CLAMP,
-    );
-
-    const opacity = interpolate(
-      scrollX.value,
-      [center - snapInterval, center, center + snapInterval],
-      [0.82, 1, 0.82],
-      Extrapolation.CLAMP,
-    );
-
-    const translateY = interpolate(
-      scrollX.value,
-      [center - snapInterval, center, center + snapInterval],
-      [18, 0, 18],
-      Extrapolation.CLAMP,
-    );
-
     return {
-      opacity,
-      transform: [{ scale }, { translateY }],
+      opacity: interpolate(
+        scrollX.value,
+        [center - snapInterval, center, center + snapInterval],
+        [0.82, 1, 0.82],
+        Extrapolation.CLAMP,
+      ),
+
+      transform: [
+        {
+          scale: interpolate(
+            scrollX.value,
+            [center - snapInterval, center, center + snapInterval],
+            [0.72, 1.24, 0.72],
+            Extrapolation.CLAMP,
+          ),
+        },
+
+        {
+          translateY: interpolate(
+            scrollX.value,
+            [center - snapInterval, center, center + snapInterval],
+            [18, 0, 18],
+            Extrapolation.CLAMP,
+          ),
+        },
+      ],
     };
   });
 
@@ -80,10 +83,6 @@ export function AnimatedCard({
           height: cardHeight * 1.42,
           alignItems: "center",
           justifyContent: "center",
-          overflow: "visible",
-          position: "relative",
-          zIndex: isActive ? 100 : 1,
-          elevation: isActive ? 100 : 1,
         },
         wrapperAnimatedStyle,
       ]}
@@ -94,15 +93,21 @@ export function AnimatedCard({
           {
             width: cardWidth,
             height: cardHeight,
-            backgroundColor: item.color,
-            zIndex: isActive ? 100 : 1,
-            elevation: isActive ? 100 : 1,
           },
           cardAnimatedStyle,
         ]}
         className="rounded-[28px] overflow-hidden"
       >
-        <LinearGradient colors={[item.color, item.color]} style={{ flex: 1 }} />
+        <LinearGradient colors={[item.color, item.color]} style={{ flex: 1 }}>
+          <Image
+            source={item.image}
+            resizeMode="cover"
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </LinearGradient>
       </Animated.View>
     </Animated.View>
   );
