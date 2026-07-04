@@ -448,19 +448,19 @@ A equipe responsável pelo desenvolvimento da plataforma Estelar para a Global S
 ## 🌌 Central da Missão
 <p align="center">
   <a href="https://github.com/amimarinho/Estelar">
-    <img src="https://img.shields.io/badge/🚀_Repositório_GitHub-181717?style=flat-rounded" />
+    <img src="https://img.shields.io/badge/🚀_Repositório_GitHub-181717?style=flat" />
   </a>
 
   <a href="https://www.figma.com/proto/iE0wnaC0eO3JqJgl6DSydU/Global-Solutions---Space-Connect--Estelar-?node-id=0-1&t=9sUhh4MdbBplChc6-1">
-    <img src="https://img.shields.io/badge/🎨_Protótipo_Estelar-8F7CFF?style=flat-rounded" />
+    <img src="https://img.shields.io/badge/🎨_Protótipo_Estelar-8F7CFF?style=flat" />
   </a>
 
   <a href="#">
-    <img src="https://img.shields.io/badge/🎬_Vídeo_Pitch-FF0000?style=flat-rounded" />
+    <img src="https://img.shields.io/badge/🎬_Vídeo_Pitch-FF0000?style=flat" />
   </a>
 
   <a href="#">
-    <img src="https://img.shields.io/badge/📄_Documentação_Final-B9A7FF?style=flat-rounded" />
+    <img src="https://img.shields.io/badge/📄_Documentação_Final-B9A7FF?style=flat" />
   </a>
 </p>
 
