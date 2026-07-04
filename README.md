@@ -158,15 +158,15 @@ Cada interação contribui para a construção de uma constelação única, repr
 
 ## ⚒️ Tecnologias utilizadas
 
-![React Native](https://img.shields.io/badge/React%20Native-20232A?style=flat-rounded&logo=react&logoColor=61DAFB)  
-![React Native Skia](https://img.shields.io/badge/React%20Native%20Skia-61DAFB?style=flat-rounded&logo=react&logoColor=20232A)  
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-rounded&logo=typescript&logoColor=white)  
-![Expo](https://img.shields.io/badge/Expo-000020?style=flat-rounded&logo=expo&logoColor=white)  
-![Expo Router](https://img.shields.io/badge/Expo%20Router-000020?style=flat-rounded&logo=expo&logoColor=white)  
-![Expo Vector Icons](https://img.shields.io/badge/Expo%20Vector%20Icons-000020?style=flat-rounded&logo=expo&logoColor=white)  
-![Expo Google Fonts](https://img.shields.io/badge/Expo%20Google%20Fonts-4285F4?style=flat-rounded&logo=googlefonts&logoColor=white)  
-![AsyncStorage](https://img.shields.io/badge/AsyncStorage-FFCA28?style=flat-rounded&logo=react&logoColor=black)  
-![NativeWind](https://img.shields.io/badge/NativeWind-38BDF8?style=flat-rounded&logo=tailwindcss&logoColor=white)  
+![React Native](https://img.shields.io/badge/React%20Native-20232A?style=flat&logo=react&logoColor=61DAFB)
+![React Native Skia](https://img.shields.io/badge/React%20Native%20Skia-61DAFB?style=flat&logo=react&logoColor=20232A)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Expo](https://img.shields.io/badge/Expo-000020?style=flat&logo=expo&logoColor=white)
+![Expo Router](https://img.shields.io/badge/Expo%20Router-000020?style=flat&logo=expo&logoColor=white)
+![Expo Vector Icons](https://img.shields.io/badge/Expo%20Vector%20Icons-000020?style=flat&logo=expo&logoColor=white)
+![Expo Google Fonts](https://img.shields.io/badge/Expo%20Google%20Fonts-4285F4?style=flat&logo=googlefonts&logoColor=white)
+![AsyncStorage](https://img.shields.io/badge/AsyncStorage-FFCA28?style=flat&logo=react&logoColor=black)
+![NativeWind](https://img.shields.io/badge/NativeWind-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
 
 ---
 
