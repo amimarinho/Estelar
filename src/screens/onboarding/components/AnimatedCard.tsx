@@ -14,7 +14,6 @@ import { CarouselItem } from "../onboarding.data";
 type AnimatedCardProps = {
   item: CarouselItem;
   index: number;
-  activeIndex: number;
   scrollX: SharedValue<number>;
   snapInterval: number;
   cardWidth: number;
@@ -24,14 +23,11 @@ type AnimatedCardProps = {
 export function AnimatedCard({
   item,
   index,
-  activeIndex,
   scrollX,
   snapInterval,
   cardWidth,
   cardHeight,
 }: AnimatedCardProps) {
-  const isActive = activeIndex === index;
-
   const wrapperAnimatedStyle = useAnimatedStyle(() => {
     const center = index * snapInterval;
     const distance = Math.abs(scrollX.value - center);

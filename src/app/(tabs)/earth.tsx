@@ -78,10 +78,9 @@ export default function EarthScreen() {
     router.push("/care/capsule");
   };
 
-  const handleSendResponse = () => {
+  const handleSimulateResponse = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    showToast("Resposta enviada para a fila de transmissão.", "success");
+    showToast("Resposta simulada. Nenhuma mensagem foi enviada.", "info");
   };
 
   return (
@@ -152,7 +151,7 @@ export default function EarthScreen() {
 
           <View className="mb-8">
             <Text className="font-title text-2xl font-bold text-text-high mb-4">
-              Mensagens recentes
+              Mensagens simuladas
             </Text>
 
             <View className="space-y-4">
@@ -175,12 +174,18 @@ export default function EarthScreen() {
                     className={`font-mono text-[12px] uppercase tracking-[1px] mt-1.5 ${isPlayingAudio ? "text-primary font-bold" : "text-text-muted/65"}`}
                   >
                     {isPlayingAudio
-                      ? `TOCANDO • ${formatTime(audioProgress)} / 00:42`
-                      : "ÁUDIO • 00:42"}
+                      ? `SIMULAÇÃO • ${formatTime(audioProgress)} / 00:42`
+                      : "ÁUDIO SIMULADO • 00:42"}
                   </Text>
                 </View>
                 <Pressable
                   onPress={handlePlayAudio}
+                  accessibilityRole="button"
+                  accessibilityLabel={
+                    isPlayingAudio
+                      ? "Pausar simulação de áudio"
+                      : "Simular reprodução de áudio"
+                  }
                   className="active:opacity-80"
                 >
                   <Ionicons
@@ -197,13 +202,13 @@ export default function EarthScreen() {
                 </View>
                 <View className="flex-1">
                   <Text className="font-title text-lg font-bold text-text-high">
-                    Foto recebida
+                    Exemplo de foto
                   </Text>
                   <Text className="font-sans text-sm text-text-muted mt-0.5">
                     Praça perto de casa
                   </Text>
                   <Text className="font-mono text-[12px] text-text-muted/65 uppercase tracking-[1px] mt-1.5">
-                    ENVIADA HÁ 2 DIAS
+                    EXEMPLO · HÁ 2 DIAS
                   </Text>
                 </View>
               </View>
@@ -227,10 +232,10 @@ export default function EarthScreen() {
                     Cápsula emocional
                   </Text>
                   <Text className="font-sans text-sm text-text-muted mt-0.5">
-                    Mensagem programada para uma data importante
+                    Exemplo de mensagem para uma data importante
                   </Text>
                   <Text className="font-mono text-[12px] text-feedback-warning font-bold uppercase tracking-[1px] mt-1.5">
-                    ABRIR EM: 3 DIAS
+                    DATA SIMULADA · EM 3 DIAS
                   </Text>
                 </View>
               </Pressable>
@@ -277,11 +282,11 @@ export default function EarthScreen() {
             </AppButton>
 
             <AppButton
-              onPress={handleSendResponse}
+              onPress={handleSimulateResponse}
               variant="secondary"
               leftIcon="send-outline"
             >
-              Enviar resposta para casa
+              Simular resposta para casa
             </AppButton>
           </View>
         </ScrollView>

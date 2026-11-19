@@ -34,10 +34,10 @@ export default function ReportScreen() {
     router.replace("/(tabs)/radar");
   };
 
-  const handleSend = async () => {
+  const handleSave = async () => {
     if (reportText.trim().length === 0) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      showToast("Descreva como você está se sentindo antes de enviar.", "warning");
+      showToast("Descreva como você está se sentindo antes de salvar.", "warning");
       return;
     }
 
@@ -48,16 +48,16 @@ export default function ReportScreen() {
     });
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    showToast("Relato transmitido para a equipe da Terra.", "success");
+    showToast("Relato salvo neste dispositivo.", "success");
 
     setTimeout(() => {
       router.replace("/(tabs)/radar");
     }, 900);
   };
 
-  const handleSaveDraft = () => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    showToast("Rascunho salvo localmente.", "success");
+  const handleSimulateDraft = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    showToast("Use Salvar relato para guardar o texto no dispositivo.", "info");
   };
 
   return (
@@ -73,7 +73,7 @@ export default function ReportScreen() {
       <SafeAreaView className="flex-1 z-10" edges={["top", "bottom"]}>
         <ScreenHeader
           title="Relato emocional"
-          subtitle="Envie um relato à Terra."
+          subtitle="Registre como você está se sentindo."
           leftIcon="arrow-back"
           onLeftPress={handleBack}
           compact
@@ -117,11 +117,11 @@ export default function ReportScreen() {
               </View>
               <View className="flex-1">
                 <Text className="font-title text-lg font-bold text-text-high">
-                  Canal assíncrono ativo
+                  Registro local
                 </Text>
                 <Text className="font-sans text-sm text-text-muted mt-1 leading-relaxed">
-                  Sua mensagem será transmitida para a equipe psicológica. O
-                  tempo de resposta pode variar conforme a posição orbital.
+                  O Estelar salva o relato neste dispositivo. O canal com a equipe
+                  da Terra é fictício.
                 </Text>
               </View>
             </View>
@@ -186,13 +186,14 @@ export default function ReportScreen() {
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-6 flex-row justify-between items-center">
             <View className="flex-1 mr-4">
               <Text className="font-sans text-sm font-bold text-text-high">
-                Anexar check-in atual
+                Incluir check-in na simulação
               </Text>
               <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
-                Inclui humor, estresse, energia e sono registrados hoje.
+                Registra sua preferência de inclusão junto ao relato.
               </Text>
             </View>
             <Switch
+              accessibilityLabel="Incluir check-in na simulação"
               value={attachCheckin}
               onValueChange={(val) => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -211,27 +212,27 @@ export default function ReportScreen() {
               className="mb-3"
             />
             <Text className="font-mono text-[11px] text-text-muted/60 uppercase tracking-[2px] text-center mb-1">
-              TEMPO ESTIMADO DE RESPOSTA:
+              TEMPO DE RESPOSTA SIMULADO
             </Text>
             <Text className="font-mono text-3xl font-bold text-[#b9a7ff] text-center mb-2">
               18 minutos
             </Text>
             <Text className="font-sans text-sm text-text-muted/60 text-center leading-relaxed px-4">
-              Atrasos de comunicação fazem parte da experiência em missão.
+              Este tempo faz parte do cenário fictício de missão.
             </Text>
           </View>
 
           <View className="mb-6 gap-3">
-            <AppButton onPress={handleSend} leftIcon="send-outline">
-              Enviar para suporte
+            <AppButton onPress={handleSave} leftIcon="document-text-outline">
+              Salvar relato
             </AppButton>
 
             <AppButton
-              onPress={handleSaveDraft}
+              onPress={handleSimulateDraft}
               variant="secondary"
               leftIcon="document-text-outline"
             >
-              Salvar como rascunho
+              Simular rascunho
             </AppButton>
           </View>
         </ScrollView>

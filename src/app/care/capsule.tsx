@@ -216,7 +216,7 @@ export default function CapsuleScreen() {
                 Cápsula emocional
               </Text>
               <Text className="font-sans text-sm text-text-muted mt-0.5 leading-relaxed">
-                Uma memória programada para chegar no momento certo.
+                Uma memória fictícia para experimentar a cápsula.
               </Text>
             </View>
           </View>
@@ -289,7 +289,7 @@ export default function CapsuleScreen() {
                 <View className="flex-row items-center mb-6">
                   <View className="px-2 py-0.5 rounded bg-primary/10 border border-primary/25 mr-2">
                     <Text className="font-mono text-[8px] font-bold text-primary uppercase tracking-[0.5px]">
-                      Áudio + foto
+                      Áudio simulado + foto
                     </Text>
                   </View>
                   <Text className="font-mono text-[11px] text-text-muted/70 uppercase tracking-[0.5px]">
@@ -313,10 +313,10 @@ export default function CapsuleScreen() {
                 <View className="bg-surface rounded-2xl p-4 border border-stroke-soft">
                   <View className="flex-row items-center justify-between mb-3">
                     <Text className="font-sans font-bold text-sm text-text-high">
-                      Mensagem de Voz
+                      Reprodução simulada
                     </Text>
                     <Text className="font-mono text-[12px] text-text-muted">
-                      1.2 MB · 01:20
+                      01:20
                     </Text>
                   </View>
 
@@ -350,6 +350,8 @@ export default function CapsuleScreen() {
 
                   <View className="flex-row items-center justify-center gap-6 mt-4">
                     <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel="Voltar 10 segundos na simulação"
                       onPress={() => {
                         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                         setAudioProgress(Math.max(0, audioProgress - 10));
@@ -361,6 +363,12 @@ export default function CapsuleScreen() {
 
                     <Pressable
                       onPress={handleTogglePlay}
+                      accessibilityRole="button"
+                      accessibilityLabel={
+                        isPlaying
+                          ? "Pausar simulação de áudio"
+                          : "Simular reprodução de áudio"
+                      }
                       className="w-14 h-14 rounded-full bg-primary items-center justify-center active:opacity-90 shadow-md"
                     >
                       <Ionicons
@@ -372,6 +380,8 @@ export default function CapsuleScreen() {
                     </Pressable>
 
                     <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel="Avançar 10 segundos na simulação"
                       onPress={() => {
                         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                         setAudioProgress(Math.min(80, audioProgress + 10));

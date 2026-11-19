@@ -43,7 +43,7 @@ type Shortcut = {
 const SHORTCUTS: Shortcut[] = [
   {
     title: "Relato",
-    description: "Enviar mensagem para suporte",
+    description: "Salvar relato no dispositivo",
     icon: "chatbubble-ellipses-outline",
     iconColor: "#7CCBFF",
     route: "/mission/report",
@@ -57,7 +57,7 @@ const SHORTCUTS: Shortcut[] = [
   },
   {
     title: "Sons calmantes",
-    description: "Ambiência para foco e descanso",
+    description: "Previstos para outra versão",
     icon: "headset-outline",
     iconColor: "#8FE3B0",
     toastMessage: "Sons calmantes estarão disponíveis em outra versão do app.",
