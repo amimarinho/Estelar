@@ -1,13 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { useCallback, useState } from "react";
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Text,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { useCallback } from "react";
+import { Text, useWindowDimensions, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Animated, {
@@ -34,7 +28,6 @@ export default function OnboardingScreen() {
   const CARD_SLOT_WIDTH = CARD_WIDTH * 0.58;
   const SIDE_INSET = (width - CARD_SLOT_WIDTH) / 2;
 
-  const [activeIndex, setActiveIndex] = useState(INITIAL_INDEX);
   const scrollX = useSharedValue(CARD_SLOT_WIDTH * INITIAL_INDEX);
 
   const snapOffsets = CAROUSEL_DATA.map((_, index) => index * CARD_SLOT_WIDTH);
@@ -44,18 +37,6 @@ export default function OnboardingScreen() {
       scrollX.value = event.contentOffset.x;
     },
   });
-
-  const handleSnapEnd = useCallback(
-    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const offsetX = event.nativeEvent.contentOffset.x;
-      const nextIndex = Math.round(offsetX / CARD_SLOT_WIDTH);
-
-      if (nextIndex >= 0 && nextIndex < CAROUSEL_DATA.length) {
-        setActiveIndex(nextIndex);
-      }
-    },
-    [CARD_SLOT_WIDTH],
-  );
 
   const handleProceed = useCallback(() => {
     router.replace("/(tabs)");
@@ -117,15 +98,12 @@ export default function OnboardingScreen() {
             }}
             onScroll={scrollHandler}
             scrollEventThrottle={16}
-            onMomentumScrollEnd={handleSnapEnd}
-            onScrollEndDrag={handleSnapEnd}
           >
             {CAROUSEL_DATA.map((item, index) => (
               <AnimatedCard
                 key={item.id}
                 item={item}
                 index={index}
-                activeIndex={activeIndex}
                 scrollX={scrollX}
                 snapInterval={CARD_SLOT_WIDTH}
                 cardWidth={CARD_WIDTH}

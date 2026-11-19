@@ -327,8 +327,7 @@ export default function RadarScreen() {
                   ATENÇÃO PREVENTIVA
                 </Text>
                 <Text className="font-sans text-sm text-text-high leading-relaxed mt-1.5">
-                  Recomendamos uma pausa guiada ou o envio de um relato para
-                  suporte psicológico.
+                  Faça uma pausa guiada ou registre como você está se sentindo.
                 </Text>
               </View>
             </View>
@@ -349,17 +348,17 @@ export default function RadarScreen() {
 
           <View className="bg-surface-card rounded-[28px] p-6 border border-primary/10 mb-8">
             <Text className="font-mono text-[11px] text-text-muted uppercase tracking-[2px] mb-4 opacity-70">
-              COMUNICAÇÃO COM A TERRA
+              RELATO EMOCIONAL
             </Text>
 
             <View className="flex-row items-center mb-6">
               <View className="w-2.5 h-2.5 rounded-full bg-feedback-success mr-3 animate-pulse" />
               <View className="flex-1">
                 <Text className="font-title text-lg font-bold text-text-high">
-                  Canal assíncrono disponível
+                  Registro no dispositivo
                 </Text>
                 <Text className="font-sans text-sm text-text-muted mt-0.5">
-                  Tempo estimado de resposta: 18 min
+                  O relato fica salvo neste dispositivo.
                 </Text>
               </View>
             </View>
@@ -369,10 +368,10 @@ export default function RadarScreen() {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push("/mission/report");
               }}
-              leftIcon="send-outline"
+              leftIcon="document-text-outline"
               className="mb-3"
             >
-              Enviar relato emocional
+              Escrever relato emocional
             </AppButton>
 
             <AppButton

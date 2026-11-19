@@ -47,7 +47,7 @@ Permite registrar humor, energia, estresse, sono e uma observação breve sobre 
 
 ### 📡 Radar de suporte
 
-Apresenta sinais de sobrecarga emocional, indicadores do estado da tripulação e comunicação assíncrona com a equipe da Terra.
+Apresenta sinais de sobrecarga emocional e indicadores do estado da tripulação. O relato emocional é salvo no dispositivo. A comunicação com a equipe da Terra faz parte do cenário fictício.
 
 ### 🧘 Cuidado imediato
 
@@ -55,7 +55,7 @@ Oferece acesso a práticas de respiração, meditação e recursos de regulaçã
 
 ### 🌎 Conexão com a Terra
 
-Reúne lembranças afetivas, mensagens, cápsulas emocionais e referências da cidade de origem do astronauta.
+Reúne lembranças afetivas, mensagens fictícias, cápsulas emocionais e referências da cidade de origem do astronauta. Os controles de áudio demonstram a reprodução sem som.
 
 ### 🌌 Jornada emocional
 
@@ -85,7 +85,7 @@ Registro de humor, estresse, energia, sono e observação breve.
 
 ### 📡 Radar
 
-Monitoramento emocional, alerta preventivo e suporte psicológico assíncrono com a Terra.
+Monitoramento emocional, alerta preventivo e acesso ao relato salvo no dispositivo.
 
 ### 🧘 Cuidar
 
@@ -454,13 +454,6 @@ A equipe responsável pelo desenvolvimento da plataforma Estelar para a Global S
   <a href="https://www.figma.com/proto/iE0wnaC0eO3JqJgl6DSydU/Global-Solutions---Space-Connect--Estelar-?node-id=0-1&t=9sUhh4MdbBplChc6-1">
     <img src="https://img.shields.io/badge/🎨_Protótipo_Estelar-8F7CFF?style=flat" />
   </a>
-
-  <a href="#">
-    <img src="https://img.shields.io/badge/🎬_Vídeo_Pitch-FF0000?style=flat" />
-  </a>
-
-  <a href="#">
-    <img src="https://img.shields.io/badge/📄_Documentação_Final-B9A7FF?style=flat" />
-  </a>
 </p>
 
+Os links do vídeo pitch e da documentação final aguardam confirmação da equipe.
